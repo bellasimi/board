@@ -27,5 +27,7 @@ public class Board {
     @Column(nullable = false)
     private String context;
     private String pwBoard;
+    @Column(nullable = false)
+    private String creDate;
 
 }

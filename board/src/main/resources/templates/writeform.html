@@ -2,6 +2,32 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" >
 
 <head>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        <!--client현재시간 구하는 법(자동실행 제이쿼리)-->
+        $(document).ready(function(){
+                let date1= new Date();
+                let Y = date1.getFullYear();
+                let m = date1.getMonth();
+                let d = date1.getDate();
+
+                if(m<10){ m="0"+m;}
+                if(d<10){ d="0"+d; }
+                let creDate =Y+"-"+m+"-"+d;/*
+           /*
+            어째서인지 jqeury attr가 먹히지 않는다 ㅜㅜ
+                $("input[id=creDate]").attr("value","STR_TO_DATE("+"'"+creDate+"'"+",'%Y-%m-%d')");*/
+            console.log(creDate);
+            console.log("STR_TO_DATE("+"'"+creDate+"'"+",'%Y-%m-%d')");
+
+            /*
+            그냥 자바스크립트 매소드로 넘김*/
+            document.getElementById("creDate").setAttribute("value",creDate);
+        });
+
+    </script>
+
+
     <meta charset="UTF-8">
     <title>게시글작성</title>
 </head>
@@ -9,10 +35,13 @@
 <form action="/writeSave" method="post">
     <h1>게시글 작성</h1>
     <input type="hidden" name="id" th:value="${id}"><p>
-    제목<input type="text" name="pw"><p>
-    <textarea rows="20" cols="10" name="name"></textarea><p>
+    <input type="hidden" name="creDate" id="creDate" value="">
+    제목<input type="text" name="title"><p>
+    <textarea name="context" rows="20" cols="40"></textarea><p>
 
     비밀번호<input type="text" name="pwBoard"><p>
+   <!--client마다 현재시간이 다름, form에서 값을 넣는 거 보다 controller에서  server시간을 넣어줄것!
+    -->
     <input type="submit" value="작성">
     <input type="reset" value="초기화">
 </form>
