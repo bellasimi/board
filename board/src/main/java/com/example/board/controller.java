@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,7 +76,10 @@ public class controller {
     @RequestMapping("/write")
     public String writeform(Model model,HttpSession session){
         String id = (String) session.getAttribute("logId");
-        System.out.printf(id);
+        /*//세션에 id 저장됐는지 확인
+        System.out.println("==================================");
+        System.out.printf("아이디는"+id+"입니다");
+        System.out.println("==================================");*/
         model.addAttribute("id",id);
         return "writeform";
     }
@@ -87,20 +92,47 @@ public class controller {
         return "boardlist";
     }
     //게시판보기
-    @RequestMapping("/boarlist")
+    @RequestMapping("/boardlist")
     public String boardlist(Board board,Model model){
         List<Board> boardList = boardRepository.findAll();
         model.addAttribute("list2",boardList);
         return "boardlist";
     }
     //글읽기
-    @RequestMapping("/readdetail")
+    @RequestMapping("/boarddetail")
     public String readdetail(@RequestParam("seq")int seq,Model model,Board board){
         Optional<Board> boardfind = boardRepository.findById(seq);
         Board detail = boardfind.get();
         model.addAttribute("detail",detail);
         return "boarddetail";
     }
+    //게시글 수정폼
+    @RequestMapping("/modiform")
+    public String modiform(@RequestParam("seq")int seq, HttpSession session,Model model){
+       String id= (String) session.getAttribute("logId");
+       model.addAttribute("id",id);
+       model.addAttribute("seq",seq);
+       return "modify";
+    }
+    //게시글 수정
+    @RequestMapping("/modify")
+    public String modify(Board board,Model model){
+        Date date = new Date();
+        SimpleDateFormat date2 = new SimpleDateFormat("yyyy-MM-dd");
+        String creDate = date2.format(date);
+        board.setCreDate(creDate);
+        boardRepository.save(board);
+        model.addAttribute("message","수정완료!");
 
+        return "redirect:boardlist";
+    }
+    //게시글 삭제
+    @RequestMapping("/delete")
+    public String delete(@RequestParam("seq")int seq,Model model){
+        boardRepository.deleteById(seq);
+        model.addAttribute("message","삭제완료!");
+
+        return "redirect:boardlist";
+    }
 
 }

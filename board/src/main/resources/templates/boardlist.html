@@ -21,20 +21,19 @@
                 <th>목록</th>
                 <th>작성자</th>
                 <th>제목</th>
-                <th>작성일자</th><!-- 추후등록 -->
+                <th>작성일자</th>
             </tr>
             </thead>
             <tbody>
             <tr th:if="${not #lists.isEmpty( list2 )}" th:each="row : ${list2}">
-                <td class="text-left">
-                    <a th:href="@{/readdetail( seq=${row.seqBoard} )}" th:text="${row.seqBoard}"></a>
-                    <!-- 링크 get방식? 이거 아닌가
-                    <a th:href="/readdetail?seq=${row.seqBoard}" th:text="${row.seqBoard}"></a>-->
-                </td>
+                <td th:text="${row.seqBoard}"></td>
                 <td th:text="${row.id}"></td>
-                <td th:text="${row.title}"></td>
-                <!--추후 추가예정
-                <td th:text="${row.creDate}"></td>-->
+                <td>
+                    <a th:href="@{/boarddetail(seq=${row.seqBoard})}" th:text="${row.title}"></a>
+                </td>
+                <!--오류 :링크 get방식? 이거 아닌가
+                   <a th:href="/readdetail?seq=${row.seqBoard}" th:text="${row.seqBoard}"></a>-->
+                <td th:text="${row.creDate}"></td>
             </tr>
             <tr th:unless="${not #lists.isEmpty( list2 )}">
                 <td colspan="5">조회된 결과가 없습니다.</td>
@@ -43,7 +42,8 @@
         </table>
 
         <div class="btn_wrap text-right">
-            <a th:href="@{/writeform}" class="btn btn-primary waves-effect waves-light">Write</a>
+            <a th:href="@{/write}">글작성</a>
+            <a th:href="@{/}">로그아웃</a>
         </div>
 
         <!--   <th:block layout:fragment="paging">

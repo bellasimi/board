@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26c40a01-3720-4e3a-aee0-cfe1fd268e01" name="Changes" comment="branch master에서 main으로 변경" />
+    <list default="true" id="26c40a01-3720-4e3a-aee0-cfe1fd268e01" name="Changes" comment="branch master에서 main으로 변경">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/modify.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/board/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/board/board/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/board/controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/board/controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/boarddetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/boarddetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/boardlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/boardlist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/writeform.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/writeform.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,7 +28,12 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="board" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -32,6 +45,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -47,6 +61,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -55,21 +70,9 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="board" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="board" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="BoardApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="board.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.board.BoardApplication" />
@@ -91,6 +94,7 @@
       <workItem from="1630521448739" duration="25000" />
       <workItem from="1630521477761" duration="156000" />
       <workItem from="1630521646310" duration="381000" />
+      <workItem from="1630582773768" duration="11155000" />
     </task>
     <task id="LOCAL-00001" summary="branch master에서 main으로 변경">
       <created>1630523183964</created>
@@ -115,9 +119,14 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="branch master에서 main으로 변경" />
     <option name="LAST_COMMIT_MESSAGE" value="branch master에서 main으로 변경" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
