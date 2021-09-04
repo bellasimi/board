@@ -3,7 +3,44 @@
 <th:block layout:fragment="title">
     <title>게시글목록</title>
 </th:block>
+<script th:inline="javascript">
+    window.onload=function(){
+        /*<![CDATA[*/ /*]]*/
+        let id= [[${detail.id}]];
+        console.log("아이디: "+id);
+        let creDate= [[${detail.creDate}]];
+        console.log("작성일: "+creDate);
+        let pw= [[${detail.pwBoard}]];
+        console.log("비번: "+pw);
+    }
+   /* 글 수정*/
+     function checkMPw(){
+         let seq= [[${detail.seqBoard}]];
+         let pwBoard= [[${detail.pwBoard}]];
+         let pw = prompt("글작성 시 입력했던 비밀번호를 입력하시오!","");
+         if(pw==pwBoard){
+             window.location.href="/modiform?seq="+seq;
+         }
+         else{
+             alert("비밀번호가 일치하지 않습니다!")
+         }
+     }
 
+   /* 글 삭제*/
+   function checkDPw(){
+       let seq= [[${detail.seqBoard}]];
+       let pwBoard= [[${detail.pwBoard}]];
+       let pw = prompt("글작성 시 입력했던 비밀번호를 입력하시오!","");
+       if(pw==pwBoard){
+           window.location.href="/delete?seq="+seq;
+       }
+       else{
+           alert("비밀번호가 일치하지 않습니다!")
+       }
+   }
+
+
+</script>
 <th:block layout:fragment="search">
     <form action="#" id="searchform-header" class="searchform js__toggle active pull-right">
         <input type="search" placeholder="Search..." class="input-search">
@@ -41,11 +78,18 @@
             </tr>
             </tbody>
         </table>
+        <!--클릭이 안돼
+        <a th:onclock="|checkMPw()|">수정</a>
+        <a th:onclock="|checkDPw()|">삭제</a>-->
 
-            <a th:href="@{/modiform(seq=${detail.seqBoard})}">수정</a> &emsp; &emsp;
-            <a th:href="@{/delete(seq=${detail.seqBoard})}">삭제</a>&emsp; &emsp;
+      <button type="button" onclock="|checkMPw()|">수정</button>
+        <button type="button" onclock="|checkDPw()|">삭제</button>
+        <a href="javascript:checkMPw()">수정</a> &emsp; &emsp;
+        <a href="javascript:checkDPw()">삭제</a>&emsp;
+
+ <!--           <a th:href="@{/modiform(seq=${detail.seqBoard})}">수정</a> &emsp; &emsp;
+            <a th:href="@{/delete(seq=${detail.seqBoard})}">삭제</a>&emsp; -->&emsp;
             <a th:href="@{/write}">글쓰기</a>
-
 
 
     </div>
