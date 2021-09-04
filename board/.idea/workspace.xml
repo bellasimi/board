@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26c40a01-3720-4e3a-aee0-cfe1fd268e01" name="Changes" comment="branch master에서 main으로 변경">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/modify.html" afterDir="false" />
+    <list default="true" id="26c40a01-3720-4e3a-aee0-cfe1fd268e01" name="Changes" comment="게시글 select,delete,update 기능구현">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/board/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/board/board/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/board/controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/board/controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/boarddetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/boarddetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/boardlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/boardlist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/writeform.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/writeform.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/loginsuccess.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/loginsuccess.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +91,8 @@
       <workItem from="1630521448739" duration="25000" />
       <workItem from="1630521477761" duration="156000" />
       <workItem from="1630521646310" duration="381000" />
-      <workItem from="1630582773768" duration="11155000" />
+      <workItem from="1630582773768" duration="11875000" />
+      <workItem from="1630757290055" duration="6389000" />
     </task>
     <task id="LOCAL-00001" summary="branch master에서 main으로 변경">
       <created>1630523183964</created>
@@ -103,7 +101,21 @@
       <option name="project" value="LOCAL" />
       <updated>1630523183964</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Board creDate 필드 추가">
+      <created>1630597905126</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1630597905126</updated>
+    </task>
+    <task id="LOCAL-00003" summary="게시글 select,delete,update 기능구현">
+      <created>1630597966812</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1630597966812</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,7 +135,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="branch master에서 main으로 변경" />
-    <option name="LAST_COMMIT_MESSAGE" value="branch master에서 main으로 변경" />
+    <MESSAGE value="Board creDate 필드 추가" />
+    <MESSAGE value="게시글 select,delete,update 기능구현" />
+    <option name="LAST_COMMIT_MESSAGE" value="게시글 select,delete,update 기능구현" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

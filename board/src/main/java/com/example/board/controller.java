@@ -108,10 +108,11 @@ public class controller {
     }
     //게시글 수정폼
     @RequestMapping("/modiform")
-    public String modiform(@RequestParam("seq")int seq, HttpSession session,Model model){
+    public String modiform(@RequestParam("seq")String seq, HttpSession session,Model model){
        String id= (String) session.getAttribute("logId");
+       int seqBoard =Integer.parseInt(seq);
        model.addAttribute("id",id);
-       model.addAttribute("seq",seq);
+       model.addAttribute("seq",seqBoard);//
        return "modify";
     }
     //게시글 수정
