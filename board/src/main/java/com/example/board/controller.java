@@ -108,11 +108,13 @@ public class controller {
     }
     //게시글 수정폼
     @RequestMapping("/modiform")
-    public String modiform(@RequestParam("seq")String seq, HttpSession session,Model model){
+    public String modiform(@RequestParam("seq")int seq, HttpSession session,Model model){
        String id= (String) session.getAttribute("logId");
-       int seqBoard =Integer.parseInt(seq);
+/*       만약 변수 선언 후 get방식으로 넘겼다면 String으로 값을 인식
+         -> 위 함수에선 @RequestParam("seq")String seq으로 하고
+         -> 받은 값은 int로 parse해줘야 됨 int seqBoard =Integer.parseInt(seq); */
        model.addAttribute("id",id);
-       model.addAttribute("seq",seqBoard);//
+       model.addAttribute("seq",seq);//
        return "modify";
     }
     //게시글 수정
