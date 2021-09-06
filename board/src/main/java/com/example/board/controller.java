@@ -126,16 +126,20 @@ public class controller {
         board.setCreDate(creDate);
         boardRepository.save(board);
         model.addAttribute("message","수정완료!");
+        List<Board> boardList = boardRepository.findAll();
+        model.addAttribute("list2",boardList);
 
-        return "redirect:boardlist";
+        return "boardlist";
     }
     //게시글 삭제
     @RequestMapping("/delete")
     public String delete(@RequestParam("seq")int seq,Model model){
         boardRepository.deleteById(seq);
         model.addAttribute("message","삭제완료!");
+        List<Board> boardList = boardRepository.findAll();
+        model.addAttribute("list2",boardList);
 
-        return "redirect:boardlist";
+        return "boardlist";
     }
 
 }

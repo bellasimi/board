@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26c40a01-3720-4e3a-aee0-cfe1fd268e01" name="Changes" comment="수정,삭제시 글비밀번호 일치확인">
+    <list default="true" id="26c40a01-3720-4e3a-aee0-cfe1fd268e01" name="Changes" comment="el식 바로 get방식으로 전달(int가 String이 되지 않도록)">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/board/controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/board/controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/boarddetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/boarddetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/boardlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/boardlist.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +48,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="1xS1bAzDi84VnxvvEvztJQZy3Ij" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -66,6 +74,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
   </component>
   <component name="RunManager">
@@ -91,7 +100,8 @@
       <workItem from="1630521477761" duration="156000" />
       <workItem from="1630521646310" duration="381000" />
       <workItem from="1630582773768" duration="11875000" />
-      <workItem from="1630757290055" duration="8008000" />
+      <workItem from="1630757290055" duration="8861000" />
+      <workItem from="1630917319465" duration="5388000" />
     </task>
     <task id="LOCAL-00001" summary="branch master에서 main으로 변경">
       <created>1630523183964</created>
@@ -128,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630767857151</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="el식 바로 get방식으로 전달(int가 String이 되지 않도록)">
+      <created>1630768887107</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1630768887107</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -151,7 +168,8 @@
     <MESSAGE value="Board creDate 필드 추가" />
     <MESSAGE value="게시글 select,delete,update 기능구현" />
     <MESSAGE value="수정,삭제시 글비밀번호 일치확인" />
-    <option name="LAST_COMMIT_MESSAGE" value="수정,삭제시 글비밀번호 일치확인" />
+    <MESSAGE value="el식 바로 get방식으로 전달(int가 String이 되지 않도록)" />
+    <option name="LAST_COMMIT_MESSAGE" value="el식 바로 get방식으로 전달(int가 String이 되지 않도록)" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
