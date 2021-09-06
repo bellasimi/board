@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26c40a01-3720-4e3a-aee0-cfe1fd268e01" name="Changes" comment="el식 바로 get방식으로 전달(int가 String이 되지 않도록)">
+    <list default="true" id="26c40a01-3720-4e3a-aee0-cfe1fd268e01" name="Changes" comment="수정 삭제시 메세지 뜨게 하기">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/board/controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/board/controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/boarddetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/boarddetail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/boardlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/boardlist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/writeform.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/writeform.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,7 +102,7 @@
       <workItem from="1630521646310" duration="381000" />
       <workItem from="1630582773768" duration="11875000" />
       <workItem from="1630757290055" duration="8861000" />
-      <workItem from="1630917319465" duration="5388000" />
+      <workItem from="1630917319465" duration="7206000" />
     </task>
     <task id="LOCAL-00001" summary="branch master에서 main으로 변경">
       <created>1630523183964</created>
@@ -145,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630768887107</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="수정 삭제시 메세지 뜨게 하기">
+      <created>1630922922989</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1630922922989</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -169,7 +177,8 @@
     <MESSAGE value="게시글 select,delete,update 기능구현" />
     <MESSAGE value="수정,삭제시 글비밀번호 일치확인" />
     <MESSAGE value="el식 바로 get방식으로 전달(int가 String이 되지 않도록)" />
-    <option name="LAST_COMMIT_MESSAGE" value="el식 바로 get방식으로 전달(int가 String이 되지 않도록)" />
+    <MESSAGE value="수정 삭제시 메세지 뜨게 하기" />
+    <option name="LAST_COMMIT_MESSAGE" value="수정 삭제시 메세지 뜨게 하기" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

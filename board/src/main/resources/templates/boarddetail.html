@@ -18,12 +18,18 @@
         /*변수를 주소에 get방식으로 보내면 String으로 인식 그냥 el식으로 바로 넘겨야 int로 인식
         let seq= [[${detail.seqBoard}]];*/
          let pwBoard= [[${detail.pwBoard}]];
+         if([[${detail.id}]] != null || [[${detail.id}]] == ''){
          let pw = prompt("글작성 시 입력했던 비밀번호를 입력하시오!","");
          if(pw==pwBoard){
              window.location.href="/modiform?seq="+[[${detail.seqBoard}]];
          }
          else{
-             alert("비밀번호가 일치하지 않습니다!")
+             alert("비밀번호가 일치하지 않습니다!");
+         }
+         }//id가 존재하는 경우
+         else{
+             alert("로그인 후 이용해 주세요!")
+             location.href="/loginform";
          }
      }
 
