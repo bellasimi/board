@@ -45,7 +45,20 @@
            alert("비밀번호가 일치하지 않습니다!")
        }
    }
+   /*댓글 비번 확인*/
+    function checkPw(work,seqReply){
 
+        let seqBoard= [[${detail.seqBoard}]];
+        let pw = prompt("댓글 비밀번호를 입력하시오!","");
+        if(pw=pwReply){
+            if(work=="삭제"){
+                location.href="/delreply?seq="+seqReply;
+            }
+            else if(work=="수정"){
+                location.href="/modireply?seq="+seqReply;
+            }
+        }
+    }
 
 </script>
 <th:block layout:fragment="search">
@@ -71,8 +84,7 @@
 
                 <td th:text="${detail.id}"></td>
                 <td th:text="${detail.title}"></td>
-                <!--추후 추가예정
-                <td th:text="${detail.creDate}"></td>-->
+                <td th:text="${detail.creDate}"></td>
             </tr>
             <tr>
                     <th>내용</th>
@@ -83,6 +95,29 @@
             <tr th:if="${#strings.isEmpty(detail.id)}">
                 <td colspan="5">조회된 결과가 없습니다.</td>
             </tr>
+            <tr>
+                <th>댓글달기</th>
+            </tr>
+
+            <tr>
+                <form action="/reply" method="post">
+                    작성자<input type="text" name="id" th:placeholder="${detail.id}">
+                    <textarea name="reply" cols="40" rows="15" ></textarea>
+                    비밀번호<input type="text" name="pwReply">
+                    <input type="hidden" name="seqBoard" th:value="${detail.seqBoard}">
+                    <button type="submit">댓글달기</button>
+                    <button type="reset">취소</button>
+                </form>
+            </tr>
+                <tr th:if="${not #lists.isEmpty(replylist)}" th:each="row : ${replylist}" >
+                    <td th:text="${row.id}"></td>
+                    <td th:text="${row.reply}"></td>
+                    <td>work,seqReply
+                        <button type="button" th:onclick="|modireply('수정','${replylist.seqReply}')|">수정</button>
+                        <button type="button" th:onclick="|delreply('삭제','${replylist.seqReply}')|">삭제</button>
+                    </td>
+
+                </tr>
             </tbody>
         </table>
         <!--클릭이 안돼
@@ -94,7 +129,8 @@
         <a href="javascript:checkMPw()">수정</a> &emsp; &emsp;
         <a href="javascript:checkDPw()">삭제</a>&emsp;
 
- <!--           <a th:href="@{/modiform(seq=${detail.seqBoard})}">수정</a> &emsp; &emsp;
+ <!-- 자바 스크립트 처리 없이(비번 확인안하고) 컨트롤러에 보내는 경우
+  <a th:href="@{/modiform(seq=${detail.seqBoard})}">수정</a> &emsp; &emsp;
             <a th:href="@{/delete(seq=${detail.seqBoard})}">삭제</a>&emsp; -->&emsp;
             <a th:href="@{/write}">글쓰기</a>
 

@@ -2,6 +2,8 @@ package com.example.board;
 
 import com.example.board.board.Board;
 import com.example.board.board.BoardRepository;
+import com.example.board.board.Reply;
+import com.example.board.board.ReplyRepository;
 import com.example.board.member.Member;
 import com.example.board.member.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +26,8 @@ public class controller {
 
     @Autowired
     private BoardRepository boardRepository;
-
+    @Autowired
+    ReplyRepository replyRepository;
     //메인
     @RequestMapping("/")
     public String mainpage(Model model){
@@ -99,11 +102,14 @@ public class controller {
         return "boardlist";
     }
     //글읽기
+    //댓글 출력
     @RequestMapping("/boarddetail")
     public String readdetail(@RequestParam("seq")int seq,Model model,Board board){
         Optional<Board> boardfind = boardRepository.findById(seq);
         Board detail = boardfind.get();
         model.addAttribute("detail",detail);
+        List<Reply> replylist = replyRepository.findBySeqBoard(seq);
+        model.addAttribute("replylist",replylist);
         return "boarddetail";
     }
     //게시글 수정폼
@@ -141,5 +147,22 @@ public class controller {
 
         return "boardlist";
     }
-
+    //댓글 달기
+    @RequestMapping("/reply")
+    public String reply(Reply reply, Model model){
+        replyRepository.save(reply);
+        return "redirect:boardetail?seq="+reply.getSeqBoard();
+    }
+    //댓글 삭제
+    @RequestMapping("/delreply")
+    public String delreply(@RequestParam("seq") String seqReply){
+        replyRepository.deleteById(seqReply);
+        return "redirect:boardlist";
+    }
+    //댓글 수정
+    @RequestMapping("/modireply")
+    public String modireply(Reply reply, String seqReply){
+        replyRepository.save(reply);
+        return "redirect:boardlist";
+    }
 }
