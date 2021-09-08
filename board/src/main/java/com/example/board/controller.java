@@ -111,6 +111,7 @@ public class controller {
         List<Reply> replylist = replyRepository.findAllBySeqBoard(seq);
         model.addAttribute("replylist",replylist);
         return "boarddetail";
+
     }
     //게시글 수정폼
     @RequestMapping("/modiform")
@@ -161,7 +162,7 @@ public class controller {
     }
     //댓글 수정
     @RequestMapping("/modireply")
-    public String modireply(Reply reply, String seqReply){
+    public String modireply(Reply reply){
         replyRepository.save(reply);
         return "redirect:boardlist";
     }
