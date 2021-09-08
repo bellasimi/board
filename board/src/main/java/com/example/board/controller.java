@@ -108,7 +108,7 @@ public class controller {
         Optional<Board> boardfind = boardRepository.findById(seq);
         Board detail = boardfind.get();
         model.addAttribute("detail",detail);
-        List<Reply> replylist = replyRepository.findBySeqBoard(seq);
+        List<Reply> replylist = replyRepository.findAllBySeqBoard(seq);
         model.addAttribute("replylist",replylist);
         return "boarddetail";
     }
@@ -151,11 +151,11 @@ public class controller {
     @RequestMapping("/reply")
     public String reply(Reply reply, Model model){
         replyRepository.save(reply);
-        return "redirect:boardetail?seq="+reply.getSeqBoard();
+        return "redirect:boarddetail?seq="+reply.getSeqBoard();
     }
     //댓글 삭제
     @RequestMapping("/delreply")
-    public String delreply(@RequestParam("seq") String seqReply){
+    public String delreply(@RequestParam("seq") int seqReply){
         replyRepository.deleteById(seqReply);
         return "redirect:boardlist";
     }

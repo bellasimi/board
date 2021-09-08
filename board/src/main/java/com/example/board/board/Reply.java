@@ -21,11 +21,11 @@ public class Reply {
     @Id
     @GeneratedValue
     @Column(nullable = false)
-    private String seqReply;
+    private int seqReply;
     @Column(nullable = false)
-    private String seqBoard;
+    private int seqBoard;
     private String id;
-    @Column(nullable = false)
-    private String reply;
+
+    private String replytext;
     private String pwReply;
 }
