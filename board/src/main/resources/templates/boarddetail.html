@@ -66,15 +66,17 @@
         console.log("댓글 비번:"+ pwReply);
         let seqBoard= [[${detail.seqBoard}]];
         let pw = prompt("댓글 비밀번호를 입력하시오!","");
-        if(pw=pwReply){
+        if(pw == pwReply){
+
             if(work=="삭제"){
                 location.href="/delreply?seq="+seqReply;
             }
             else if(work=="수정"){
                 //location.href="/modireply?seq="+seqReply; 이거 안하고 폼으로 전달
-                const reReplyRow =$('#board_table2').insertRow();
+                const table = document.getElementById('board_table2');
+                const reReplyRow =table.insertRow();
                 const reReplyBox = reReplyRow.insertCell(index);
-                alert("수정!");
+                reReplyBox.innerText="여기 수정칸";
 
            /*     $.ajax({
                     url: "/modireply",
