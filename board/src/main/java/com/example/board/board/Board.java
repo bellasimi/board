@@ -22,10 +22,11 @@ public class Board {
     private int seqBoard;
     @Column(nullable = false)
     private String id;
-
+    @Column
     private String title;
     @Column(nullable = false)
     private String context;
+
     private String pwBoard;
     @Column(nullable = false)
     private String creDate;

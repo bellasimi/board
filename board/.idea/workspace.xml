@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26c40a01-3720-4e3a-aee0-cfe1fd268e01" name="Changes" comment="글작성,수정,삭제 로그인 조건문 추가">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/board/board/Reply.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/board/board/ReplyRepository.java" afterDir="false" />
+    <list default="true" id="26c40a01-3720-4e3a-aee0-cfe1fd268e01" name="Changes" comment="댓글 작성,수정,삭제,출력">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/board/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/board/board/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/board/board/Reply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/board/board/Reply.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/board/board/ReplyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/board/board/ReplyRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/board/controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/board/controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/boarddetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/boarddetail.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +105,10 @@
       <workItem from="1630582773768" duration="11875000" />
       <workItem from="1630757290055" duration="8861000" />
       <workItem from="1630917319465" duration="8023000" />
-      <workItem from="1631016363147" duration="4246000" />
+      <workItem from="1631016363147" duration="6694000" />
+      <workItem from="1631028885096" duration="760000" />
+      <workItem from="1631029711663" duration="294000" />
+      <workItem from="1631030025062" duration="505000" />
     </task>
     <task id="LOCAL-00001" summary="branch master에서 main으로 변경">
       <created>1630523183964</created>
@@ -163,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630924941100</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="댓글 작성,수정,삭제,출력">
+      <created>1631026403268</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1631026403268</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -189,7 +199,8 @@
     <MESSAGE value="el식 바로 get방식으로 전달(int가 String이 되지 않도록)" />
     <MESSAGE value="수정 삭제시 메세지 뜨게 하기" />
     <MESSAGE value="글작성,수정,삭제 로그인 조건문 추가" />
-    <option name="LAST_COMMIT_MESSAGE" value="글작성,수정,삭제 로그인 조건문 추가" />
+    <MESSAGE value="댓글 작성,수정,삭제,출력" />
+    <option name="LAST_COMMIT_MESSAGE" value="댓글 작성,수정,삭제,출력" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

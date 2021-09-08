@@ -13,39 +13,39 @@
         let pw= [[${detail.pwBoard}]];
         console.log("비번: "+pw);
     }
-   /* 글 수정*/
-     function checkMPw(){
+    /* 글 수정*/
+    function checkMPw(){
         /*변수를 주소에 get방식으로 보내면 String으로 인식 그냥 el식으로 바로 넘겨야 int로 인식
         let seq= [[${detail.seqBoard}]];*/
-         let pwBoard= [[${detail.pwBoard}]];
-         if([[${detail.id}]] != null || [[${detail.id}]] == ''){
-         let pw = prompt("글작성 시 입력했던 비밀번호를 입력하시오!","");
-         if(pw==pwBoard){
-             window.location.href="/modiform?seq="+[[${detail.seqBoard}]];
-         }
-         else{
-             alert("비밀번호가 일치하지 않습니다!");
-         }
-         }//id가 존재하는 경우
-         else{
-             alert("로그인 후 이용해 주세요!")
-             location.href="/loginform";
-         }
-     }
+        let pwBoard= [[${detail.pwBoard}]];
+        if([[${detail.id}]] != null || [[${detail.id}]] == ''){
+            let pw = prompt("글작성 시 입력했던 비밀번호를 입력하시오!","");
+            if(pw==pwBoard){
+                window.location.href="/modiform?seq="+[[${detail.seqBoard}]];
+            }
+            else{
+                alert("비밀번호가 일치하지 않습니다!");
+            }
+        }//id가 존재하는 경우
+        else{
+            alert("로그인 후 이용해 주세요!")
+            location.href="/loginform";
+        }
+    }
 
-   /* 글 삭제*/
-   function checkDPw(){
-       let seq= [[${detail.seqBoard}]];
-       let pwBoard= [[${detail.pwBoard}]];
-       let pw = prompt("글작성 시 입력했던 비밀번호를 입력하시오!","");
-       if(pw==pwBoard){
-           window.location.href="/delete?seq="+seq;
-       }
-       else{
-           alert("비밀번호가 일치하지 않습니다!")
-       }
-   }
-   /*댓글 비번 확인*/
+    /* 글 삭제*/
+    function checkDPw(){
+        let seq= [[${detail.seqBoard}]];
+        let pwBoard= [[${detail.pwBoard}]];
+        let pw = prompt("글작성 시 입력했던 비밀번호를 입력하시오!","");
+        if(pw==pwBoard){
+            window.location.href="/delete?seq="+seq;
+        }
+        else{
+            alert("비밀번호가 일치하지 않습니다!")
+        }
+    }
+    /*댓글 비번 확인*/
     function checkPw(work,seqReply){
 
         let seqBoard= [[${detail.seqBoard}]];
@@ -81,13 +81,13 @@
             </tr>
             </thead>
             <tbody>
-
+            <tr>
                 <td th:text="${detail.id}"></td>
                 <td th:text="${detail.title}"></td>
                 <td th:text="${detail.creDate}"></td>
             </tr>
             <tr>
-                    <th>내용</th>
+                <th>내용</th>
             </tr>
             <tr>
                 <td th:text="${detail.context}"></td>
@@ -100,39 +100,45 @@
             </tr>
 
             <tr>
+                <td>
                 <form action="/reply" method="post">
                     작성자<input type="text" name="id" th:placeholder="${detail.id}">
-                    <textarea name="reply" cols="40" rows="15" ></textarea>
+                    <textarea name="replytext" cols="40" rows="15" ></textarea>
                     비밀번호<input type="text" name="pwReply">
                     <input type="hidden" name="seqBoard" th:value="${detail.seqBoard}">
                     <button type="submit">댓글달기</button>
                     <button type="reset">취소</button>
                 </form>
+                </td>
             </tr>
-                <tr th:if="${not #lists.isEmpty(replylist)}" th:each="row : ${replylist}" >
-                    <td th:text="${row.id}"></td>
-                    <td th:text="${row.reply}"></td>
-                    <td>work,seqReply
-                        <button type="button" th:onclick="|modireply('수정','${replylist.seqReply}')|">수정</button>
-                        <button type="button" th:onclick="|delreply('삭제','${replylist.seqReply}')|">삭제</button>
-                    </td>
 
-                </tr>
             </tbody>
+        </table>
+        <table>
+            <tr th:if="${not #lists.isEmpty(replylist)}" th:each="row : ${replylist}" >
+                <td th:text="${row.id}"></td>
+                <td th:text="${row.replytext}"></td>
+                <td>
+                    <button type="button" th:onclick="|modireply('수정','${replylist.seqReply}')|">수정</button>
+                    <button type="button" th:onclick="|delreply('삭제','${replylist.seqReply}')|">삭제</button>
+                </td>
+
+            </tr>
+
         </table>
         <!--클릭이 안돼
         <a th:onclock="|checkMPw()|">수정</a>
         <a th:onclock="|checkDPw()|">삭제</a>-->
 
-      <button type="button" onclock="|checkMPw()|">수정</button>
+        <button type="button" onclock="|checkMPw()|">수정</button>
         <button type="button" onclock="|checkDPw()|">삭제</button>
         <a href="javascript:checkMPw()">수정</a> &emsp; &emsp;
         <a href="javascript:checkDPw()">삭제</a>&emsp;
 
- <!-- 자바 스크립트 처리 없이(비번 확인안하고) 컨트롤러에 보내는 경우
-  <a th:href="@{/modiform(seq=${detail.seqBoard})}">수정</a> &emsp; &emsp;
-            <a th:href="@{/delete(seq=${detail.seqBoard})}">삭제</a>&emsp; -->&emsp;
-            <a th:href="@{/write}">글쓰기</a>
+        <!-- 자바 스크립트 처리 없이(비번 확인안하고) 컨트롤러에 보내는 경우
+         <a th:href="@{/modiform(seq=${detail.seqBoard})}">수정</a> &emsp; &emsp;
+                   <a th:href="@{/delete(seq=${detail.seqBoard})}">삭제</a>&emsp; -->&emsp;
+        <a th:href="@{/write}">글쓰기</a>
 
 
     </div>
