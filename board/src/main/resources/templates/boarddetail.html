@@ -74,38 +74,49 @@
             else if(work=="수정"){
                 //location.href="/modireply?seq="+seqReply; 이거 안하고 폼으로 전달
                 const table = document.getElementById('board_table2');
-                const reReplyRow =table.insertRow();
-                const reReplyBox = reReplyRow.insertCell(index);
-                reReplyBox.innerText="여기 수정칸";
+                const reReplyRow =table.insertRow(index+1);
+                const reReplyBox1 = reReplyRow.insertCell(0);
+                const reReplyBox2 = reReplyRow.insertCell(1);
 
-           /*     $.ajax({
+                seqReply = parseInt(seqReply);
+                reReplyBox1.innerText="댓글 수정";
+                reReplyBox2.innerHTML="<form action='/modireply' method='post'>" +
+                    "작성자<input type='text' name='id' th:placeholder='"+ [[${detail.id}]]+ "' th:value='"+ [[${detail.id}]]+ "'><p></p>" +
+                    "                        <textarea name='replytext' cols='100 'rows='5' ></textarea><p></p>" +
+                    "                        비밀번호<input type='text' name='pwReply'><p></p>" +
+                    "                        <input type='hidden' name='seqBoard' th:value='"+ [[${detail.seqBoard}]]+ "'>" +
+                    "                        <input type='hidden' name='seqReply' th:value='"+ seqReply + "'>" +
+                    "                        <button type='submit'>댓글수정</button>" +
+                    "                        <button type='button' onclick='closeReply(" +index+ ")'>취소</button>"+
+                    " <a href='javascript:closeReply(" +index+ ")'>댓글수정취소</a>"
+
+
+                    +"</form>"
+
+          /*$.ajax({
+                    type : "post",
+                    async : "false"
                     url: "/modireply",
                     data: {
-                        id: ,
-                        pwReply:,
-                        seqBoard;,
-                        seqReply:,
-                        replytext: ,
+                        id: id,
+                        pwReply: pwReply,
+                        seqBoard; seqBoard,
+                        seqReply: seqReply,
+                        replytext: replytext,
 
-                        },
-                    method: "GET",
-                    dataType: "json"
-                })
-                    // HTTP 요청이 성공하면 요청한 데이터가 done() 메소드로 전달됨.
-                    .done(function(json) {
-                        $("<h1>").text(json.title).appendTo("body");
-                        $("<div class=\"content\">").html(json.html).appendTo("body");
-                    })
-                    // HTTP 요청이 실패하면 오류와 상태에 관한 정보가 fail() 메소드로 전달됨.
-                    .fail(function(xhr, status, errorThrown) {
-                        $("#text").html("오류가 발생했다.<br>")
-                            .append("오류명: " + errorThrown + "<br>")
-                            .append("상태: " + status);
-                    })
-                    //
-                    .always(function(xhr, status) {
-                        $("#text").html("요청이 완료되었습니다!");
-                    });*/
+                      },
+                    //method: "GET",
+                    //dataType: "json"
+                    success : function(data, textStatus) {
+                        console.log("ajax성공시: "+data.trim());
+                        alert(data.trim());
+                     },
+                     error : function(data, textStatus) {
+                         alert("에러가 발생했습니다."+data);
+                     }
+
+                });//ajax*/
+
 
             }//수정
         }//댓글 비번 일치하는 경우
@@ -119,7 +130,10 @@
         boxid.setAttribute("style","visibility:"+status);
 
     }
-
+    function closeReply(index){
+        const table = document.getElementById('board_table2');
+        table.deleteRow(index+1);
+    }
 </script>
 <th:block layout:fragment="search">
     <form action="#" id="searchform-header" class="searchform js__toggle active pull-right">
@@ -208,8 +222,8 @@
 
         </table>
 
-        <button type="button" onclock="|checkMPw()|">수정</button>
-        <button type="button" onclock="|checkDPw()|">삭제</button>
+        <button type="button" onclock="checkMPw()">수정</button>
+        <button type="button" onclock="checkDPw()">삭제</button>
         <a href="javascript:checkMPw()">수정</a> &emsp; &emsp;
         <a href="javascript:checkDPw()">삭제</a>&emsp;
 

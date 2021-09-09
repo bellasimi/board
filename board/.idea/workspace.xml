@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26c40a01-3720-4e3a-aee0-cfe1fd268e01" name="Changes" comment="댓글 작성,수정,삭제,출력">
+    <list default="true" id="26c40a01-3720-4e3a-aee0-cfe1fd268e01" name="Changes" comment="대댓글 입력행 삽입 insertRow()사용">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/board/board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/board/board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/board/board/Reply.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/board/board/Reply.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/board/board/ReplyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/board/board/ReplyRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/board/controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/board/controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/boarddetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/boarddetail.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -109,6 +107,8 @@
       <workItem from="1631028885096" duration="760000" />
       <workItem from="1631029711663" duration="294000" />
       <workItem from="1631030025062" duration="505000" />
+      <workItem from="1631093720249" duration="13087000" />
+      <workItem from="1631186779069" duration="7793000" />
     </task>
     <task id="LOCAL-00001" summary="branch master에서 main으로 변경">
       <created>1630523183964</created>
@@ -173,7 +173,35 @@
       <option name="project" value="LOCAL" />
       <updated>1631026403268</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="댓글 출력 자료형 변경">
+      <created>1631093886970</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1631093886970</updated>
+    </task>
+    <task id="LOCAL-00011" summary="댓글 출력 테이블 변경">
+      <created>1631093958854</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1631093958854</updated>
+    </task>
+    <task id="LOCAL-00012" summary="댓글을 수정 함수 변경">
+      <created>1631113172219</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1631113172219</updated>
+    </task>
+    <task id="LOCAL-00013" summary="대댓글 입력행 삽입 insertRow()사용">
+      <created>1631114033305</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1631114033305</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,7 +228,11 @@
     <MESSAGE value="수정 삭제시 메세지 뜨게 하기" />
     <MESSAGE value="글작성,수정,삭제 로그인 조건문 추가" />
     <MESSAGE value="댓글 작성,수정,삭제,출력" />
-    <option name="LAST_COMMIT_MESSAGE" value="댓글 작성,수정,삭제,출력" />
+    <MESSAGE value="댓글 출력 자료형 변경" />
+    <MESSAGE value="댓글 출력 테이블 변경" />
+    <MESSAGE value="댓글을 수정 함수 변경" />
+    <MESSAGE value="대댓글 입력행 삽입 insertRow()사용" />
+    <option name="LAST_COMMIT_MESSAGE" value="대댓글 입력행 삽입 insertRow()사용" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
