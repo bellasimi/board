@@ -221,9 +221,9 @@
 
 
         </table>
-
-        <button type="button" onclock="checkMPw()">수정</button>
-        <button type="button" onclock="checkDPw()">삭제</button>
+<!-- 삭제는 되는데 수정은 왜 안될까?
+        <button type="button" th:onclock="|checkMPw()|">수정</button>-->
+        <button type="button" th:onclick="|checkDPw()|">삭제</button>
         <a href="javascript:checkMPw()">수정</a> &emsp; &emsp;
         <a href="javascript:checkDPw()">삭제</a>&emsp;
 

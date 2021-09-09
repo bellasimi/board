@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26c40a01-3720-4e3a-aee0-cfe1fd268e01" name="Changes" comment="대댓글 입력행 삽입 insertRow()사용">
+    <list default="true" id="26c40a01-3720-4e3a-aee0-cfe1fd268e01" name="Changes" comment="댓글 수정 폼 수정을 원하는 행 바로 밑에 삽입 삭제">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/board/controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/board/controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/boarddetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/boarddetail.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +106,7 @@
       <workItem from="1631029711663" duration="294000" />
       <workItem from="1631030025062" duration="505000" />
       <workItem from="1631093720249" duration="13087000" />
-      <workItem from="1631186779069" duration="7793000" />
+      <workItem from="1631186779069" duration="8273000" />
     </task>
     <task id="LOCAL-00001" summary="branch master에서 main으로 변경">
       <created>1630523183964</created>
@@ -201,7 +199,14 @@
       <option name="project" value="LOCAL" />
       <updated>1631114033305</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="댓글 수정 폼 수정을 원하는 행 바로 밑에 삽입 삭제">
+      <created>1631196437402</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1631196437402</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,7 +237,8 @@
     <MESSAGE value="댓글 출력 테이블 변경" />
     <MESSAGE value="댓글을 수정 함수 변경" />
     <MESSAGE value="대댓글 입력행 삽입 insertRow()사용" />
-    <option name="LAST_COMMIT_MESSAGE" value="대댓글 입력행 삽입 insertRow()사용" />
+    <MESSAGE value="댓글 수정 폼 수정을 원하는 행 바로 밑에 삽입 삭제" />
+    <option name="LAST_COMMIT_MESSAGE" value="댓글 수정 폼 수정을 원하는 행 바로 밑에 삽입 삭제" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
