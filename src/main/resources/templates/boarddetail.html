@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="board/layout/basic">
+<th:block layout:fragment="title">
+    <title>게시글목록</title>
+</th:block>
+
+<style>
+    #board_table, board_table2{
+        border: 1px solid black;
+    }
+    td,tr,th{
+
+        border: 1px solid black;
+    }
+
+</style>
+<script th:inline="javascript">
+    window.onload=function(){
+        /*<![CDATA[*/ /*]]*/
+        let id= [[${detail.id}]];
+        console.log("아이디: "+id);
+        let creDate= [[${detail.creDate}]];
+        console.log("작성일: "+creDate);
+        let pw= [[${detail.pwBoard}]];
+        console.log("비번: "+pw);
+        let replylist = [[${replylist}]];
+        console.log("댓글"+replylist);
+
+    }
+    /* 글 수정*/
+    function checkMPw(){
+        /*변수를 주소에 get방식으로 보내면 String으로 인식 그냥 el식으로 바로 넘겨야 int로 인식
+        let seq= [[${detail.seqBoard}]];*/
+        let pwBoard= [[${detail.pwBoard}]];
+        if([[${detail.id}]] != null || [[${detail.id}]] == ''){
+            let pw = prompt("글작성 시 입력했던 비밀번호를 입력하시오!","");
+            if(pw==pwBoard){
+                window.location.href="/modiform?seq="+[[${detail.seqBoard}]];
+            }
+            else{
+                alert("비밀번호가 일치하지 않습니다!");
+            }
+        }//id가 존재하는 경우
+        else{
+            alert("로그인 후 이용해 주세요!")
+            location.href="/loginform";
+        }
+    }
+
+    /* 글 삭제*/
+    function checkDPw(){
+        let seq= [[${detail.seqBoard}]];
+        let pwBoard= [[${detail.pwBoard}]];
+        let pw = prompt("글작성 시 입력했던 비밀번호를 입력하시오!","");
+        if(pw==pwBoard){
+            window.location.href="/delete?seq="+seq;
+        }
+        else{
+            alert("비밀번호가 일치하지 않습니다!")
+        }
+    }
+
+
+    /*댓글 비번 확인 후 수정 삭제*/
+    function checkPw(work,index,seqReply,pwReply){
+        console.log("댓글 비번:"+ pwReply);
+        console.log("인덱스:"+ index);
+        let seqBoard= [[${detail.seqBoard}]];
+        let pw = prompt("댓글 비밀번호를 입력하시오!","");
+        if(pw == pwReply){
+
+            if(work=="삭제"){
+                location.href="/delreply?seq="+seqReply;
+            }
+            else if(work=="수정"){
+                //location.href="/modireply?seq="+seqReply; 이거 안하고 폼으로 전달
+                const table = document.getElementById('board_table2');
+                const reReplyRow =table.insertRow(index+1);
+                const reReplyBox1 = reReplyRow.insertCell(0);
+                const reReplyBox2 = reReplyRow.insertCell(1);
+
+                //seqReply = parseInt(seqReply); 이렇게 해도 아래처럼 작성하면 seqReply를 string으로 인식
+                reReplyBox1.innerText="댓글 수정";
+                reReplyBox2.innerHTML="<form action='/modireply' method='post'>" + [[${detail.id}]]+"<p></p>댓글번호: " +seqReply+"<p></p>게시판번호" + [[${detail.seqBoard}]]+
+                    "작성자<input type='text' name='id' th:placeholder='"+ [[${detail.id}]]+ "플레이스홀더"+ "' th:value='"+ [[${detail.id}]]+ "'><p></p>" +
+                    "                        <textarea name='replytext' cols='100 'rows='5' ></textarea><p></p>" +
+                    "                        비밀번호<input type='text' name='pwReply'><p></p>" +
+                    "                        <input type='text' name='seqBoard' th:value='"+ [[${detail.seqBoard}]]+ "'>" +
+                    "                        <input type='text' name='seqReply' th:value='"+ seqReply + "'>" +
+                    "                        <button type='submit'>댓글수정</button>" +
+                    "                        <button type='button' onclick='closeReply(" +index+ ")'>취소</button>"+
+                    " <a href='javascript:closeReply(" +index+ ")'>댓글수정취소</a></form>"
+                /* html에서 쓰는 변수el식으로 타임리프 value 지정
+                 reReplyBox2.innerHTML="<form action='/modireply' method='post'>" + [[${detail.id}]]+"댓글번호"+ seqReply + [[${detail.seqBoard}]]+
+
+                 "작성자<input type='text' name='id' th:placeholder='${detail.id}' th:value='${detail.id}'><p></p>" +
+                 "                        <textarea name='replytext' cols='100 'rows='5' ></textarea><p></p>" +
+                 "                        비밀번호<input type='text' name='pwReply'><p></p>" +
+                 "                        <input type='hidden' name='seqBoard' th:value='${detail.seqBoard}'>" +
+                 "                        댓글번호<input type='text' name='seqReply'>" +
+                 "                        <button type='submit'>댓글수정</button>" +
+                 "                        <button type='button' onclick='closeReply(" +index+ ")'>취소</button>"+
+                 " <a href='javascript:closeReply(" +index+ ")'>댓글수정취소</a></form>"*/
+
+                /* javascript에서 쓰는 변수로 타임리프 value 지정
+                reReplyBox2.innerHTML="<form action='/modireply' method='post'>" + [[${detail.id}]]+ seqReply + [[${detail.seqBoard}]]+
+                    "작성자<input type='text' name='id' th:placeholder='"+ [[${detail.id}]]+ "' th:value='"+ [[${detail.id}]]+ "'><p></p>" +
+                    "                        <textarea name='replytext' cols='100 'rows='5' ></textarea><p></p>" +
+                    "                        비밀번호<input type='text' name='pwReply'><p></p>" +
+                    "                        <input type='text' name='seqBoard' th:value='"+ [[${detail.seqBoard}]]+ "'>" +
+                    "                        <input type='text' name='seqReply' th:value='"+ seqReply + "'>" +
+                    "                        <button type='submit'>댓글수정</button>" +
+                    "                        <button type='button' onclick='closeReply(" +index+ ")'>취소</button>"+
+                    " <a href='javascript:closeReply(" +index+ ")'>댓글수정취소</a></form>"
+            */
+                //여기선 값이 html까지 전달됨... 근데 html에서 서버로 보낼 때는 값이 안가... 왜지..
+                /*$.ajax({
+                          type : "post",
+                          async : "false"
+                          url: "/modireply",
+                          data: {
+                              id: id,
+                              pwReply: pwReply,
+                              seqBoard; seqBoard,
+                              seqReply: seqReply,
+                              replytext: replytext,
+
+                            },
+                          //method: "GET",
+                          //dataType: "json"
+                          success : function(data, textStatus) {
+                              console.log("ajax성공시: "+data.trim());
+                              alert(data.trim());
+                           },
+                           error : function(data, textStatus) {
+                               alert("에러가 발생했습니다."+data);
+                           }
+
+                      });//ajax*/
+
+
+            }//수정
+        }//댓글 비번 일치하는 경우
+        else{
+            alert("비밀번호가 일치하지 않습니다!");
+        }
+    }
+    /*박스 visiblity 유뮤*/
+    function visibility(box,status){
+        let boxid = document.getElementById(box);
+        boxid.setAttribute("style","visibility:"+status);
+
+    }
+    function closeReply(index){
+        const table = document.getElementById('board_table2');
+        table.deleteRow(index+1);
+    }
+</script>
+<th:block layout:fragment="search">
+    <form action="#" id="searchform-header" class="searchform js__toggle active pull-right">
+        <input type="search" placeholder="Search..." class="input-search">
+        <button class="mdi mdi-magnify button-search" type="submit">
+            <i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+    </form>
+</th:block>
+<h1>글내용</h1>
+<th:block layout:fragment="content">
+    <div class="table-responsive clearfix">
+        <table class="table table-hover" id="board_table" >
+            <thead>
+            <tr><td>제목</td>  <td colspan="3" th:text="${detail.title}"></td></tr>
+            <tr>
+                <th>작성자</th><td th:text="${detail.id}"></td>
+                <th>작성일자 </th><td th:text="${detail.creDate}"></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th colspan="4">내용</th>
+            </tr>
+            <tr>
+                <td colspan="4" th:text="${detail.context}"></td>
+            </tr>
+            <tr th:if="${#strings.isEmpty(detail.id)}">
+                <td colspan="5">조회된 결과가 없습니다.</td>
+            </tr>
+            <tr>
+                <th>댓글달기</th>
+            </tr>
+            <tr>
+            </tr>
+            <tr>
+                <td>
+                    <form action="/reply" method="post">
+                        작성자<input type="text" name="id" th:placeholder="${detail.id}" th:value="${detail.id}"><p></p>
+                        <textarea name="replytext" cols="100" rows="5" ></textarea><p></p>
+                        비밀번호<input type="text" name="pwReply"><p></p>
+                        <input type="hidden" name="seqBoard" th:value="${detail.seqBoard}">
+                        <button type="submit">댓글달기</button>
+                        <button type="reset">취소</button>
+                    </form>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+        <table id="board_table2">
+            <tr th:if="${not #lists.isEmpty(replylist)}" th:each="row,i : ${replylist}" >
+                <th th:text="${i.index}"></th>
+                <th th:if="${not #strings.isEmpty(row.id)}" th:text="${row.id}"></th>
+                <td th:text="${row.replytext}"></td>
+                <td colspan=>
+                    <a th:href="|javascript:checkPw('수정',${i.index},${row.seqReply},${row.pwReply})|">댓글수정</a>
+                    <a th:href="|javascript:checkPw('삭제',${i.index},${row.seqReply},${row.pwReply})|">댓글삭제</a>
+                    -->
+                    <button type="button"
+                            th:index="${i.index}+1"
+                            th:seqReply="${row.seqReply}"
+                            th:pwReply="${row.pwReply}"
+                            th:onclick="|checkPw('수정',this.getAttribute('index'),this.getAttribute('seqReply'),this.getAttribute('pwReply'))|">수정</button>
+                    <button type="button"
+                            th:index="${i.index}+1"
+                            th:seqReply="${row.seqReply}"
+                            th:pwReply="${row.pwReply}"
+                            th:onclick="|checkPw('삭제',this.getAttribute('index'),this.getAttribute('seqReply'),this.getAttribute('pwReply'))|">삭제</button>
+                </td>
+                <!-- <td>
+                 </td>-->
+                <!--<div id="modireplybox" style="visibility: hidden">
+                    <form action="/modireply" method="post">
+                        작성자<input type="text" name="id" th:placeholder="${row.id}" th:value="${row.id}"><p></p>
+                        <textarea name="replytext" cols="100" rows="5" ></textarea><p></p>
+                        비밀번호<input type="text" name="pwReply"><p></p>
+                        <input type="hidden" name="seqBoard" th:value="${row.seqBoard}">
+                        <input type="hidden" name="seqBoard" th:value="${row.seqReply}">
+                        <button type="submit">댓글수정</button>
+                        <button type="button" onclick="visibility('modireplybox','hidden')">취소</button>
+                    </form>
+                </div>-->
+            </tr>
+
+
+        </table>
+        <!-- 삭제는 되는데 수정은 왜 안될까?-->
+        <button type="button" th:onclock="|checkMPw()|">수정</button>
+
+        <button type="button" th:onclick="|checkDPw()|">삭제</button>
+
+        <a href="javascript:checkMPw()">수정</a> &emsp; &emsp;
+        <a href="javascript:checkDPw()">삭제</a>&emsp;
+
+        <!-- 자바 스크립트 처리 없이(비번 확인안하고) 컨트롤러에 보내는 경우
+         <a th:href="@{/modiform(seq=${detail.seqBoard})}">수정</a> &emsp; &emsp;
+                   <a th:href="@{/delete(seq=${detail.seqBoard})}">삭제</a>&emsp; -->&emsp;
+        <a th:href="@{/write}">글쓰기</a>
+
+
+    </div>
+</th:block>
+</html>
