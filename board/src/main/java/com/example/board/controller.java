@@ -164,7 +164,11 @@ public class controller {
     //댓글 수정
    // @ResponseBody
     @RequestMapping("/modireply")
-    public String modireply(Reply reply){
+    public String modireply(@RequestParam("seqBoard")String seqBoard,@RequestParam("seqReply")String seqReply,
+                            @RequestParam("id")String id,@RequestParam("pwReply")String pwReply,@RequestParam("replytext")String replytext){
+        System.out.println("시퀀스1: "+seqBoard);System.out.println("시퀀스2: "+seqReply);
+        System.out.println("아이디: "+id);
+        Reply reply = new Reply(Integer.parseInt(seqReply),Integer.parseInt(seqBoard),id,replytext,pwReply);
         replyRepository.save(reply);
        // return "댓글 수정 완료!";
         return "redirect:boardlist";
