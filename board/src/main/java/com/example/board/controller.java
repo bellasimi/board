@@ -2,8 +2,6 @@ package com.example.board;
 
 import com.example.board.board.Board;
 import com.example.board.board.BoardRepository;
-import com.example.board.board.Reply;
-import com.example.board.board.ReplyRepository;
 import com.example.board.member.Member;
 import com.example.board.member.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -27,8 +24,7 @@ public class controller {
 
     @Autowired
     private BoardRepository boardRepository;
-    @Autowired
-    ReplyRepository replyRepository;
+
     //메인
     @RequestMapping("/")
     public String mainpage(Model model){
@@ -103,26 +99,19 @@ public class controller {
         return "boardlist";
     }
     //글읽기
-    //댓글 출력
     @RequestMapping("/boarddetail")
     public String readdetail(@RequestParam("seq")int seq,Model model,Board board){
         Optional<Board> boardfind = boardRepository.findById(seq);
         Board detail = boardfind.get();
         model.addAttribute("detail",detail);
-        List<Reply> replylist = replyRepository.findAllBySeqBoard(seq);
-        model.addAttribute("replylist",replylist);
         return "boarddetail";
-
     }
     //게시글 수정폼
     @RequestMapping("/modiform")
     public String modiform(@RequestParam("seq")int seq, HttpSession session,Model model){
        String id= (String) session.getAttribute("logId");
-/*       만약 변수 선언 후 get방식으로 넘겼다면 String으로 값을 인식
-         -> 위 함수에선 @RequestParam("seq")String seq으로 하고
-         -> 받은 값은 int로 parse해줘야 됨 int seqBoard =Integer.parseInt(seq); */
        model.addAttribute("id",id);
-       model.addAttribute("seq",seq);//
+       model.addAttribute("seq",seq);
        return "modify";
     }
     //게시글 수정
@@ -134,39 +123,16 @@ public class controller {
         board.setCreDate(creDate);
         boardRepository.save(board);
         model.addAttribute("message","수정완료!");
-        List<Board> boardList = boardRepository.findAll();
-        model.addAttribute("list2",boardList);
 
-        return "boardlist";
+        return "redirect:boardlist";
     }
     //게시글 삭제
     @RequestMapping("/delete")
     public String delete(@RequestParam("seq")int seq,Model model){
         boardRepository.deleteById(seq);
         model.addAttribute("message","삭제완료!");
-        List<Board> boardList = boardRepository.findAll();
-        model.addAttribute("list2",boardList);
 
-        return "boardlist";
-    }
-    //댓글 달기
-    @RequestMapping("/reply")
-    public String reply(Reply reply, Model model){
-        replyRepository.save(reply);
-        return "redirect:boarddetail?seq="+reply.getSeqBoard();
-    }
-    //댓글 삭제
-    @RequestMapping("/delreply")
-    public String delreply(@RequestParam("seq") int seqReply){
-        replyRepository.deleteById(seqReply);
         return "redirect:boardlist";
     }
-    //댓글 수정
-   // @ResponseBody
-    @RequestMapping("/modireply")
-    public String modireply(Reply reply){
-        replyRepository.save(reply);
-       // return "댓글 수정 완료!";
-        return "redirect:boardlist";
-    }
+
 }
