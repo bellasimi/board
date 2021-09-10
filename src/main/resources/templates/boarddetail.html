@@ -75,21 +75,24 @@
             else if(work=="수정"){
                 //location.href="/modireply?seq="+seqReply; 이거 안하고 폼으로 전달
                 const table = document.getElementById('board_table2');
-                const reReplyRow =table.insertRow(index+1);
+                const reReplyRow =table.insertRow(index);
                 const reReplyBox1 = reReplyRow.insertCell(0);
                 const reReplyBox2 = reReplyRow.insertCell(1);
+                const reReplyBox3 = reReplyRow.insertCell(2);
+                const reReplyBox4 = reReplyRow.insertCell(3);
 
                 //seqReply = parseInt(seqReply); 이렇게 해도 아래처럼 작성하면 seqReply를 string으로 인식
                 reReplyBox1.innerText="댓글 수정";
-                reReplyBox2.innerHTML="<form action='/modireply' method='post'>" + [[${detail.id}]]+"<p></p>댓글번호: " +seqReply+"<p></p>게시판번호" + [[${detail.seqBoard}]]+
-                    "작성자<input type='text' name='id' th:placeholder='"+ [[${detail.id}]]+ "플레이스홀더"+ "' th:value='"+ [[${detail.id}]]+ "'><p></p>" +
+                reReplyBox2.innerText="아이디:"+ [[${detail.id}]]+"<p></p>댓글번호: " +seqReply+"<p></p>게시판번호" + [[${detail.seqBoard}]];
+                reReplyBox3.innerHTML="<form action='/modireply' method='post'>"+
+                    "작성자<input type='text' name='id' th:placeholder='"+ [[${detail.id}]]+  "' th:value='"+ [[${detail.id}]]+ "'><p></p>" +
                     "                        <textarea name='replytext' cols='100 'rows='5' ></textarea><p></p>" +
                     "                        비밀번호<input type='text' name='pwReply'><p></p>" +
                     "                        <input type='text' name='seqBoard' th:value='"+ [[${detail.seqBoard}]]+ "'>" +
                     "                        <input type='text' name='seqReply' th:value='"+ seqReply + "'>" +
                     "                        <button type='submit'>댓글수정</button>" +
-                    "                        <button type='button' onclick='closeReply(" +index+ ")'>취소</button>"+
-                    " <a href='javascript:closeReply(" +index+ ")'>댓글수정취소</a></form>"
+                    "      <button type='button' onclick='closeReply(" +index+ ")'>취소</button>";
+                reReplyBox4.innerHTML =  " <a href='javascript:closeReply(" +index+ ")'>댓글수정취소</a></form>";
                 /* html에서 쓰는 변수el식으로 타임리프 value 지정
                  reReplyBox2.innerHTML="<form action='/modireply' method='post'>" + [[${detail.id}]]+"댓글번호"+ seqReply + [[${detail.seqBoard}]]+
 
@@ -153,7 +156,7 @@
     }
     function closeReply(index){
         const table = document.getElementById('board_table2');
-        table.deleteRow(index+1);
+        table.deleteRow(index);
     }
 </script>
 <th:block layout:fragment="search">
