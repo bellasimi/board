@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>게시글수정</title>
+</head>
+<body>
+<form action="/modify" method="post">
+    <h1>게시글 작성</h1>
+    <input type="hidden" name="id" th:value="${id}"><p>
+    <input type="hidden" name="seqBoard" th:value="${seq}"><p></p>
+    제목<input type="text" name="title"><p>
+    <textarea name="context" rows="20" cols="40"></textarea><p>
+    비밀번호<input type="text" name="pwBoard"><p>
+     <input type="submit" value="작성">
+    <input type="reset" value="초기화">
+</form>
+</body>
+</html>

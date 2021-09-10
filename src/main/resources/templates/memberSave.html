@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입완료</title>
+</head>
+<body>
+<!--
+이건 MUSTACHE에만 가능하네
+{{>name}}님 {{>id}}라는 id로 가입되셨습니다.
+-->
+
+<p th:text="${name}">님 <p th:text="${id}">라는 id로 가입되셨습니다.
+    <a href="/write">글쓰기</a>
+    <h1><a href="/memberList">회원목록</a></h1>
+</body>
+</html>
