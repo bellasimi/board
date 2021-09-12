@@ -83,16 +83,17 @@
 
                 //seqReply = parseInt(seqReply); 이렇게 해도 아래처럼 작성하면 seqReply를 string으로 인식
                 reReplyBox1.innerText="댓글 수정";
-                reReplyBox2.innerText="아이디:"+ [[${detail.id}]]+"<p></p>댓글번호: " +seqReply+"<p></p>게시판번호" + [[${detail.seqBoard}]];
+                reReplyBox2.innerHTML="아이디:"+ [[${detail.id}]]+"<p></p>댓글번호: " + [[${detail.seqBoard}]]+seqReply+"<p></p>게시판번호" ;
                 reReplyBox3.innerHTML="<form action='/modireply' method='post'>"+
                     "작성자<input type='text' name='id' th:placeholder='"+ [[${detail.id}]]+  "' th:value='"+ [[${detail.id}]]+ "'><p></p>" +
                     "                        <textarea name='replytext' cols='100 'rows='5' ></textarea><p></p>" +
                     "                        비밀번호<input type='text' name='pwReply'><p></p>" +
-                    "                        <input type='text' name='seqBoard' th:value='"+ [[${detail.seqBoard}]]+ "'>" +
-                    "                        <input type='text' name='seqReply' th:value='"+ seqReply + "'>" +
+                    "                        게시판번호<input type='text' name='seqBoard' th:value='"+ [[${detail.seqBoard}]]+ "'>" +
+                    "                        댓글번호<input type='text' name='seqReply' th:value='"+ seqReply + "'>" +
                     "                        <button type='submit'>댓글수정</button>" +
-                    "      <button type='button' onclick='closeReply(" +index+ ")'>취소</button>";
-                reReplyBox4.innerHTML =  " <a href='javascript:closeReply(" +index+ ")'>댓글수정취소</a></form>";
+                    "      <button type='button' onclick='closeReply(" +index+ ")'>취소</button>"+
+                    " <a href='javascript:closeReply(" +index+ ")'>댓글수정취소</a></form>";
+                reReplyBox3.colSpan ="2";
                 /* html에서 쓰는 변수el식으로 타임리프 value 지정
                  reReplyBox2.innerHTML="<form action='/modireply' method='post'>" + [[${detail.id}]]+"댓글번호"+ seqReply + [[${detail.seqBoard}]]+
 
@@ -144,6 +145,7 @@
 
             }//수정
         }//댓글 비번 일치하는 경우
+
         else{
             alert("비밀번호가 일치하지 않습니다!");
         }
