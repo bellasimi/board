@@ -166,18 +166,13 @@ public class controller {
     @RequestMapping("/modireply")
     public String modireply(@RequestParam("seqBoard")String seqBoard,@RequestParam("seqReply")String seqReply,
                             @RequestParam("id")String id,@RequestParam("pwReply")String pwReply,@RequestParam("replytext")String replytext,Model model){
-        System.out.println("시퀀스1: "+seqBoard);System.out.println("시퀀스2: "+seqReply);
-        System.out.println("아이디: "+id);
+       /* System.out.println("시퀀스1: "+seqBoard);System.out.println("시퀀스2: "+seqReply);
+        System.out.println("아이디: "+id);*/
         int seqR = Integer.parseInt(seqReply);
         int seqB =Integer.parseInt(seqBoard);
 
         Reply reply = new Reply(seqR,seqB,id,replytext,pwReply);
         replyRepository.save(reply);
-        Optional<Board> boardList = boardRepository.findById(seqB);
-        Board boarddeatil = boardList.get();
-        List<Reply> replyList = replyRepository.findAllBySeqBoard(seqR);
-        model.addAttribute("detail",boarddeatil);
-        model.addAttribute("replylist",replyList);
-        return "boarddetail";
+        return "redirect:boarddetail"+"?seq="+seqB;
     }
 }
