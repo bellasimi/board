@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 public class controller {
@@ -64,6 +66,7 @@ public class controller {
     public String login(@RequestParam("id") String id, @RequestParam("pw") String pw,
                         HttpServletRequest request, Model model){
         List<Member> user = memberrepository.findByIdAndPw(id,pw);
+        System.out.println("유저: "+ user);
         if(user != null){
             model.addAttribute("id",id);
 
@@ -110,6 +113,13 @@ public class controller {
         Board detail = boardfind.get();
         model.addAttribute("detail",detail);
         List<Reply> replylist = replyRepository.findAllBySeqBoard(seq);
+        /*대댓글 여부 확인 */
+        int reReplyCount = (int) replylist.stream().filter(s ->s.getRindex().equals("1")).count();
+        /*댓글 group by group 후 order by seqReply  */
+        if( reReplyCount >0){
+        replylist =replylist.stream().sorted(Comparator.comparing(Reply::getRgroup).thenComparing(Reply::getSeqReply)).collect(Collectors.toList());}
+
+
         model.addAttribute("replylist",replylist);
         return "boarddetail";
 
@@ -152,6 +162,7 @@ public class controller {
     //댓글 달기
     @RequestMapping("/reply")
     public String reply(Reply reply, Model model){
+        reply.setRgroup(String.valueOf(reply.getSeqReply()));
         replyRepository.save(reply);
         return "redirect:boarddetail?seq="+reply.getSeqBoard();
     }
@@ -162,7 +173,7 @@ public class controller {
         return "redirect:boardlist";
     }
     //댓글 수정
-    // @ResponseBody
+
     @RequestMapping("/modireply")
     public String modireply(@RequestParam("seqBoard")String seqBoard,@RequestParam("seqReply")String seqReply,
                             @RequestParam("id")String id,@RequestParam("pwReply")String pwReply,@RequestParam("replytext")String replytext,Model model){
@@ -171,7 +182,26 @@ public class controller {
         int seqR = Integer.parseInt(seqReply);
         int seqB =Integer.parseInt(seqBoard);
 
-        Reply reply = new Reply(seqR,seqB,id,replytext,pwReply);
+        Reply reply = new Reply(seqR,seqB,seqReply,id,replytext,pwReply,"0");
+        replyRepository.save(reply);
+        return "redirect:boarddetail"+"?seq="+seqB;
+    }
+    //대댓글
+    @RequestMapping("rereply")
+    public String rereply(@RequestParam("seqBoard")String seqBoard,@RequestParam("seqReply")String seqReply,
+                          @RequestParam("id")String id,@RequestParam("pwReply")String pwReply,@RequestParam("replytext")String replytext,Model model){
+        int seqB = Integer.parseInt(seqBoard);
+        int seqR = Integer.parseInt(seqReply);
+
+        Reply reply = new Reply();
+
+        reply.setSeqBoard(seqB);
+        reply.setRgroup(seqReply);
+        reply.setId(id);
+        reply.setReplytext(replytext);
+        reply.setPwReply(pwReply);
+        reply.setRindex("1");
+        System.out.println(reply);
         replyRepository.save(reply);
         return "redirect:boarddetail"+"?seq="+seqB;
     }

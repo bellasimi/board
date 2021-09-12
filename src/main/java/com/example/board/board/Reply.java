@@ -24,8 +24,11 @@ public class Reply {
     private int seqReply;
     @Column(nullable = false)
     private int seqBoard;
+    private String Rgroup;
     private String id;
-
     private String replytext;
     private String pwReply;
+    private String Rindex;
+
+
 }
