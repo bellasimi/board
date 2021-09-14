@@ -164,6 +164,9 @@ public class controller {
     public String reply(Reply reply, Model model){
         reply.setRgroup(String.valueOf(reply.getSeqReply()));
         replyRepository.save(reply);
+        Optional<Reply> reply2  =replyRepository.findById(reply.getSeqReply());
+        reply.setRgroup(String.valueOf(reply2.get().getSeqReply()));
+        replyRepository.save(reply);
         return "redirect:boarddetail?seq="+reply.getSeqBoard();
     }
     //댓글 삭제
