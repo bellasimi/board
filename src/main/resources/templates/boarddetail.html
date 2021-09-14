@@ -62,7 +62,7 @@
 
 
     /*댓글 비번 확인 후 수정 삭제*/
-    function checkPw(work,index,seqReply,pwReply){
+    function checkPw(work,index,seqReply,pwReply,rgroup){
 
         console.log("댓글 비번:"+ pwReply);
         console.log("인덱스:"+ index);
@@ -70,7 +70,7 @@
         /*비번이 null*/
         if(pwReply==null) {
             if (work == "삭제") {
-                location.href = "/delreply?seq=" +seqReply;
+                location.href = "/delreply?seq=" +seqReply+ "&seqB=" +[[${detail.seqBoard}]];
             } else if (work == "수정") {
 
                 const table = document.getElementById('board_table2');
@@ -84,7 +84,7 @@
 
                 //seqReply = parseInt(seqReply); 이렇게 해도 아래처럼 작성하면 seqReply를 string으로 인식
                 reReplyBox1.innerText = "댓글 수정";
-                reReplyBox2.innerHTML = "아이디:" + [[${detail.id}]] + "<p></p>게시판번호" + [[${detail.seqBoard}]] +  "<p></p>댓글번호: " + seqReply;
+                reReplyBox2.innerHTML = "아이디:" + [[${detail.id}]] + "<p></p>게시판번호" + [[${detail.seqBoard}]] +  "<p></p>댓글번호: ";
                 reReplyBox3.innerHTML = "<form action='/modireply' method='post'>" +
                     "작성자<input type='text' name='id' th:placeholder='" + [[${detail.id}]] + "' th:value='" + [[${detail.id}]] + "'><p></p>" +
                     "                        <textarea name='replytext' cols='100 'rows='5' ></textarea><p></p>" +
@@ -105,13 +105,14 @@
                 reReplyBox4.colSpan ="2";
                 //seqReply = parseInt(seqReply); 이렇게 해도 아래처럼 작성하면 seqReply를 string으로 인식
                 reReplyBox2.innerText="대댓";
-                reReplyBox3.innerHTML="아이디:" + [[${detail.id}]] + "<p></p>게시판번호" + [[${detail.seqBoard}]] +  "<p></p>댓글번호: " + seqReply;
+                reReplyBox3.innerHTML="아이디:" + [[${detail.id}]] + "<p></p>게시판번호" + [[${detail.seqBoard}]] +  "<p></p>댓글번호: " + seqReply
+                    + "<p></p>그룹번호: " + rgroup;
                 reReplyBox4.innerHTML="<form action='/rereply' method='post'>"+
                     "작성자<input type='text' name='id' th:placeholder='"+ [[${detail.id}]]+  "' th:value='"+ [[${detail.id}]]+ "'><p></p>" +
                     "                        <textarea name='replytext' cols='100 'rows='5' ></textarea><p></p>" +
                     "                        비밀번호<input type='text' name='pwReply'><p></p>" +
                     "                        게시판번호<input type='text' name='seqBoard' th:value='"+ [[${detail.seqBoard}]]+ "'>" +
-                    "                        댓글번호<input type='text' name='seqReply' th:value='"+ seqReply + "'>" +
+                    "                        그룹번호<input type='text' name='Rgroup' th:value=''>" +
                     "                        <button type='submit'>대댓글달기</button>" +
                     "      <button type='button' onclick='closeReply(" +index+ ")'>취소</button>"+
                     " <a href='javascript:closeReply(" +index+ ")'>취소</a></form>";
@@ -130,7 +131,8 @@
             if(pw == pwReply){
 
                 if(work=="삭제"){
-                    location.href="/delreply?seq="+seqReply;
+
+                    location.href = "/delreply?seq=" +seqReply+ "&seqB=" +[[${detail.seqBoard}]];
                 }
                 else if(work=="수정"){
                     //location.href="/modireply?seq="+seqReply; 이거 안하고 폼으로 전달
@@ -143,16 +145,17 @@
 
                     //seqReply = parseInt(seqReply); 이렇게 해도 아래처럼 작성하면 seqReply를 string으로 인식
                     reReplyBox1.innerText="댓글 수정";
-                    reReplyBox2.innerHTML="아이디:" + [[${detail.id}]] + "<p></p>게시판번호" + [[${detail.seqBoard}]] +  "<p></p>댓글번호: " + seqReply;
-                    reReplyBox3.innerHTML="<form action='/modireply' method='post'>"+
-                        "작성자<input type='text' name='id' th:placeholder='"+ [[${detail.id}]]+  "' th:value='"+ [[${detail.id}]]+ "'><p></p>" +
+
+                    reReplyBox2.innerHTML = "아이디:" + [[${detail.id}]] + "<p></p>게시판번호" + [[${detail.seqBoard}]] +  "<p></p>댓글번호: ";
+                    reReplyBox3.innerHTML = "<form action='/modireply' method='post'>" +
+                        "작성자<input type='text' name='id' th:placeholder='" + [[${detail.id}]] + "' th:value='" + [[${detail.id}]] + "'><p></p>" +
                         "                        <textarea name='replytext' cols='100 'rows='5' ></textarea><p></p>" +
                         "                        비밀번호<input type='text' name='pwReply'><p></p>" +
-                        "                        게시판번호<input type='text' name='seqBoard' th:value='"+ [[${detail.seqBoard}]]+ "'>" +
-                        "                        댓글번호<input type='text' name='seqReply' th:value='"+ seqReply + "'>" +
+                        "                        게시판번호<input type='text' name='seqBoard' th:value='" + [[${detail.seqBoard}]] + "'>" +
+                        "                        댓글번호<input type='text' name='seqReply' th:value='" + seqReply + "'>" +
                         "                        <button type='submit'>댓글수정</button>" +
-                        "      <button type='button' onclick='closeReply(" +index+ ")'>취소</button>"+
-                        " <a href='javascript:closeReply(" +index+ ")'>댓글수정취소</a></form>";
+                        "      <button type='button' onclick='closeReply(" + index + ")'>취소</button>" +
+                        " <a href='javascript:closeReply(" + index + ")'>댓글수정취소</a></form>";
                     reReplyBox3.colSpan ="2";
                     /* html에서 쓰는 변수el식으로 타임리프 value 지정
                      reReplyBox2.innerHTML="<form action='/modireply' method='post'>" + [[${detail.id}]]+"댓글번호"+ seqReply + [[${detail.seqBoard}]]+
@@ -204,6 +207,7 @@
 
 
                 }//수정
+                /*대댓*/
                 else if(work=="대댓"){
                     const table = document.getElementById('board_table2');
                     const reReplyRow =table.insertRow(index);
@@ -214,13 +218,14 @@
                     reReplyBox4.colSpan ="2";
                     //seqReply = parseInt(seqReply); 이렇게 해도 아래처럼 작성하면 seqReply를 string으로 인식
                     reReplyBox2.innerText="대댓";
-                    reReplyBox3.innerHTML="아이디:" + [[${detail.id}]] + "<p></p>게시판번호" + [[${detail.seqBoard}]] +  "<p></p>댓글번호: " + seqReply;
+                    reReplyBox3.innerHTML="아이디:" + [[${detail.id}]] + "<p></p>게시판번호" + [[${detail.seqBoard}]] +  "<p></p>댓글번호: " + seqReply
+                        +  "<p></p>그룹번호: " + rgroup;
                     reReplyBox4.innerHTML="<form action='/rereply' method='post'>"+
                         "작성자<input type='text' name='id' th:placeholder='"+ [[${detail.id}]]+  "' th:value='"+ [[${detail.id}]]+ "'><p></p>" +
                         "                        <textarea name='replytext' cols='100 'rows='5' ></textarea><p></p>" +
                         "                        비밀번호<input type='text' name='pwReply'><p></p>" +
                         "                        게시판번호<input type='text' name='seqBoard' th:value='"+ [[${detail.seqBoard}]]+ "'>" +
-                        "                        댓글번호<input type='text' name='seqReply' th:value='"+ seqReply + "'>" +
+                        "                        그룹번호<input type='text' name='Rgroup' th:value=''>" +
                         "                        <button type='submit'>대댓글달기</button>" +
                         "      <button type='button' onclick='closeReply(" +index+ ")'>취소</button>"+
                         " <a href='javascript:closeReply(" +index+ ")'>취소</a></form>";
@@ -298,24 +303,29 @@
         </table>
         <table id="board_table2">
             <tr th:if="${not #lists.isEmpty(replylist)}" th:each="row,i : ${replylist}" >
-                <th th:text="${i.index}"></th>
-                <th th:if="${not #strings.isEmpty(row.id)}" th:text="${row.id}"></th>
+                <!--<th th:if="${row.rindex == '0'}"></th>&lt;!&ndash;목차 th:text="${i.index}"&ndash;&gt;-->
+                <th th:unless="${row.rindex == '0'}"> &emsp;&emsp;  </th>
+                <th th:unless="${row.rindex == '0'}" > →</th>
+                <th th:if="${not #strings.isEmpty(row.id) and row.rindex == '0'}" th:text="${row.id}" colspan="3"></th>
+                <th th:if="${not #strings.isEmpty(row.id) and row.rindex != '0'}" th:text="${row.id}"></th>
                 <td th:text="${row.replytext}"></td>
-                <td colspan=>
-                    <a th:href="|javascript:checkPw('수정',${i.index +1},${row.seqReply},${row.pwReply})|">댓글수정</a>
-                    <a th:href="|javascript:checkPw('삭제',${i.index +1},${row.seqReply},${row.pwReply})|">댓글삭제</a>
-                    <a th:href="|javascript:checkPw('대댓',${i.index +1},${row.seqReply},${row.pwReply})|">대댓글</a>
+                <td >
+                    <a th:href="|javascript:checkPw('수정',${i.index +1},${row.seqReply},${row.pwReply},${row.rgroup})|">댓글수정</a>
+                    <a th:href="|javascript:checkPw('삭제',${i.index +1},${row.seqReply},${row.pwReply},${row.rgroup})|">댓글삭제</a>
+                    <a th:href="|javascript:checkPw('대댓',${i.index +1},${row.seqReply},${row.pwReply},${row.rgroup})|">대댓글</a>
 
                     <button type="button"
                             th:index="${i.index +1}"
                             th:seqReply="${row.seqReply}"
                             th:pwReply="${row.pwReply}"
-                            th:onclick="|checkPw('수정',this.getAttribute('index'),this.getAttribute('seqReply'),this.getAttribute('pwReply'))|">수정</button>
+                            th:rgouop="${row.rgroup}"
+                            th:onclick="|checkPw('수정',this.getAttribute('index'),this.getAttribute('seqReply'),this.getAttribute('pwReply'),this.getAttribute('rgroup'))|">수정</button>
                     <button type="button"
                             th:index="${i.index +1}"
                             th:seqReply="${row.seqReply}"
                             th:pwReply="${row.pwReply}"
-                            th:onclick="|checkPw('삭제',this.getAttribute('index'),this.getAttribute('seqReply'),this.getAttribute('pwReply'))|">삭제</button>
+                            th:rgroup="${row.rgroup}"
+                            th:onclick="|checkPw('삭제',this.getAttribute('index'),this.getAttribute('seqReply'),this.getAttribute('pwReply'),this.getAttribute('rgroup'))|">삭제</button>
                 </td>
 
                 <!-- div안에 댓글 폼 넣어서 visibility 조절
