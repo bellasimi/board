@@ -171,8 +171,10 @@ public class controller {
     }
     //댓글 삭제
     @RequestMapping("/delreply")
-    public String delreply(@RequestParam("seq")int seqReply,@RequestParam("seqBoard")String seqBoard){
+    public String delreply(@RequestParam("seq")int seqReply,@RequestParam("seqB")String seqBoard){
+        System.out.println("seqr"+seqReply);
 
+        System.out.println("seqb"+seqBoard);
         replyRepository.deleteById(seqReply);
 
         return "redirect:boarddetail"+"?seq="+seqBoard;
@@ -193,15 +195,14 @@ public class controller {
     }
     //대댓글
     @RequestMapping("rereply")
-    public String rereply(@RequestParam("seqBoard")String seqBoard,@RequestParam("seqReply")String seqReply,
+    public String rereply(@RequestParam("seqBoard")String seqBoard,@RequestParam("Rgroup")String Rgroup,
                           @RequestParam("id")String id,@RequestParam("pwReply")String pwReply,@RequestParam("replytext")String replytext,Model model){
         int seqB = Integer.parseInt(seqBoard);
-        int seqR = Integer.parseInt(seqReply);
 
         Reply reply = new Reply();
 
         reply.setSeqBoard(seqB);
-        reply.setRgroup(seqReply);
+        reply.setRgroup(Rgroup);
         reply.setId(id);
         reply.setReplytext(replytext);
         reply.setPwReply(pwReply);
