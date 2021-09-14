@@ -171,10 +171,11 @@ public class controller {
     }
     //댓글 삭제
     @RequestMapping("/delreply")
-    public String delreply(@RequestParam("seq") int seqReply){
+    public String delreply(@RequestParam("seq")int seqReply,@RequestParam("seqBoard")String seqBoard){
+
         replyRepository.deleteById(seqReply);
 
-        return "redirect:boarddetail"+"?seq="+seqReply;
+        return "redirect:boarddetail"+"?seq="+seqBoard;
     }
     //댓글 수정
 
