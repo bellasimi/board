@@ -8,7 +8,7 @@
 
 그다음 사용자 폴더로 들어가면 (보통 내PC -C - 사용자 -사용자명으로 들어가면된다.) 전에 안보이던 AppData가 보이는 걸 알 수 있다!!
 
-![image](https://user-images.githubusercontent.com/79133602/133562249-40c6e4b4-3624-4cac-9c4d-54e67888eae2.png)
+![image](https://user-images.githubusercontent.com/79133602/133564686-3744e500-c602-4086-a561-82a418149abe.png)
 
 해당 폴더 안엔 다음과 같은 폴더가 있는데 검색창에 JetBrains를 치거나 또는 
 
