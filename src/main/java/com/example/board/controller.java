@@ -67,16 +67,17 @@ public class controller {
                         HttpServletRequest request, Model model){
         List<Member> user = memberrepository.findByIdAndPw(id,pw);
         System.out.println("유저: "+ user);
-        if(user != null){
+        if(user.size() == 0){
+
+            model.addAttribute("message","그런 회원은 존재하지 않습니다!!");
+            return "login";
+        }
+        else{
             model.addAttribute("id",id);
 
             HttpSession session = request.getSession();
             session.setAttribute("logId",id);
             return "loginsuccess";
-        }
-        else{
-            model.addAttribute("message","그런 회원은 존재하지 않습니다!!");
-            return "login";
         }
     }
     //글작성폼
