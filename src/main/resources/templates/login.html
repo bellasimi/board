@@ -3,6 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>로그인 페이지</title>
+
+    <script  src="http://code.jquery.com/jquery-latest.min.js">  </script>
+    <script th:inline="javascript">
+        window.onload = function(){
+            console.log([[${message}]]);
+            if([[${message}]] != null){
+                $('#mbox').attr('style','visibility:visible');
+            }
+        }
+        function mboxclose(){
+            $('#mbox').attr('style','visibility: hidden');
+        }
+    </script>
 </head>
 <body>
 <h1>로그인</h1>
@@ -12,6 +25,11 @@ PW <input type="password" name="pw"><p>
  <input type="submit" value="로그인"><input type="reset" value="초기화">
 </form>
 
+<div id="mbox" style="visibility: hidden; width: 100px; height: 100px;background-color: white" >
+    <p th:text="${message}"></p>
+    <button type="button" onclick="mboxclose()">닫기</button>
+    <a href="javascript:mboxclose()">닫기</a>
+</div>
 <h1><a href="/">메인으로</a></h1>
 </body>
 </html>
