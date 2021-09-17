@@ -56,6 +56,29 @@ public class controller {
         model.addAttribute("list",memberlist);
         return "memberList";
     }
+    /*ID 찾기폼(전번)*/
+    @RequestMapping("/searchId")
+    public String searchId(){
+        return "member/searchIdForm";
+    }
+    /*ID 찾기*/
+    @RequestMapping("/findId")
+    public String findId(@RequestParam("tel")String tel,Model model){
+        Member user = memberrepository.findByTel(tel);
+        if(user != null){
+            model.addAttribute("id",user.getId());
+            model.addAttribute("name",user.getName());
+            return "member/findId";
+        }
+        else{
+            model.addAttribute("message","그런회원은 존재하지 않습니다!!");
+            return "loginform";
+        }
+    }
+
+    /*비밀번호 찾기(아이디,전번)*/
+
+
     //로그인폼
     @RequestMapping("/loginform")
     public String loginform(){
@@ -70,7 +93,7 @@ public class controller {
         if(user.size() == 0){
 
             model.addAttribute("message","그런 회원은 존재하지 않습니다!!");
-            return "login";
+            return "loginform";
         }
         else{
             model.addAttribute("id",id);

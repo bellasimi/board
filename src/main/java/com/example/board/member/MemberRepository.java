@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface MemberRepository extends JpaRepository<Member,Integer> {
     List<Member> findByIdAndPw(String id, String pw);
+    Member findByTel(String tel);
 
 }
