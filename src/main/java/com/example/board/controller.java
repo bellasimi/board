@@ -41,6 +41,18 @@ public class controller {
     public String memberform(Model model){
         return "memberForm";
     }
+    /*id 중복체크*/
+    @RequestMapping("/checkId")
+    @ResponseBody
+    public String checkId(@RequestParam("id")String id){
+        Member member = memberrepository.findById(id);
+        if(member != null){
+            return "사용 불가능한 ID입니다!";
+        }
+        else {
+            return "사용가능한 ID입니다.";
+        }
+    }
     //회원가입완료
     @RequestMapping("/memberSave")
     public String memberSave(Member member, Model model) {
@@ -141,7 +153,7 @@ public class controller {
         int reReplyCount = (int) replylist.stream().filter(s ->s.getRindex().equals("1")).count();
         /*댓글 group by group 후 order by seqReply  */
         if( reReplyCount >0){
-        replylist =replylist.stream().sorted(Comparator.comparing(Reply::getRgroup).thenComparing(Reply::getSeqReply)).collect(Collectors.toList());}
+            replylist =replylist.stream().sorted(Comparator.comparing(Reply::getRgroup).thenComparing(Reply::getSeqReply)).collect(Collectors.toList());}
 
 
         model.addAttribute("replylist",replylist);

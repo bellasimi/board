@@ -3,18 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
+    <script  src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        function checkId(){
+            const id = $('#yourId').val();
+
+            $.ajax({
+                type : "post",
+                async : "false",
+                url: "/checkId",
+                data: {
+                    id: id
+
+                },
+                success : function(data, textStatus) {
+                    console.log("ajax성공시: "+data.trim());
+                    alert(data.trim());
+                },
+                error : function(data, textStatus) {
+                    alert("에러가 발생했습니다!"+data);
+                }
+
+            });//ajax*/
+        }
+
+
+    </script>
 </head>
 <body>
 <form action="/memberSave" method="post">
     <h1>회원가입</h1>
-id <input type="text" name="id"><p>
+id <input type="text" name="id" id="yourId"><button type="button" onclick="checkId()">중복체크</button><p>
 pw <input type="text" name="pw"><p>
 이름<input type="text" name="name"><p>
 성별<p>
     남 <input type="radio" name="gender" value="남">
     여 <input type="radio" name="gender" value="여"><p>
 전화번호<input type="text" name="tel"><p>
-<input type="submit" value="회원가입">
+<button type="button" onclick="checkAgain()">확인</button>
 </form>
 </body>
 </html>
