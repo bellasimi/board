@@ -26,6 +26,37 @@
 
             });//ajax*/
         }
+    function checkAgain(){
+        const id = $('yourId').val();
+        const pw= $('yourPw').val();
+        const name= $('yourName').val();
+        if( $('yourGender1').val()== null){
+            const gender= $('yourGender2').val();
+        }else{
+            const gender= $('yourGender1').val();
+        }
+        const tel= $('yourTel').val();
+
+            $.ajax({
+                type : "post",
+                async : "false",
+                url: "/memberSave",
+                data: {
+                    id:id ,
+                    pw:pw,
+                    name:name,
+                    gender:gender,
+                    tel:tel
+
+                },
+                error : function(data, textStatus) {
+                    alert("에러가 발생했습니다!"+data);
+                }
+
+            });//ajax*/
+
+
+    }
 
 
     </script>
@@ -34,12 +65,12 @@
 <form action="/memberSave" method="post">
     <h1>회원가입</h1>
 id <input type="text" name="id" id="yourId"><button type="button" onclick="checkId()">중복체크</button><p>
-pw <input type="text" name="pw"><p>
-이름<input type="text" name="name"><p>
+pw <input type="text" name="pw" id="yourPw"><p>
+이름<input type="text" name="name" id="yourName"><p>
 성별<p>
-    남 <input type="radio" name="gender" value="남">
-    여 <input type="radio" name="gender" value="여"><p>
-전화번호<input type="text" name="tel"><p>
+    남 <input type="radio" name="gender" id="yourGender1" value="남">
+    여 <input type="radio" name="gender" id="yourGender2"  value="여"><p>
+전화번호<input type="text" name="tel" id="yourTel"><p>
 <button type="button" onclick="checkAgain()">확인</button>
 </form>
 </body>

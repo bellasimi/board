@@ -1,10 +1,8 @@
 package com.example.board.member;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.lang.Nullable;
+import org.springframework.util.Assert;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,4 +30,15 @@ public class Member {
     private String tel;
 
 
+    @Builder
+    public Member(String id, String pw,String name, String gender, String tel){
+        Assert.hasText(id,"id를 입력하세요");
+        Assert.hasText(pw,"pw를 입력하세요");
+        Assert.hasText(tel,"tel을 입력하세요");
+        this.id =id;
+        this.pw = pw;
+        this.name = name;
+        this.gender = gender;
+        this.tel = tel;
+    }
 }
