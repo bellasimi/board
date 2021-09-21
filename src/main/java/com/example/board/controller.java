@@ -102,8 +102,13 @@ public class controller {
                 return "loginform";
             }
         }
-
+        /*비밀번호 찾기 폼*/
+        @RequestMapping("/searchPw")
+        public String searchPw(){
+            return "searchPwForm";
+        }
         /*비밀번호 찾기(아이디,전번)*/
+        @RequestMapping("/findPw")
 
 
         //로그인폼
