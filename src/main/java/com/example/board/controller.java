@@ -55,19 +55,19 @@ public class controller {
     }
     //회원가입완료
     @RequestMapping("/memberSave")
-    public String memberSave(@RequestParam("id")String id
-            ,@RequestParam("pw")String pw
-            ,@RequestParam("name")String name
-            ,@RequestParam("gender")String gender
-            ,@RequestParam("tel")String tel
-            ,Model model) {
-        if (id == "admin") {
+    public String memberSave(Member member ,Model model) {
+        String id = member.getId();
+        Member user = memberrepository.findById(id);
+        if ( id == "admin") {
             model.addAttribute("message", "admin은 사용 불가능한 ID입니다.");
             return "memberForm";
-        } else {
-            Member member = Member.builder().id(id).pw(pw).name(name).gender(gender).tel(tel).build();
+        }
+        else if(user != null){
+            model.addAttribute("message", "사용 불가능한 ID입니다.");
+            return "memberForm";
+        }
+        else {
 
-            System.out.println("유저" + member + "가입");
             memberrepository.save(member);
             model.addAttribute("name", member.getName());
             model.addAttribute("id", member.getId());

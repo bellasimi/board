@@ -44,16 +44,17 @@
             });//ajax*/
         }
     function checkAgain(){
-        const id = $('yourId').val();
-        const pw= $('yourPw').val();
-        const name= $('yourName').val();
+        const id = $('#yourId').val();
+        const pw= $('#yourPw').val();
+        const name= $('#yourName').val();
+        console.log("값이"+id+pw+name+"없나?");
         let gender;
-        if( $('yourGender1').val()== null){
-            gender= $('yourGender2').val();
+        if( $('#yourGender1').val()== null){
+            gender= $('#yourGender2').val();
         }else{
-            gender= $('yourGender1').val();
+            gender= $('#yourGender1').val();
         }
-        const tel= $('yourTel').val();
+        const tel= $('#yourTel').val();
 
             $.ajax({
                 type : "post",
@@ -91,9 +92,9 @@ pw <input type="text" name="pw" id="yourPw"><p>
 
 전화번호(-없이 입력해주세요)<p>
     <input type="text" name="tel" id="yourTel"><p>
-<button type="button" onclick="checkAgain()">확인</button>
+<button type="submit" >확인</button>
 </form>
-
+<p th:text ="${message}"></p>
 <div id="messageBox" th:if="${not #strings.isEmpty(message)}" th:text="${message}"></div>
 </body>
 </html>
