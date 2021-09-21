@@ -3,6 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
+    <style>
+        #messageBox{
+            border: 1px solid black;
+            background-color: white;
+            visibility: hidden;
+            z-index: 2;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+            width: 200px;
+            font-size: 12pt;
+            text-align: center;
+            padding-bottom: 10px;
+        }
+
+    </style>
+
     <script  src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
         function checkId(){
@@ -30,10 +47,11 @@
         const id = $('yourId').val();
         const pw= $('yourPw').val();
         const name= $('yourName').val();
+        let gender;
         if( $('yourGender1').val()== null){
-            const gender= $('yourGender2').val();
+            gender= $('yourGender2').val();
         }else{
-            const gender= $('yourGender1').val();
+            gender= $('yourGender1').val();
         }
         const tel= $('yourTel').val();
 
@@ -42,7 +60,7 @@
                 async : "false",
                 url: "/memberSave",
                 data: {
-                    id:id ,
+                    id:id,
                     pw:pw,
                     name:name,
                     gender:gender,
@@ -70,8 +88,12 @@ pw <input type="text" name="pw" id="yourPw"><p>
 성별<p>
     남 <input type="radio" name="gender" id="yourGender1" value="남">
     여 <input type="radio" name="gender" id="yourGender2"  value="여"><p>
-전화번호<input type="text" name="tel" id="yourTel"><p>
+
+전화번호(-없이 입력해주세요)<p>
+    <input type="text" name="tel" id="yourTel"><p>
 <button type="button" onclick="checkAgain()">확인</button>
 </form>
+
+<div id="messageBox" th:if="${not #strings.isEmpty(message)}" th:text="${message}"></div>
 </body>
 </html>
