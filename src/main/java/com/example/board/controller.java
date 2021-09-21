@@ -99,17 +99,29 @@ public class controller {
             }
             else{
                 model.addAttribute("message","그런회원은 존재하지 않습니다!!");
-                return "loginform";
+                return "login";
             }
         }
         /*비밀번호 찾기 폼*/
         @RequestMapping("/searchPw")
         public String searchPw(){
-            return "searchPwForm";
+            return "member/searchPwForm";
         }
         /*비밀번호 찾기(아이디,전번)*/
         @RequestMapping("/findPw")
+        public String findPw(@RequestParam("id")String id, @RequestParam("tel")String tel,Model model ){
+            Member user = memberrepository.findById(id);
+            if(user != null){
+                model.addAttribute("id",id);
+                model.addAttribute("pw",user.getPw());
+                return "member/findPw";
+            }
+            else{
+                model.addAttribute("message","그런 회원은 존재하지 않습니다! 다시 입력하세요!");
+                return "login";
+            }
 
+        }
 
         //로그인폼
         @RequestMapping("/loginform")
