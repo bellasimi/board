@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="board/layout/basic">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>목록</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일자</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${not #lists.isEmpty(list)}" th:each="row, i: ${list}">
+        <td th:text="${i.index}"></td>
+        <td th:text="${row.title}"> </td>
+        <td th:text="${row.id}"></td>
+        <td th:text="${row.creDate}"></td>
+        <td>
+            <a th:href="@{/modiform(seq=${row.seqBoard})}">수정</a>
+            <a th:href="@{/adminBDel(seq=${row.seqBoard})}">삭제</a>
+        </td>
+    </tr>
+    <tr th:unless="${not #lists.isEmpty(list)}">
+        <td colspan="5">조회된 결과가 없습니다.</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
