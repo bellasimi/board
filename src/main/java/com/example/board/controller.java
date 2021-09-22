@@ -282,7 +282,12 @@ public class controller {
             model.addAttribute("list",boardList);
             return "admin/adminboard";
     }
-
+/*관리자 게시판삭제 */
+    @RequestMapping("/adminBDel")
+    public String adminBDel(@RequestParam("seq")int seqBoard){
+        boardRepository.deleteById(seqBoard);
+        return "admin/adminboard";
+    }
 
 /*관리자 회원관리*/
     @RequestMapping("/memberList")
@@ -291,11 +296,12 @@ public class controller {
         model.addAttribute("list",memberlist);
         return "admin/memberList";
     }
-/*관리자 게시판삭제 */
-    @RequestMapping("/adminBDel")
-    public String adminBDel(@RequestParam("seq")int seqBoard){
-        boardRepository.deleteById(seqBoard);
-        return "admin/adminboard";
+
+/*관리자 회원 강퇴*/
+    @RequestMapping("delMember")
+    public String delMember(@RequestParam("seq")int seq){
+        memberrepository.deleteById(seq);
+        return "admin/memberList";
     }
 
 
