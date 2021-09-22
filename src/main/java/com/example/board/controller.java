@@ -76,13 +76,7 @@ public class controller {
         }
     }
 
-        //회원목록
-        @RequestMapping("/memberList")
-        public String memberList(Model model){
-            List<Member> memberlist = memberrepository.findAll();
-            model.addAttribute("list",memberlist);
-            return "memberList";
-        }
+
         /*ID 찾기폼(전번)*/
         @RequestMapping("/searchId")
         public String searchId(){
@@ -199,6 +193,7 @@ public class controller {
 /*       만약 변수 선언 후 get방식으로 넘겼다면 String으로 값을 인식
          -> 위 함수에선 @RequestParam("seq")String seq으로 하고
          -> 받은 값은 int로 parse해줘야 됨 int seqBoard =Integer.parseInt(seq); */
+
             model.addAttribute("id",id);
             model.addAttribute("seq",seq);//
             return "modify";
@@ -279,4 +274,30 @@ public class controller {
             replyRepository.save(reply);
             return "redirect:boarddetail"+"?seq="+seqB;
         }
+
+/*관리자 게시판*/
+    @RequestMapping("/adminboard")
+    public  String adminboard(Model model){
+            List<Board> boardList =boardRepository.findAll();
+            model.addAttribute("list",boardList);
+            return "admin/adminboard";
     }
+
+
+/*관리자 회원관리*/
+    @RequestMapping("/memberList")
+    public String memberList(Model model){
+        List<Member> memberlist = memberrepository.findAll();
+        model.addAttribute("list",memberlist);
+        return "admin/memberList";
+    }
+/*관리자 게시판삭제 */
+    @RequestMapping("/adminBDel")
+    public String adminBDel(@RequestParam("seq")int seqBoard){
+        boardRepository.deleteById(seqBoard);
+        return "admin/adminboard";
+    }
+
+
+
+}//controller
