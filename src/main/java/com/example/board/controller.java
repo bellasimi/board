@@ -193,7 +193,9 @@ public class controller {
 /*       만약 변수 선언 후 get방식으로 넘겼다면 String으로 값을 인식
          -> 위 함수에선 @RequestParam("seq")String seq으로 하고
          -> 받은 값은 int로 parse해줘야 됨 int seqBoard =Integer.parseInt(seq); */
-
+            Optional<Board> board = boardRepository.findById(seq);
+            Board detail = board.get();
+            model.addAttribute("detail",detail);
             model.addAttribute("id",id);
             model.addAttribute("seq",seq);//
             return "modify";

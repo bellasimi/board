@@ -8,11 +8,11 @@
 </head>
 <body>
 <form action="/modify" method="post">
-    <h1>게시글 작성</h1>
+    <h1>게시글 수정</h1>
     <input type="hidden" name="id" th:value="${id}"><p>
     <input type="hidden" name="seqBoard" th:value="${seq}"><p></p>
-    제목<input type="text" name="title"><p>
-    <textarea name="context" rows="20" cols="40"></textarea><p>
+    제목<input type="text" name="title" th:value="${detail.title}"><p>
+    <textarea name="context" rows="20" cols="40" th:text="${detail.context}"> </textarea><p>
     비밀번호<input type="text" name="pwBoard"><p>
      <input type="submit" value="작성">
     <input type="reset" value="초기화">
