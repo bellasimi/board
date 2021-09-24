@@ -306,6 +306,17 @@ public class controller {
         return "admin/memberList";
     }
 
+/* 마이페이지 */
+    @RequestMapping("/mypage")
+    public String mypage(HttpSession session,Model model){
+        String id = (String) session.getAttribute("logId");
+        List<Board> myBoard = boardRepository.findById(id);
+        List<Reply> myReply = replyRepository.findAllById(id);
+        model.addAttribute("myBoardList",myBoard);
+        model.addAttribute("myReplyList",myReply);
+        model.addAttribute("id",id);
 
+        return "mypage/mypage";
+    }
 
 }//controller
