@@ -3,6 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>마이페이지</title>
+    <script  src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script th:inline="javascript">
+        window.onload = function(){
+            const message = [[${message}]];
+            if(message !=null){
+                $('#messageBox').attr("style","visibility: visible");
+            }
+        }
+    </script>
 </head>
 <body>
 <span th:text="${id}"></span>님의 게시글
@@ -39,6 +48,7 @@
         <th>목록</th>
         <th>댓글</th>
         <th>해당글</th>
+        <th>변경</th>
     </tr>
     </thead>
     <tbody>
@@ -48,11 +58,17 @@
         <td>
             <a th:href="@{/boarddetail(seq=${row.seqBoard})}">이동</a>
         </td>
+        <td>
+            <a th:href="@{/delreply(seq=${row.seqReply},seqB=${row.seqBoard})}">삭제</a>
+        </td>
     </tr>
     <tr th:unless="${not #lists.isEmpty(myReplyList)}">
         <td colspan="5">조회된 결과가 없습니다.</td>
     </tr>
     </tbody>
 </table>
+<div id="messageBox" style="visibility: hidden" th:text="${message}">
+
+</div>
 </body>
 </html>

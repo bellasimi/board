@@ -170,20 +170,36 @@ public class controller {
         //글읽기
         //댓글 출력
         @RequestMapping("/boarddetail")
-        public String readdetail(@RequestParam("seq")int seq,Model model,Board board){
-            Optional<Board> boardfind = boardRepository.findById(seq);
-            Board detail = boardfind.get();
-            model.addAttribute("detail",detail);
-            List<Reply> replylist = replyRepository.findAllBySeqBoard(seq);
-            /*대댓글 여부 확인 */
-            int reReplyCount = (int) replylist.stream().filter(s ->s.getRindex().equals("1")).count();
-            /*댓글 group by group 후 order by seqReply  */
-            if( reReplyCount >0){
-                replylist =replylist.stream().sorted(Comparator.comparing(Reply::getRgroup).thenComparing(Reply::getSeqReply)).collect(Collectors.toList());}
+        public String readdetail(@RequestParam("seq")int seq,Model model,Board board,HttpSession session){
+
+            boolean exist = boardRepository.existsById(seq);
+            /*해당글 삭제여부 확인 */
+            if(exist == false){
+                model.addAttribute("message","해당글은 삭제됐습니다!");
+                String id = (String) session.getAttribute("logId");
+                List<Board> myBoard = boardRepository.findById(id);
+                List<Reply> myReply = replyRepository.findAllById(id);
+                model.addAttribute("myBoardList",myBoard);
+                model.addAttribute("myReplyList",myReply);
+                model.addAttribute("id",id);
+                return "mypage/mypage";
+            }
+            else{
+                Optional<Board> boardfind = boardRepository.findById(seq);
+                Board detail = boardfind.get();
+                model.addAttribute("detail",detail);
+                List<Reply> replylist = replyRepository.findAllBySeqBoard(seq);
+
+                /*대댓글 여부 확인 */
+                int reReplyCount = (int) replylist.stream().filter(s ->s.getRindex().equals("1")).count();
+                /*댓글 group by group 후 order by seqReply  */
+                if( reReplyCount >0){
+                    replylist =replylist.stream().sorted(Comparator.comparing(Reply::getRgroup).thenComparing(Reply::getSeqReply)).collect(Collectors.toList());}
 
 
-            model.addAttribute("replylist",replylist);
-            return "boarddetail";
+                model.addAttribute("replylist",replylist);
+                return "boarddetail";
+            }
 
         }
         //게시글 수정폼
@@ -236,13 +252,14 @@ public class controller {
         }
         //댓글 삭제
         @RequestMapping("/delreply")
-        public String delreply(@RequestParam("seq")int seqReply,@RequestParam("seqB")String seqBoard){
+        public String delreply(@RequestParam("seq")int seqReply,@RequestParam("seqB")int seqBoard){
             System.out.println("seqr"+seqReply);
 
             System.out.println("seqb"+seqBoard);
             replyRepository.deleteById(seqReply);
 
-            return "redirect:boarddetail"+"?seq="+seqBoard;
+                return "redirect:boarddetail"+"?seq="+seqBoard;
+
         }
         //댓글 수정
 
