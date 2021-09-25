@@ -257,9 +257,14 @@ public class controller {
 
             System.out.println("seqb"+seqBoard);
             replyRepository.deleteById(seqReply);
-
-                return "redirect:boarddetail"+"?seq="+seqBoard;
-
+            boolean exist = boardRepository.existsById(seqBoard);
+            /*해당글 삭제여부 확인 */
+            if(exist == false) {
+                return "redirect:mypage";
+            }
+            else {
+                return "redirect:boarddetail" + "?seq=" + seqBoard;
+            }
         }
         //댓글 수정
 
