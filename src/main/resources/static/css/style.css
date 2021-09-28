@@ -1,0 +1,96 @@
+/*@font-face {
+    font-family: abster;
+    src:url("/static/font/abster-webfont.woff") format("woff");
+}*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#container{
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8));
+    /*
+    background: url(/static/images/coding.jpg),linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2));
+    */
+}
+
+#container #header{
+    color: white;
+    width: 80%;
+    height: 80px;
+    margin: 0 auto; /*margin-left: auto margin-right: auto 한것과 같아*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+/* header에서 style 지정하고 있음
+#container #nav{
+    width: 80%;
+    height: 80px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    !*background-color: red;*!
+    align-items: center;
+}*/
+
+#container #nav ul li {
+    display: inline-block; /*리스트가 한줄로 나옴 가로정렬 */
+    margin: 0 10px;
+}
+
+#container #nav ul li a{
+    text-decoration: none;
+    color: white;
+}
+
+#container #nav ul li a:hover{
+    color: gold;
+}
+
+#container #article{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    text-align: center;
+
+}
+
+#container #article h1{
+    color: white;
+    font-size: 60px;
+    margin: 10px 0px 10px 0px;
+}
+
+#container #article p{
+    color: white;
+    font-size: 22px;
+}
+
+#container #article button{
+    background: none;
+    border: 2px solid white;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 20px;
+    margin-top: 30px;
+    outline: none;
+    cursor: pointer;
+    transition: all .4s;
+}
+
+#container #article button a{
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+}
+
+#container #article button:hover{
+    background-color: darkgoldenrod;
+}
