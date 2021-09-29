@@ -34,7 +34,7 @@ public class controller {
     //메인
     @RequestMapping("/")
     public String mainpage(Model model){
-        return "main";
+        return "index";
     }
     //회원가입폼
     @RequestMapping("/memberForm")
