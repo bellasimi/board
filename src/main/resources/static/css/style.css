@@ -1,6 +1,6 @@
 /*@font-face {
     font-family: abster;
-    src:url("/static/font/abster-webfont.woff") format("woff");
+    src:url("/font/abster-webfont.woff") format("woff");
 }*/
 *{
     margin: 0;
@@ -8,42 +8,47 @@
     box-sizing: border-box;
 }
 
+:root {
+    --text-color: white;
+
+}
+
 #container {
     width: 100%;
     height: 100vh;
     background: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8));
     /*
-    background: url(/static/images/coding.jpg),linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2));
+    background: url(/images/coding.jpg),linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2));
     */
 }
 
-#container #navbar {
-    color: white;
-    width: 80%;
-
+#navbar {
+    color: var(--text-color);
+    width: 100%;
     height: auto;
     margin: 0 auto; /*margin-left: auto margin-right: auto 한것과 같아*/
+    padding: 10px 100px 10px 100px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #263343;
+    background-color: #161514;
 
 }
 
-#container #navbar #nav_logo {
+#navbar #nav_logo {
     align-items: center;
     padding: 10px 20px;
     display: flex;
 }
 
-#container #navbar #nav_logo i {
-    margin-right: 10px;
+#navbar #nav_logo i {
+    margin-right: 20px;
     background-color: #d49466;
 
 }
 
 /* navbar에서 style 지정하고 있음
-#container #nav_menu {
+#nav_menu {
     width: 80%;
     height: 80px;
     margin: 0 auto;
@@ -52,53 +57,66 @@
     !*background-color: red;*!
     align-items: center;
 }*/
-#container #nav_menu  {
+#nav_menu  {
     display: flex;
+    padding-top: 10px;
 }
 
-#container #nav_menu li {
+#nav_menu li {
     /* display: inline-block; 리스트가 한줄로 나옴 가로정렬 */
     margin: 0 10px;
     list-style: none;
 }
 
-#container #nav_menu li a {
+#nav_menu li a {
     text-decoration: none;
     padding: 10px 12px 10px 12px;
-    color: white;
+    color: var(--text-color);
 }
 
-#container #nav_menu li a:hover {
+#nav_menu li a:hover {
     color: gold;
-    border-radius: 5px;
 }
 
-#container #article {
+/*#nav_menu li:hover {
+    background-color: gold;
+    border-radius: 5px;
+}*/
+
+#nav_Btn{
+    position: absolute;
+    right: 32px;
+    top: 28px;
+    color: var(--text-color);
+    display: none;
+}
+
+#article {
     width: 80%;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%,-50%);
-    color: white;
+    color: var(--text-color);
     text-align: center;
 
 }
 
-#container #article h1 {
-    color: white;
+#article h1 {
+    color: var(--text-color);
     font-size: 60px;
     margin: 10px 0px 10px 0px;
 }
 
-#container #article p {
-    color: white;
+#article p {
+    color: var(--text-color);
     font-size: 22px;
 }
 
-#container #article button {
+#article button {
     background: none;
     border: 2px solid white;
-    color: white;
+    color: var(--text-color);
     padding: 15px 20px;
     border-radius: 20px;
     margin-top: 30px;
@@ -107,28 +125,45 @@
     transition: all .4s;
 }
 
-#container #article button a {
-    color: white;
+#article button a {
+    color: var(--text-color);
     text-decoration: none;
     padding: 15px 20px;
 }
+#article h1:hover {
+    backgroundcolor: gold;
 
-#container #article button:hover {
-    backgroundcolor: darkgoldenrod;
+}
+#article button:hover {
+    backgroundcolor: gold;
+
 }
 
-@media screen and (max-width: 768px) {
-    #navbar{
+@media screen and (max-width: 1200px){
+    #container #article img {
+        margin-top: 10px;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 825px) {
+    #navbar {
         flex-direction: column;
-        align-items: flex-start;
     }
 
-
+    #nav_logo {
+        align-items: flex-start;
+    }
     #nav_menu {
+        display: none;
         flex-direction: column;
         margin-top: 10px;
         width: 100%;
-        align-items: center;
+    }
+
+    #nav_Btn {
+        display: block;
     }
 
     #nav_menu li {
@@ -141,6 +176,11 @@
     #container #article img {
        width: 100%;
        height: 100%;
+       margin-top: 15px;
+    }
+
+    #nav_menu.active {
+        display: flex;
     }
 
 }
