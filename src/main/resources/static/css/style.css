@@ -2,15 +2,19 @@
     font-family: abster;
     src:url("/font/abster-webfont.woff") format("woff");
 }*/
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
 :root {
     --text-color: white;
-
+    --caption-color: black;
 }
 
 #container {
@@ -48,7 +52,7 @@
 }
 
 /* navbar에서 style 지정하고 있음
-#nav_menu {
+.nav_menu {
     width: 80%;
     height: 80px;
     margin: 0 auto;
@@ -57,28 +61,28 @@
     !*background-color: red;*!
     align-items: center;
 }*/
-#nav_menu  {
+.nav_menu  {
     display: flex;
     padding-top: 10px;
 }
 
-#nav_menu li {
+.nav_menu li {
     /* display: inline-block; 리스트가 한줄로 나옴 가로정렬 */
     margin: 0 10px;
     list-style: none;
 }
 
-#nav_menu li a {
+.nav_menu li a {
     text-decoration: none;
     padding: 10px 12px 10px 12px;
     color: var(--text-color);
 }
 
-#nav_menu li a:hover {
+.nav_menu li a:hover {
     color: gold;
 }
 
-/*#nav_menu li:hover {
+/*.nav_menu li:hover {
     background-color: gold;
     border-radius: 5px;
 }*/
@@ -106,6 +110,11 @@
     color: var(--text-color);
     font-size: 60px;
     margin: 10px 0px 10px 0px;
+}
+
+#article #caption {
+    color: var(--caption-color);
+
 }
 
 #article p {
@@ -139,6 +148,107 @@
 
 }
 
+#login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+}
+
+#login::before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right:0;
+    bottom:0;
+    left: 0;
+
+}
+
+.login-form {
+    position: relative;
+    z-index: 2;
+    width: 400px;
+
+
+}
+
+.login-form h1{
+    color: var(--text-color);
+    text-align: center;
+    margin: 200px 0px 50px 0px;
+}
+
+.in-area {
+    width: 400px;
+    position: relative;
+    margin-top: 20px;
+}
+
+.in-area:first-child {
+    margin-top: 0;
+}
+.in-area input {
+    width: 100%;
+    padding: 20px 10px 10px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #999;
+    font-xize: 18px;
+    color: var(--text-color);
+    outline: none;
+    margin: 0px auto;
+}
+
+.in-area label {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    color: var(--text-color);
+    transition: all .5s ease;
+
+}
+.in-area input:focus +label,
+.in-area input:valid +label {
+    top: -2px;
+    font-size: 14px;
+    color: #d49466;
+}
+.btn-area {
+    margin-top: 30px;
+}
+
+.btn-area button {
+    width: 100%;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: all .5s ease-out;
+}
+
+.btn-area .btn-yes {
+    background-color: #d49466;
+    color: var(--text-color);
+
+}
+
+.btn-area .btn-yes:hover {
+    background-color: darksalmon;
+}
+.btn-area .btn-no {
+    margin-top: 10px;
+    color: #999999;
+}
+
+.btn-area .btn-no:hover {
+    color: #d49466;
+}
+
+
 @media screen and (max-width: 1200px){
     #container #article img {
         margin-top: 10px;
@@ -155,7 +265,7 @@
     #nav_logo {
         align-items: flex-start;
     }
-    #nav_menu {
+    .nav_menu {
         display: none;
         flex-direction: column;
         margin-top: 10px;
@@ -166,7 +276,7 @@
         display: block;
     }
 
-    #nav_menu li {
+    .nav_menu li {
         align-items: flex-start;
         padding: 10px 0px 10px 0px;
         width: 100%;
@@ -179,7 +289,7 @@
        margin-top: 15px;
     }
 
-    #nav_menu.active {
+    .nav_menu.active {
         display: flex;
     }
 
