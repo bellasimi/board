@@ -49,6 +49,6 @@ public class AdminController {
     @RequestMapping("delMember")
     public String delMember(@RequestParam("seq")int seq){
         memberRepository.deleteById(seq);
-        return "admin/memberList";
+        return "redirect:memberList";
     }
 }
