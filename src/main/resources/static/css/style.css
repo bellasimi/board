@@ -279,6 +279,37 @@
     color: var(--hover-color);
 }
 
+.section {
+    width: 70%;
+    height: 80%;
+    margin: 0 auto;
+
+}
+
+.my-contents {
+    margin-top: 100px;
+    height: auto;
+    border: solid 1px white;
+    color: var(--text-color);
+}
+
+.my-reply {
+    margin-top: 70px;
+    border: solid 1px white;
+    color: var(--text-color);
+}
+
+.my-contents table, .my-reply table {
+    margin: 0 auto;
+    border: white;
+
+}
+
+.my-contents table, .my-reply table th {
+    background-color: var(--hover-color);
+}
+
+
 @media screen and (max-width: 1200px){
     #container #article img {
         margin-top: 10px;
