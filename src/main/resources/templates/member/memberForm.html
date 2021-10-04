@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/style.css">
     <title>회원가입</title>
+    <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
     <style>
         #messageBox{
             border: 1px solid black;
@@ -81,20 +83,66 @@
     </script>
 </head>
 <body>
-<form action="/memberSave" method="post">
-    <h1>회원가입</h1>
-id <input type="text" name="id" id="yourId"><button type="button" onclick="checkId()">중복체크</button><p>
-pw <input type="text" name="pw" id="yourPw"><p>
-이름<input type="text" name="name" id="yourName"><p>
-성별<p>
-    남 <input type="radio" name="gender" id="yourGender1" value="남">
-    여 <input type="radio" name="gender" id="yourGender2"  value="여"><p>
+<div id="container">
+    <div id="navbar">
+        <div id="nav_logo">
+            <i class="fas fa-desktop"></i><a href="/">개발자1</a>
+        </div>
+        <ul class="nav_menu">
+            <li><a href="/loginform">로그인</a></li>
+            <li>
+                <a href="https://bellasimi.github.io/">
+                    <i class="fas fa-blog fa-2x"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/bellasimi">
+                    <i class="fab fa-github fa-2x"></i>
+                </a>
+            </li>
+        </ul>
+        <div id="nav_Btn">
+            <a href="#"><i class="fas fa-bars fa-2x"></i></a>
+        </div>
+    </div>
 
-전화번호(-없이 입력해주세요)<p>
-    <input type="text" name="tel" id="yourTel"><p>
-<button type="submit" >확인</button>
-</form>
-<p th:text ="${message}"></p>
-<div id="messageBox" th:if="${not #strings.isEmpty(message)}" th:text="${message}"></div>
+    <div class="signin-form">
+        <h1>회원가입</h1>
+        <form action="/memberSave" method="post">
+            <div class="in-area">
+                <input type="text" name="id" id="yourId" autocomplete="off" required>
+                <label for="yourId">ID</label>
+
+            </div>
+                <button type="button" onclick="checkId()">중복체크</button>
+            <div class="in-area">
+                <input type="text" name="pw" id="yourPw" autocomplete="off" required>
+                <label for="yourPw">PASSWORD</label>
+            </div>
+            <div class="in-area">
+                <input type="text" name="name" id="yourName" autocomplete="off" required>
+                <label for="yourName">이름</label>
+            </div>
+            <div class="in-area">
+                <h2>성별</h2>
+                남<input type="radio" name="gender" id="yourGender1" value="sa">
+                여<input type="radio" name="gender" id="yourGender2" value="여">
+            </div>
+            <div class="in-area">
+                <input type="text" name="tel" id="yourTel" autocomplete="off" required>
+                <label for="yourTel"></label>
+                <h2>전화번호는 - 없이 연속으로 입력해주세요!</h2>
+            </div>
+            <div class="btn-area">
+                <button type="submit" class="btn-yes">회원가입</button>
+                <button type="reset" class="btn-no">취소</button>
+            </div>
+
+        </form>
+
+    </div>
+    <div id="messageBox" th:if="${not #strings.isEmpty(message)}" th:text="${message}">
+    </div>
+</div>
 </body>
 </html>

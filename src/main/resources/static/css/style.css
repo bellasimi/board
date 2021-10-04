@@ -192,6 +192,21 @@
     margin: 200px 0px 50px 0px;
 }
 
+
+.signin-form {
+    position: relative;
+    z-index: 2;
+    width: 400px;
+    margin: 0 auto;
+
+
+}
+
+.signin-form h1{
+    color: var(--text-color);
+    text-align: center;
+    margin: 200px 0px 50px 0px;
+}
 .in-area {
     width: 400px;
     position: relative;
@@ -359,10 +374,6 @@
     }
 
     .nav_menu.active {
-        display: flex;
-    }
-
-    .nav_meny .admin_menu .active {
         display: flex;
     }
 

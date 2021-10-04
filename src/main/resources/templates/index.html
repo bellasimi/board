@@ -2,19 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
     <title>메인페이지</title>
     <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
-    <script src="/js/index.js" defer></script>
+    <script src="/static/js/index.js" defer></script>
 
 </head>
 <body>
 
 <div id="container">
     <div id="navbar">
-        <div id="nav_logo"><i class="fas fa-desktop"></i><h1>개발자1</h1></div>
+        <div id="nav_logo"><i class="fas fa-desktop"></i><a href="/">개발자1</a></div>
 
-        <ul id="nav_menu">
+        <ul class="nav_menu">
             <!--
             <h1> <a href="http://localhost:8282/memberForm">회원가입</a></h1>
             <h1><a href="http://localhost:8282/memberSave">회원목록</a></h1>-->
@@ -33,12 +33,10 @@
         </a>
     </div>
     <div id="article">
-        <img src="/images/coding.jpg">
+        <img src="/static/images/coding.jpg" alt="coding.jpg">
         <h1>About?</h1>
         <p>게시판을 만들어서 코딩 연습을 해보자</p>
-        <button>
-            <a href="https://bellasimi.github.io/">블로그</a>
-        </button>
+        <button type="button" onclick="location.href='https://bellasimi.github.io/'">블로그</button>
     </div>
 
 </div>
