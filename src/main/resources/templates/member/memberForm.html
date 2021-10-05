@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/static/css/style.css">
     <title>회원가입</title>
     <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
+    <!--<script src="/static/js/requiredWarning.js" defer></script>-->
     <style>
         #messageBox{
             border: 1px solid black;
@@ -45,40 +46,35 @@
 
             });//ajax*/
         }
-    function checkAgain(){
+    function checkAgain() {
         const id = $('#yourId').val();
-        const pw= $('#yourPw').val();
-        const name= $('#yourName').val();
-        console.log("값이"+id+pw+name+"없나?");
-        let gender;
-        if( $('#yourGender1').val()== null){
-            gender= $('#yourGender2').val();
-        }else{
-            gender= $('#yourGender1').val();
-        }
-        const tel= $('#yourTel').val();
+        const pw = $('#yourPw').val();
+        const name = $('#yourName').val();
+        console.log("값이" + id + pw + name + "없나?");
+        const email = $('#yourEmail').val();
+        const tel = $('#yourTel').val();
 
-            $.ajax({
-                type : "post",
-                async : "false",
-                url: "/memberSave",
-                data: {
-                    id:id,
-                    pw:pw,
-                    name:name,
-                    gender:gender,
-                    tel:tel
+        $.ajax({
+            type: "post",
+            async: "false",
+            url: "/memberSave",
+            data: {
+                id: id,
+                pw: pw,
+                name: name,
+                email: email,
+                tel: tel
 
-                },
-                error : function(data, textStatus) {
-                    alert("에러가 발생했습니다!"+data);
-                }
+            },
+            error: function (data, textStatus) {
+                alert("에러가 발생했습니다!" + data);
+            }
 
-            });//ajax*/
+        });//ajax*/
 
-
-    }
-
+    }//checkagain
+    </script>
+    <script>
 
     </script>
 </head>
@@ -123,15 +119,17 @@
                 <input type="text" name="name" id="yourName" autocomplete="off" required>
                 <label for="yourName">이름</label>
             </div>
-            <div class="in-area">
-                <h2>성별</h2>
-                남<input type="radio" name="gender" id="yourGender1" value="sa">
-                여<input type="radio" name="gender" id="yourGender2" value="여">
+
+            <div class="in-area" >
+                <input type="text" name="email" id="yourEmail" autocomplete="off" required>
+                <label for="yourEmail">EMAIL</label>
             </div>
+
             <div class="in-area">
                 <input type="text" name="tel" id="yourTel" autocomplete="off" required>
-                <label for="yourTel"></label>
-                <h2>전화번호는 - 없이 연속으로 입력해주세요!</h2>
+                <label for="yourTel">전화번호</label>
+
+                <h3>전화번호는 - 없이 연속으로 입력해주세요!</h3>
             </div>
             <div class="btn-area">
                 <button type="submit" class="btn-yes">회원가입</button>
@@ -144,5 +142,17 @@
     <div id="messageBox" th:if="${not #strings.isEmpty(message)}" th:text="${message}">
     </div>
 </div>
+
+    <script>
+        let yourId = $('#yourId');
+        const yesBtn = $('.btn-yes');
+        // document.querySelector('.btn-yes');
+
+        yesBtn.on('click', () => {
+            if(yourId.val() == ""){
+                yourId.next('label').addClass('warning');
+            }
+        });
+    </script>
 </body>
 </html>
