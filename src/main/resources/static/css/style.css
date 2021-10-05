@@ -97,6 +97,14 @@
     border-radius: 5px;
 }*/
 
+.nav_menu .admin_menu {
+    visibility: hidden;
+}
+
+.nav_menu .admin_menu .active {
+    visibility: visible;
+}
+
 #nav_Btn{
     position: absolute;
     right: 32px;
@@ -198,7 +206,7 @@
     z-index: 2;
     width: 400px;
     margin: 0 auto;
-
+    color: var(--text-color);
 
 }
 
@@ -207,6 +215,9 @@
     text-align: center;
     margin: 200px 0px 50px 0px;
 }
+
+
+
 .in-area {
     width: 400px;
     position: relative;
@@ -377,4 +388,8 @@
         display: flex;
     }
 
+    .nav_menu .admin_menu .active {
+        visibility: visible;
+        display: flex;
+    }
 }
