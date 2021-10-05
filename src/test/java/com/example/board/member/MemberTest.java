@@ -14,7 +14,6 @@ class MemberTest {
                         .id("admin")
                         .pw("1234")
                         .name("admin")
-                        .gender("여")
                         .tel("0101112222")
                         .build();
         final String id = member.getId();

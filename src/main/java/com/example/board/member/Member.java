@@ -24,21 +24,21 @@ public class Member {
     private String pw;
     @Column(nullable = false)
     private String name;
-    @Column
-    private String gender;
+    @Column(nullable = false)
+    private String email;
     @Column(nullable = false,unique = true)
     private String tel;
 
 
+
     @Builder
-    public Member(String id, String pw,String name, String gender, String tel){
+    public Member(String id, String pw,String name, String tel){
         Assert.hasText(id,"id를 입력하세요");
         Assert.hasText(pw,"pw를 입력하세요");
         Assert.hasText(tel,"tel을 입력하세요");
         this.id =id;
         this.pw = pw;
         this.name = name;
-        this.gender = gender;
         this.tel = tel;
     }
 }
