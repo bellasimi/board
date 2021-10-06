@@ -3,11 +3,35 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
     <title>ID 찾기 완료</title>
 </head>
 <body>
-    <span th:text="${name}"></span>님의 아이디는<p></p>
-    <div p th:text="${id}"></div>입니다!
-    <a href="/loginform">로그인하러 가기</a>
+<div id="container">
+    <div id=navbar>
+        <div id="nav_logo"><i class="fas fa-desktop"></i><a href="/">개발자1</a></div>
+        <ul class="nav_menu">
+            <li>
+                <a href="https://bellasimi.github.io/">
+                    <i class="fas fa-blog fa-2x"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/bellasimi">
+                    <i class="fab fa-github fa-2x"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <a href="#" id="nav_Btn">
+        <i class="fas fa-bars fa-2x"></i>
+    </a>
+    <div id="article">
+        <span th:text="${name}"></span>님의 아이디는<p></p>
+        <div th:text="${id}"></div>입니다!
+        <a href="/loginform">로그인하러 가기</a>
+    </div>
+</div>
 </body>
 </html>
