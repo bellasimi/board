@@ -2,13 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
     <title>비밀번호 찾기</title>
 </head>
 <body>
-<form action="/findPw" method="post">
-    ID <input type="text" name="id">
-    TEL<input type="text" name="tel">
-    <button type="submit">확인</button>
-</form>
+<div id="container">
+    <div id=navbar>
+        <div id="nav_logo"><i class="fas fa-desktop"></i><a href="/">개발자1</a></div>
+        <ul class="nav_menu">
+            <li>
+                <a href="https://bellasimi.github.io/">
+                    <i class="fas fa-blog fa-2x"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/bellasimi">
+                    <i class="fab fa-github fa-2x"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <a href="#" id="nav_Btn">
+        <i class="fas fa-bars fa-2x"></i>
+    </a>
+    &emsp;&emsp;
+    &emsp;&emsp;
+    <div class="search-form">
+        <form action="/findPw" method="post">
+            <h1>비밀번호 찾기</h1>
+            <div class="in-area">
+                <input type="text" name="id" id="id" autocomplete="off" required>
+                <label for="id">ID</label>
+            </div>
+            <div class="in-area">
+                <input type="text" name="tel" id="tel" autocomplete="off" required>
+                <label for="tel">TEL</label>
+            </div>
+            <h3>회원가입시 기입한 전화번를 - 없이 입력해주세요!</h3>
+            <div class="btn-area">
+                <button type="submit" class="btn-yes">확인</button>
+                <button type="reset" class="btn-no">취소</button>
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 </html>

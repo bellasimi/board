@@ -18,6 +18,8 @@
     --hover-color: #d49466;
     --dark-hover-color: darksalmon;
     --nav-color: #161514;
+    --explain-color: #999999;
+
 }
 
 #container {
@@ -216,7 +218,44 @@
     margin: 200px 0px 50px 0px;
 }
 
+.signin-form h2{
+    color: var(--text-color);
+    text-align: center;
+   margin-bottom: 10px;
+}
 
+.signin-form h3 {
+    color: var(--explain-color);
+    font-size: 14px;
+
+}
+
+.search-form {
+    position: relative;
+    z-index: 2;
+    width: 400px;
+    margin: 0 auto;
+    color: var(--text-color);
+
+}
+
+.search-form h1{
+    color: var(--text-color);
+    text-align: center;
+    margin: 200px 0px 50px 0px;
+}
+
+.search-form h2{
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.search-form h3 {
+    color: var(--explain-color);
+    font-size: 14px;
+
+}
 
 .in-area {
     width: 400px;
@@ -334,6 +373,7 @@
 .my-contents table, .my-reply table th {
     background-color: var(--hover-color);
 }
+
 
 
 @media screen and (max-width: 1200px){
