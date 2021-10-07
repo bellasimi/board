@@ -2,9 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
     <title>비밀번호 조회 결과</title>
 </head>
 <body>
-<span th:text="${id}"></span>님의 비밀번호는 <p></p><span th:text="${pw}"></span>입니다.
+<div id="container">
+    <div id=navbar>
+        <div id="nav_logo"><i class="fas fa-desktop"></i><a href="/">개발자1</a></div>
+        <ul class="nav_menu">
+            <li>
+                <a href="https://bellasimi.github.io/">
+                    <i class="fas fa-blog fa-2x"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/bellasimi">
+                    <i class="fab fa-github fa-2x"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <a href="#" id="nav_Btn">
+        <i class="fas fa-bars fa-2x"></i>
+    </a>
+    <div id="article">
+        <span th:text="${id}"></span>님의 비밀번호는 <p></p><span th:text="${pw}"></span>입니다.
+    </div>
+</div>
 </body>
 </html>
