@@ -2,6 +2,8 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
     <title>회원가입완료</title>
 </head>
 <body>
@@ -9,9 +11,36 @@
 이건 MUSTACHE에만 가능하네
 {{>name}}님 {{>id}}라는 id로 가입되셨습니다.
 -->
+<div id="container">
+    <div id="navbar">
+        <div id="nav_logo"><i class="fas fa-desktop"></i><a href="/">개발자1</a></div>
+            <ul class="nav_menu">
+                <li><a th:href="@{/boardlist}">게시판</a></li>
+                <li><a th:href="@{/mypage}">마이페이지</a></li>
+                <li class="admin_menu"><a th:href="@{/adminboard}">게시판관리</a></li>
+                <li class="admin_menu"><a th:href="@{/memberList}">회원관리</a></li>
+                <li>
+                    <a href="https://bellasimi.github.io/">
+                        <i class="fas fa-blog fa-2x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/bellasimi">
+                        <i class="fab fa-github fa-2x"></i>
+                    </a>
+                </li>
+            </ul>
 
-<p th:text="${name}">님 <p th:text="${id}">라는 id로 가입되셨습니다.
-    <a href="/write">글쓰기</a>
-    <h1><a href="/memberList">회원목록</a></h1>
+            <a href="#" id="nav_Btn">
+                <i class="fas fa-bars fa-2x"></i>
+            </a>
+
+    </div>
+    <div id="article">
+
+    <p th:text="${name}">님 <p th:text="${id}">라는 id로 가입되셨습니다.
+        <button type="button" onclick="location.href='/write'">글쓰러 가기</button>
+    </div>
+</div>
 </body>
 </html>
