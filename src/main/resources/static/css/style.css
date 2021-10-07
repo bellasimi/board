@@ -19,6 +19,10 @@
     --dark-hover-color: darksalmon;
     --nav-color: #161514;
     --explain-color: #999999;
+    --th-color: #d49466;
+    --th-text-color: white;
+    --td-text-color: black;
+    --td-color: white;
 
 }
 
@@ -374,6 +378,28 @@
     background-color: var(--hover-color);
 }
 
+.board-table table{
+    width: 70%;
+    height: auto;
+    border-collapse: collapse;
+
+    margin: 100px auto auto auto;
+    text-align: center;
+
+
+
+}
+
+.board-table th {
+    background-color: var(--th-color);
+    color: var(--th-text-color);
+    padding: 10px 10px;
+}
+
+.board-table td {
+    background-color: var(--td-color);
+    color: var(--td-text-color);
+}
 
 
 @media screen and (max-width: 1200px){

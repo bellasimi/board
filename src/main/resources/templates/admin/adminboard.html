@@ -3,34 +3,66 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/style.css">
     <title>Title</title>
+    <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
+    <script src="/static/js/index.js" defer></script>
+    <script src="/static/js/admin_menu.js" defer></script>
 </head>
 <body>
-<table>
-    <thead>
-    <tr>
-        <th>목록</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일자</th>
-        <th>변경</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:if="${not #lists.isEmpty(list)}" th:each="row, i: ${list}">
-        <td th:text="${i.index}"></td>
-        <td th:text="${row.title}"> </td>
-        <td th:text="${row.id}"></td>
-        <td th:text="${row.creDate}"></td>
-        <td>
-            <a th:href="@{/modiform(seq=${row.seqBoard})}">수정</a>
-            <a th:href="@{/adminBDel(seq=${row.seqBoard})}">삭제</a>
-        </td>
-    </tr>
-    <tr th:unless="${not #lists.isEmpty(list)}">
-        <td colspan="5">조회된 결과가 없습니다.</td>
-    </tr>
-    </tbody>
-</table>
+<div id="container">
+    <div id="navbar">
+        <div id="nav_logo">
+            <i class="fas fa-desktop"></i><a href="/">개발자1</a>
+        </div>
+        <ul class="nav_menu">
+            <li><a th:href="@{/boardlist}">게시판</a></li>
+            <li><a th:href="@{/mypage}">마이페이지</a></li>
+            <li class="admin_menu"><a th:href="@{/adminboard}">게시판관리</a></li>
+            <li class="admin_menu"><a th:href="@{/memberList}">회원관리</a></li>
+            <li>
+                <a href="https://bellasimi.github.io/">
+                    <i class="fas fa-blog fa-2x"></i>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/bellasimi">
+                    <i class="fab fa-github fa-2x"></i>
+                </a>
+            </li>
+        </ul>
+        <div id="nav_Btn">
+            <i class="fas fa-bars fa-2x"></i>
+        </div>
+    </div>
+    <div class="board-table">
+        <table>
+            <thead>
+            <tr>
+                <th>목록</th>
+                <th>제목</th>
+                <th>작성자</th>
+                <th>작성일자</th>
+                <th>변경</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:if="${not #lists.isEmpty(list)}" th:each="row, i: ${list}">
+                <td th:text="${i.index}"></td>
+                <td th:text="${row.title}"> </td>
+                <td th:text="${row.id}"></td>
+                <td th:text="${row.creDate}"></td>
+                <td>
+                    <a th:href="@{/modiform(seq=${row.seqBoard})}">수정</a>
+                    <a th:href="@{/adminBDel(seq=${row.seqBoard})}">삭제</a>
+                </td>
+            </tr>
+            <tr th:unless="${not #lists.isEmpty(list)}">
+                <td colspan="5">조회된 결과가 없습니다.</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>

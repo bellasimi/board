@@ -107,15 +107,14 @@ public class MemberController {
         return "member/login";
     }
     //로그인후 화면
-    @RequestMapping("login")
+    @RequestMapping("/login")
     public String login(@RequestParam("id") String id, @RequestParam("pw") String pw,
                         HttpServletRequest request, Model model){
         List<Member> user = memberRepository.findByIdAndPw(id,pw);
         System.out.println("유저: "+ user);
         if(user.size() == 0){
-
             model.addAttribute("message","그런 회원은 존재하지 않습니다!!");
-            return "member/loginform";
+            return "member/login";
         }
         else{
             model.addAttribute("id",id);
