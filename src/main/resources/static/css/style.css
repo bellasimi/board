@@ -386,10 +386,16 @@
     background-color: var(--td-color);
     color: var(--td-text-color);
 }
+.board-table {
+    margin-top: 100px;
+    height: auto;
+    /*border: solid 1px white;*/
+    color: var(--text-color);
 
+}
 
 .board-table table{
-    width: 70%;
+    width: 100%;
     height: auto;
     border-collapse: collapse;
     margin: 100px auto auto auto;
@@ -407,6 +413,33 @@
     color: var(--td-text-color);
 }
 
+.member-table {
+    margin-top: 100px;
+    height: auto;
+    /*border: solid 1px white;*/
+    color: var(--text-color);
+
+}
+
+.member-table table {
+    width: 100%;
+    height: auto;
+    border-collapse: collapse;
+    margin: 100px auto auto auto;
+    text-align: center;
+}
+
+.member-table th {
+    background-color: var(--th-color);
+    color: var(--th-text-color);
+    padding: 10px 10px;
+}
+
+.member-table td {
+    background-color: var(--td-color);
+    color: var(--td-text-color);
+
+}
 
 @media screen and (max-width: 1200px){
     #container #article img {
