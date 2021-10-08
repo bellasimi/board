@@ -36,6 +36,7 @@ public class BoardController {
     //글저장 후 게시판으로
     @RequestMapping("/writeSave")
     public String writesave(Board board,Model model,HttpSession session) {
+        board.setViews(0);
         boardRepository.save(board);
         List<Board> boardList = boardRepository.findAll();
         model.addAttribute("list2", boardList);
@@ -68,6 +69,9 @@ public class BoardController {
         else{
             Optional<Board> boardfind = boardRepository.findById(seq);
             Board detail = boardfind.get();
+            int addviews = detail.getViews()+1;// 클릭시 조회수 올리기
+            detail.setViews(addviews);
+            boardRepository.save(detail);
             model.addAttribute("detail",detail);
             List<Reply> replylist = replyRepository.findAllBySeqBoard(seq);
 

@@ -26,9 +26,9 @@ public class Board {
     private String title;
     @Column(nullable = false)
     private String context;
-
     private String pwBoard;
     @Column(nullable = false)
     private String creDate;
+    private int views;
 
 }

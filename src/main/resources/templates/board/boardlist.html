@@ -55,6 +55,7 @@
                 <th>작성자</th>
                 <th>제목</th>
                 <th>작성일자</th>
+                <th>조회수</th>
             </tr>
             </thead>
             <tbody>
@@ -67,6 +68,7 @@
                 <!--오류 :링크 get방식? 이거 아닌가
                    <a th:href="/readdetail?seq=${row.seqBoard}" th:text="${row.seqBoard}"></a>-->
                 <td th:text="${row.creDate}"></td>
+                <td th:text="${row.views}"></td>
             </tr>
             <tr th:unless="${not #lists.isEmpty( list2 )}">
                 <td colspan="5">조회된 결과가 없습니다.</td>
