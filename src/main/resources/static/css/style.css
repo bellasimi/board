@@ -358,36 +358,42 @@
 .my-contents {
     margin-top: 100px;
     height: auto;
-    border: solid 1px white;
+    /*border: solid 1px white;*/
     color: var(--text-color);
 }
 
 .my-reply {
-    margin-top: 70px;
-    border: solid 1px white;
+    margin-top: 100px;
+    /*border: solid 1px white;*/
     color: var(--text-color);
 }
 
 .my-contents table, .my-reply table {
+    width: 100%;
+    height: auto;
+    border-collapse: collapse;
     margin: 0 auto;
-    border: white;
-
+    text-align: center;
 }
 
-.my-contents table, .my-reply table th {
-    background-color: var(--hover-color);
+.my-contents table th, .my-reply table th {
+    background-color: var(--th-color);
+    color: var(--th-text-color);
+    padding: 10px 10px;
 }
+
+.my-contents table td, .my-reply table td {
+    background-color: var(--td-color);
+    color: var(--td-text-color);
+}
+
 
 .board-table table{
     width: 70%;
     height: auto;
     border-collapse: collapse;
-
     margin: 100px auto auto auto;
     text-align: center;
-
-
-
 }
 
 .board-table th {
