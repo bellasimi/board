@@ -49,6 +49,22 @@ public class BoardController {
         model.addAttribute("list2",boardList);
         return "board/boardlist";
     }
+    //정렬
+
+    @RequestMapping("/sortBy")
+    public String sortBy(@RequestParam("order") String order, Model model){
+        List<Board> boardList = boardRepository.findAll();
+
+        if(order == "creDate"){
+            boardList.stream().sorted(Comparator.comparing(Board::getCreDate)).collect(Collectors.toList());
+        }
+        else if(order == "views"){
+            boardList.stream().sorted(Comparator.comparing(Board::getViews)).collect(Collectors.toList());
+        }
+
+        model.addAttribute("list2",boardList);
+        return "board/boardlist";
+    }
     //글읽기
     //댓글 출력
     @RequestMapping("/boarddetail")

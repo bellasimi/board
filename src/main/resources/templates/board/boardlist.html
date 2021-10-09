@@ -72,8 +72,13 @@
             </div>
         </div>
         <div class="section">
+
             <div class="board-table">
             <h1>게시글목록</h1>
+                <ul class="order">
+                    <li><a th:href="@{/sortBy(order='views')}">조회수 높은순</a></li>
+                    <li><a th:href="@{/sortBy(order='creDate')}">최신순</a></li>
+                </ul>
                 <table>
                     <thead>
                     <tr>
@@ -102,18 +107,13 @@
                     </tbody>
                 </table>
 
-                <div class="btn_wrap text-right">
-                    <a th:href="@{/write}">글작성</a>
-                    <a th:href="@{/}">로그아웃</a>
-                    <a th:href="@{/}">로그아웃</a>
-                </div>
 
                 <div id="messageBox" style="">
                     <p th:text="${message}"></p>
                     <button type="button" onclick="boxclose()">닫기</button>
                 </div>
             </div>
-        </div>
+        </ul>
     </div>
 </body>
 </html>
