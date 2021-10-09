@@ -1,8 +1,14 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="board/layout/basic">
-<th:block layout:fragment="title">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/style.css">
     <title>게시글목록</title>
-</th:block>
+    <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
+    <script src="/static/js/index.js" defer></script>
+    <script src="/static/js/admin_menu.js" defer></script>
+</head>
 
 <style>
     #messageBox{
@@ -37,55 +43,77 @@
 
 
 </script>
-<th:block layout:fragment="search">
-    <form action="#" id="searchform-header" class="searchform js__toggle active pull-right">
-        <input type="search" placeholder="Search..." class="input-search">
-        <button class="mdi mdi-magnify button-search" type="submit">
-            <i class="fa fa-search" aria-hidden="true"></i>
-        </button>
-    </form>
-</th:block>
-<h1>게시글목록</h1>
-<th:block layout:fragment="content">
-    <div class="table-responsive clearfix">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>목록</th>
-                <th>작성자</th>
-                <th>제목</th>
-                <th>작성일자</th>
-                <th>조회수</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:if="${not #lists.isEmpty( list2 )}" th:each="row : ${list2}">
-                <td th:text="${row.seqBoard}"></td>
-                <td th:text="${row.id}"></td>
-                <td>
-                    <a th:href="@{/boarddetail(seq=${row.seqBoard})}" th:text="${row.title}"></a>
-                </td>
-                <!--오류 :링크 get방식? 이거 아닌가
-                   <a th:href="/readdetail?seq=${row.seqBoard}" th:text="${row.seqBoard}"></a>-->
-                <td th:text="${row.creDate}"></td>
-                <td th:text="${row.views}"></td>
-            </tr>
-            <tr th:unless="${not #lists.isEmpty( list2 )}">
-                <td colspan="5">조회된 결과가 없습니다.</td>
-            </tr>
-            </tbody>
-        </table>
 
-        <div class="btn_wrap text-right">
-            <a th:href="@{/write}">글작성</a>
-            <a th:href="@{/}">로그아웃</a>
-            <a th:href="@{/}">로그아웃</a>
+<body>
+
+    <div id="container">
+        <div id="navbar">
+            <div id="nav_logo">
+                <i class="fas fa-desktop"></i><a href="/">개발자1</a>
+            </div>
+            <ul class="nav_menu">
+                <li><a th:href="@{/boardlist}">게시판</a></li>
+                <li><a th:href="@{/mypage}">마이페이지</a></li>
+                <li class="admin_menu"><a th:href="@{/adminboard}">게시판관리</a></li>
+                <li class="admin_menu"><a th:href="@{/memberList}">회원관리</a></li>
+                <li>
+                    <a href="https://bellasimi.github.io/">
+                        <i class="fas fa-blog fa-2x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/bellasimi">
+                        <i class="fab fa-github fa-2x"></i>
+                    </a>
+                </li>
+            </ul>
+            <div id="nav_Btn">
+                <i class="fas fa-bars fa-2x"></i>
+            </div>
         </div>
+        <div class="section">
+            <div class="board-table">
+            <h1>게시글목록</h1>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>목록</th>
+                        <th>작성자</th>
+                        <th>제목</th>
+                        <th>작성일자</th>
+                        <th>조회수</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${not #lists.isEmpty( list2 )}" th:each="row : ${list2}">
+                        <td th:text="${row.seqBoard}"></td>
+                        <td th:text="${row.id}"></td>
+                        <td>
+                            <a th:href="@{/boarddetail(seq=${row.seqBoard})}" th:text="${row.title}"></a>
+                        </td>
+                        <!--오류 :링크 get방식? 이거 아닌가
+                           <a th:href="/readdetail?seq=${row.seqBoard}" th:text="${row.seqBoard}"></a>-->
+                        <td th:text="${row.creDate}"></td>
+                        <td th:text="${row.views}"></td>
+                    </tr>
+                    <tr th:unless="${not #lists.isEmpty( list2 )}">
+                        <td colspan="5">조회된 결과가 없습니다.</td>
+                    </tr>
+                    </tbody>
+                </table>
 
-        <div id="messageBox" style="">
-            <p th:text="${message}"></p>
-            <button type="button" onclick="boxclose()">닫기</button>
+                <div class="btn_wrap text-right">
+                    <a th:href="@{/write}">글작성</a>
+                    <a th:href="@{/}">로그아웃</a>
+                    <a th:href="@{/}">로그아웃</a>
+                </div>
+
+                <div id="messageBox" style="">
+                    <p th:text="${message}"></p>
+                    <button type="button" onclick="boxclose()">닫기</button>
+                </div>
+            </div>
         </div>
     </div>
-</th:block>
+</body>
 </html>

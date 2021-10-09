@@ -2,20 +2,64 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" >
 
 <head>
-
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/style.css">
     <title>게시글수정</title>
+    <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
+    <script src="/static/js/index.js" defer></script>
+    <script src="/static/js/admin_menu.js" defer></script>
 </head>
 <body>
-<form action="/modify" method="post">
-    <h1>게시글 수정</h1>
-    <input type="hidden" name="id" th:value="${id}"><p>
-    <input type="hidden" name="seqBoard" th:value="${seq}"><p></p>
-    제목<input type="text" name="title" th:value="${detail.title}"><p>
-    <textarea name="context" rows="20" cols="40" th:text="${detail.context}"> </textarea><p>
-    비밀번호<input type="text" name="pwBoard"><p>
-     <input type="submit" value="작성">
-    <input type="reset" value="초기화">
-</form>
+    <div id="container">
+        <div id="navbar">
+            <div id="nav_logo">
+                <i class="fas fa-desktop"></i><a href="/">개발자1</a>
+            </div>
+            <ul class="nav_menu">
+                <li><a th:href="@{/boardlist}">게시판</a></li>
+                <li><a th:href="@{/mypage}">마이페이지</a></li>
+                <li class="admin_menu"><a th:href="@{/adminboard}">게시판관리</a></li>
+                <li class="admin_menu"><a th:href="@{/memberList}">회원관리</a></li>
+                <li>
+                    <a href="https://bellasimi.github.io/">
+                        <i class="fas fa-blog fa-2x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/bellasimi">
+                        <i class="fab fa-github fa-2x"></i>
+                    </a>
+                </li>
+            </ul>
+            <div id="nav_Btn">
+                <i class="fas fa-bars fa-2x"></i>
+            </div>
+        </div>
+
+        <div id="write-form">
+            <form action="/modify" method="post">
+                <h1>게시글 수정</h1>
+                    <input type="hidden" name="id" th:value="${id}"><p>
+                    <input type="hidden" name="seqBoard" th:value="${seq}"><p></p>
+                <div class="in-area">
+                    <input type="text" name="title" th:value="${detail.title}" id="title">
+                    <label for="title">제목</label>
+                </div>
+                <div class="con-area">
+                    <textarea name="context" rows="20" cols="40" th:text="${detail.context}" id="context"> </textarea>
+
+                </div>
+                <div class="in-area">
+                    <input type="text" name="pwBoard" id="pwBoard">
+                    <label for="pwBoard">비밀번호</label>
+                </div>
+                <div class="btn-area">
+                    <input type="submit" value="작성">
+                    <input type="reset" value="초기화">
+                </div>
+            </form>
+        </div>
+
+    </div>
 </body>
 </html>

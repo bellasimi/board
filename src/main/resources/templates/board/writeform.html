@@ -2,22 +2,71 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" >
 
 <head>
-    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>게시글작성</title>
+    <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
+    <script src="/static/js/index.js" defer></script>
+    <script src="/static/js/admin_menu.js" defer></script>
+</head>
+<body>
+    <div id="container">
+        <div id="navbar">
+            <div id="nav_logo">
+                <i class="fas fa-desktop"></i><a href="/">개발자1</a>
+            </div>
+            <ul class="nav_menu">
+                <li><a th:href="@{/boardlist}">게시판</a></li>
+                <li><a th:href="@{/mypage}">마이페이지</a></li>
+                <li class="admin_menu"><a th:href="@{/adminboard}">게시판관리</a></li>
+                <li class="admin_menu"><a th:href="@{/memberList}">회원관리</a></li>
+                <li>
+                    <a href="https://bellasimi.github.io/">
+                        <i class="fas fa-blog fa-2x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/bellasimi">
+                        <i class="fab fa-github fa-2x"></i>
+                    </a>
+                </li>
+            </ul>
+            <div id="nav_Btn">
+                <i class="fas fa-bars fa-2x"></i>
+            </div>
+        </div>
+
+        <div id="write-form">
+            <form action="/writeSave" method="post">
+                <h1>게시글 작성</h1>
+                <input type="hidden" name="id" th:value="${id}"><p>
+                <input type="hidden" name="creDate" id="creDate" value="">
+                제목<input type="text" name="title"><p>
+                <textarea name="context" rows="20" cols="40"></textarea><p>
+
+                비밀번호<input type="text" name="pwBoard"><p>
+               <!--client마다 현재시간이 다름, form에서 값을 넣는 거 보다 controller에서  server시간을 넣어줄것!
+                -->
+                <input type="submit" value="작성">
+                <input type="reset" value="초기화">
+            </form>
+        </div>
+    </div>
     <script th:inline="javascript">
         <!--client현재시간 구하는 법(자동실행 제이쿼리)-->
         $(document).ready(function(){
-                let date1= new Date();
-                let Y = date1.getFullYear();
-                let m = date1.getMonth();
-                let d = date1.getDate();
+            let date1= new Date();
+            let Y = date1.getFullYear();
+            let m = date1.getMonth();
+            let d = date1.getDate();
 
-                if(m<10){ m="0"+m;}
-                if(d<10){ d="0"+d; }
-                let creDate =Y+"-"+m+"-"+d;
+            if(m<10){ m="0"+m;}
+            if(d<10){ d="0"+d; }
+            let creDate =Y+"-"+m+"-"+d;
 
-           /*
-            어째서인지 jqeury attr가 먹히지 않는다 -> 이거 th:inline="javascript"하니까 해결
-                $("input[id=creDate]").attr("value","STR_TO_DATE("+"'"+creDate+"'"+",'%Y-%m-%d')");*/
+            /*
+             어째서인지 jqeury attr가 먹히지 않는다 -> 이거 th:inline="javascript"하니까 해결
+                 $("input[id=creDate]").attr("value","STR_TO_DATE("+"'"+creDate+"'"+",'%Y-%m-%d')");*/
             console.log(creDate);
             console.log("STR_TO_DATE("+"'"+creDate+"'"+",'%Y-%m-%d')");
 
@@ -32,24 +81,5 @@
         });
 
     </script>
-
-
-    <meta charset="UTF-8">
-    <title>게시글작성</title>
-</head>
-<body>
-<form action="/writeSave" method="post">
-    <h1>게시글 작성</h1>
-    <input type="hidden" name="id" th:value="${id}"><p>
-    <input type="hidden" name="creDate" id="creDate" value="">
-    제목<input type="text" name="title"><p>
-    <textarea name="context" rows="20" cols="40"></textarea><p>
-
-    비밀번호<input type="text" name="pwBoard"><p>
-   <!--client마다 현재시간이 다름, form에서 값을 넣는 거 보다 controller에서  server시간을 넣어줄것!
-    -->
-    <input type="submit" value="작성">
-    <input type="reset" value="초기화">
-</form>
 </body>
 </html>
