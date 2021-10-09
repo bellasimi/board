@@ -1,75 +1,79 @@
 <!DOCTYPE html>
 
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="board/layout/basic">
-<th:block layout:fragment="title">
-    <title>회원목록</title>
-</th:block>
 
-<th:block layout:fragment="search">
-    <form action="#" id="searchform-header" class="searchform js__toggle active pull-right">
-        <input type="search" placeholder="Search..." class="input-search">
-        <button class="mdi mdi-magnify button-search" type="submit">
-            <i class="fa fa-search" aria-hidden="true"></i>
-        </button>
-    </form>
-</th:block>
-<h1>회원목록</h1>
-<th:block layout:fragment="content">
-    <div class="table-responsive clearfix">
-        <table class="table table-hover">
-            <thead>
-            <tr>
-                <th>이름</th>
-                <th>ID</th>
-                <th>PW</th>
-                <th>성별</th>
-                <th>전화번호</th>
-                <th>변경</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:if="${not #lists.isEmpty(list)}" th:each="row : ${list}">
-                <td class="text-left"  th:text="${row.name}">
-
-                </td>
-                <td th:text="${row.id}"></td>
-                <td th:text="${row.pw}"></td>
-                <td th:text="${row.email}"></td>
-                <td th:text="${row.tel}"></td>
-                <td th:text="${row.tel}"></td>
-                <td><a th:href="@{/delMember(seq=${row.seqMember})}">강퇴</a></td>
-            </tr>
-            <tr th:unless="${not #lists.isEmpty( list )}">
-                <td colspan="5">조회된 결과가 없습니다.</td>
-            </tr>
-            </tbody>
-        </table>
-
-        <div class="btn_wrap text-right">
-            <a th:href="@{/memberForm}" class="btn btn-primary waves-effect waves-light">Write</a>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <title>회원관리</title>
+    <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
+    <script src="/static/js/index.js" defer></script>
+    <script src="/static/js/admin_menu.js" defer></script>
+</head>
+<body>
+    <div id="container">
+        <div id="navbar">
+            <div id="nav_logo">
+                <i class="fas fa-desktop"></i><a href="/">개발자1</a>
+            </div>
+            <ul class="nav_menu">
+                <li><a th:href="@{/boardlist}">게시판</a></li>
+                <li><a th:href="@{/mypage}">마이페이지</a></li>
+                <li class="admin_menu"><a th:href="@{/adminboard}">게시판관리</a></li>
+                <li class="admin_menu"><a th:href="@{/memberList}">회원관리</a></li>
+                <li>
+                    <a href="https://bellasimi.github.io/">
+                        <i class="fas fa-blog fa-2x"></i>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/bellasimi">
+                        <i class="fab fa-github fa-2x"></i>
+                    </a>
+                </li>
+            </ul>
+            <div id="nav_Btn">
+                <i class="fas fa-bars fa-2x"></i>
+            </div>
         </div>
+        <div class="section">
+            <div class="member-table">
+                <h1>회원 관리</h1>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>이름</th>
+                        <th>ID</th>
+                        <th>PW</th>
+                        <th>EMAIL</th>
+                        <th>전화번호</th>
+                        <th>변경</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${not #lists.isEmpty(list)}" th:each="row : ${list}">
+                        <td class="text-left"  th:text="${row.name}">
 
-        <!--   <th:block layout:fragment="paging">
-               <nav aria-label="Page navigation" class="text-center">
-                   <ul class="pagination">
-                       <li>
-                           <a href="#" aria-label="Previous">
-                               <span aria-hidden="true">&laquo;</span>
-                           </a>
-                       </li>
-                       <li><a href="#">1</a></li>
-                       <li><a href="#">2</a></li>
-                       <li><a href="#">3</a></li>
-                       <li><a href="#">4</a></li>
-                       <li><a href="#">5</a></li>
-                       <li>
-                           <a href="#" aria-label="Next">
-                               <span aria-hidden="true">&raquo;</span>
-                           </a>
-                       </li>
-                   </ul>
-               </nav>
-           </th:block>-->
+                        </td>
+                        <td th:text="${row.id}"></td>
+                        <td th:text="${row.pw}"></td>
+                        <td th:text="${row.email}"></td>
+                        <td th:text="${row.tel}"></td>
+                        <td><a th:href="@{/delMember(seq=${row.seqMember})}">강퇴</a></td>
+                    </tr>
+                    <tr th:unless="${not #lists.isEmpty( list )}">
+                        <td colspan="6">조회된 결과가 없습니다.</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="btn_wrap text-right">
+                    <a th:href="@{/memberForm}" class="btn btn-primary waves-effect waves-light">Write</a>
+                </div>
+
+            </div>
+        </div>
     </div>
-</th:block>
+
+</body>
 </html>
