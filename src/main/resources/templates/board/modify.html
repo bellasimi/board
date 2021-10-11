@@ -36,26 +36,26 @@
             </div>
         </div>
 
-        <div id="write-form">
+        <div class="write-form">
+            <h1>게시글 수정</h1>
             <form action="/modify" method="post">
-                <h1>게시글 수정</h1>
                     <input type="hidden" name="id" th:value="${id}"><p>
                     <input type="hidden" name="seqBoard" th:value="${seq}"><p></p>
                 <div class="in-area">
-                    <input type="text" name="title" th:value="${detail.title}" id="title">
+                    <input type="text" name="title" th:value="${detail.title}" id="title" autocomplete="off" required>
                     <label for="title">제목</label>
                 </div>
                 <div class="con-area">
-                    <textarea name="context" rows="20" cols="40" th:text="${detail.context}" id="context"> </textarea>
-
+                    <textarea name="context" rows="20" cols="80" th:text="${detail.context}" id="context"> </textarea>
                 </div>
                 <div class="in-area">
-                    <input type="text" name="pwBoard" id="pwBoard">
+                    <input type="text" name="pwBoard" id="pwBoard" autocomplete="off" required>
                     <label for="pwBoard">비밀번호</label>
+                    <h3>비밀번호는 숫자 4자로 입력해주세요</h3>
                 </div>
                 <div class="btn-area">
-                    <input type="submit" value="작성">
-                    <input type="reset" value="초기화">
+                   <button type="reset" class="btn-no">초기화</button>
+                    <button type="submit" class="btn-yes">작성</button>
                 </div>
             </form>
         </div>
