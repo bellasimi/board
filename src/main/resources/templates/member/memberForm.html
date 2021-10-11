@@ -7,6 +7,7 @@
     <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
     <script src="/static/js/requiredWarning.js" defer></script>
     <script src="/static/js/signInCheck.js" defer></script>
+    <script src="/static/js/boxClose.js" defer></script>
 
 
     <script  src="https://code.jquery.com/jquery-latest.min.js"></script>
@@ -124,7 +125,7 @@
 
     </div>
     <div id="messageBox" th:if="${not #strings.isEmpty(message)}" th:text="${message}">
-        <button type="button" onclick="boxclose()">
+        <button type="button" id="closeMsgBtn">
             <i class="fas fa-times fa-2x"></i>
         </button>
     </div>

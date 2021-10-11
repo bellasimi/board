@@ -7,17 +7,15 @@
     <script src="/static/js/index.js" defer></script>
     <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
     <script  src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="/static/js/boxClose.js" defer></script>
     <script th:inline="javascript">
         window.onload = function(){
             console.log([[${message}]]);
             if([[${message}]] != null){
-                $('#mbox').attr('style','visibility:visible');
+                $('#messageBox').attr('style','visibility:visible');
             }
         }
 
-        function mboxclose(){
-            $('#mbox').attr('style','visibility: hidden');
-        }
     </script>
 
 </head>
@@ -68,11 +66,10 @@
         <li><a href="/searchPw">비밀번호 찾기</a></li>
     </ul>
 
-    <div id="mbox" style="visibility: hidden; width: 100px; height: 100px;background-color: white" >
-        <!--/*@thymesVar id="message" type=""*/-->
-        <p th:text="${message}"></p>
-        <button type="button" id="mboxclse">닫기</button>
-        <a href="javascript:mboxclose()">닫기</a>
+    <div id="messageBox" th:if="${not #strings.isEmpty(message)}" th:text="${message}">
+        <button type="button" id="closeMsgBtn">
+            <i class="fas fa-times fa-2x"></i>
+        </button>
     </div>
 </div>
 </body>

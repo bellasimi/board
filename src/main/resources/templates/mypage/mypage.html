@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="/static/css/style.css">
     <title>마이페이지</title>
     <script src="/static/js/index.js" defer></script>
+    <script src="/static/js/boxClose.js" defer></script>
     <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
     <script  src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script th:inline="javascript">
@@ -104,7 +105,7 @@
         </div>
     </div>
     <div id="messageBox" th:if="${not #strings.isEmpty(message)}" th:text="${message}" style="">
-        <button type="button" onclick="boxclose()">
+        <button type="button"  id="closeMsgBtn">
             <i class="fas fa-times fa-2x"></i>
         </button>
     </div>
