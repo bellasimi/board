@@ -467,7 +467,30 @@
 
 }
 
-@media screen and (max-width: 1200px){
+#messageBox {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: white;
+    border-radius: 7px;
+    visibility: visible;
+    z-index: 2;
+    height: 120px;
+    width: 270px;
+    font-size: 12pt;
+    text-align: center;
+    padding-bottom: 10px;
+}
+#messageBox button {
+    position: absolute;
+    top:5px;
+    left: 90%;
+    background-color: transparent;
+    border: none;
+}
+
+@media screen and (max-width: 1200px) {
     #container #article img {
         margin-top: 10px;
         width: 100%;
@@ -476,8 +499,6 @@
 }
 
 @media screen and (max-width: 825px) {
-
-
 
     #navbar {
         flex-direction: column;

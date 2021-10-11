@@ -4,20 +4,20 @@
 <head>
 
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
     <title>로그인 완료</title>
     <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
-    <script src="js/index.js" defer></script>
+    <script src="/static/js/index.js" defer></script>
     <script  src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script th:inline="javascript">
     window.onload =function(){
         const id =[[${id}]];
-        console.log("아이디:"+id);
+        /*console.log("아이디:"+id);*/
         if(id == "admin"){
             $('.admin_menu').attr('style','visibility: visible');
         }
-    }
 
+    }
     </script>
 </head>
 <body>

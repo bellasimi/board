@@ -103,8 +103,10 @@
             </table>
         </div>
     </div>
-    <div id="messageBox" style="visibility: hidden" th:text="${message}">
-
+    <div id="messageBox" th:if="${not #strings.isEmpty(message)}" th:text="${message}" style="">
+        <button type="button" onclick="boxclose()">
+            <i class="fas fa-times fa-2x"></i>
+        </button>
     </div>
 
 </div>

@@ -1,28 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/css/style.css">
     <title>회원가입</title>
     <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
-
+    <script src="/static/js/requiredWarning.js" defer></script>
     <script src="/static/js/signInCheck.js" defer></script>
-    <style>
-        #messageBox{
-            border: 1px solid black;
-            background-color: white;
-            visibility: hidden;
-            z-index: 2;
-            position: absolute;
-            top: 100px;
-            left: 100px;
-            width: 200px;
-            font-size: 12pt;
-            text-align: center;
-            padding-bottom: 10px;
-        }
 
-    </style>
 
     <script  src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
@@ -139,6 +124,9 @@
 
     </div>
     <div id="messageBox" th:if="${not #strings.isEmpty(message)}" th:text="${message}">
+        <button type="button" onclick="boxclose()">
+            <i class="fas fa-times fa-2x"></i>
+        </button>
     </div>
 </div>
 
@@ -153,6 +141,7 @@
             }
         });
     </script>-->
-<script src="/static/js/requiredWarning.js" defer></script>
+
 </body>
+
 </html>
