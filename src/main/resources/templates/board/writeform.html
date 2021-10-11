@@ -36,19 +36,29 @@
             </div>
         </div>
 
-        <div id="write-form">
+        <div class="write-form">
+            <h1>게시글 작성</h1>
             <form action="/writeSave" method="post">
-                <h1>게시글 작성</h1>
                 <input type="hidden" name="id" th:value="${id}"><p>
                 <input type="hidden" name="creDate" id="creDate" value="">
-                제목<input type="text" name="title"><p>
-                <textarea name="context" rows="20" cols="40"></textarea><p>
-
-                비밀번호<input type="text" name="pwBoard"><p>
                <!--client마다 현재시간이 다름, form에서 값을 넣는 거 보다 controller에서  server시간을 넣어줄것!
                 -->
-                <input type="submit" value="작성">
-                <input type="reset" value="초기화">
+                <div class="in-area">
+                    <input type="text" name="title" id="title" autocomplete="off" required>
+                    <label for="title">제목</label>
+                </div>
+                <div class="con-area">
+                    <textarea name="context" rows="20" cols="80" th:text="${detail.context}" id="context"> </textarea>
+                </div>
+                <div class="in-area">
+                    <input type="text" name="pwBoard" id="pwBoard" autocomplete="off" required>
+                    <label for="pwBoard">비밀번호</label>
+                    <h3>비밀번호는 숫자 4자로 입력해주세요</h3>
+                </div>
+                <div class="btn-area">
+                    <button type="reset" class="btn-no">초기화</button>
+                    <button type="submit" class="btn-yes">작성</button>
+                </div>
             </form>
         </div>
     </div>
