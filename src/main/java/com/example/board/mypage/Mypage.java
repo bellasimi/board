@@ -21,7 +21,7 @@ public class Mypage {
     @GeneratedValue
     private int mypageSeq;
     @Column(nullable = false)
-    private String seqMember;
+    private String id;
     @Column(nullable = false)
     private String seqBoard;
 

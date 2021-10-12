@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -20,6 +22,8 @@ public class MypageController {
     private BoardRepository boardRepository;
     @Autowired
     ReplyRepository replyRepository;
+    @Autowired
+    MypageRepository mypageRepository;
 
     /* 마이페이지 */
     @RequestMapping("/mypage")
@@ -33,6 +37,17 @@ public class MypageController {
 
         return "mypage/mypage";
     }
+    /*북마크*/
 
+    @RequestMapping("/bookmark")
+    @ResponseBody
+    public String bookmark(@RequestParam("seq") String seqBoard,HttpSession session, Mypage mypage){
+        String id = (String) session.getAttribute("logId");
+        mypage.setSeqBoard(seqBoard);
+        mypage.setId(id);
+        mypageRepository.save(mypage);
+        /*추후 중복확인*/
+        return "북마크로 저장됐습니다!";
+    }
 
 }
