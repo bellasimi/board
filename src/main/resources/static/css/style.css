@@ -460,7 +460,12 @@
     color: var(--text-color);
 }
 
-.my-contents table, .my-reply table {
+.my-bookmark {
+    margin-top: 100px;
+    color: var(--text-color);
+}
+
+.my-contents table, .my-reply table,.my-bookmark table {
     width: 100%;
     height: auto;
     border-collapse: collapse;
@@ -468,16 +473,23 @@
     text-align: center;
 }
 
-.my-contents table th, .my-reply table th {
+.my-contents table th, .my-reply table th,.my-bookmark table th {
     background-color: var(--th-color);
     color: var(--th-text-color);
     padding: 10px 10px;
 }
 
-.my-contents table td, .my-reply table td {
+.my-contents table td, .my-reply table td,.my-bookmark table td {
     background-color: var(--td-color);
     color: var(--td-text-color);
+    padding: 2px;
 }
+
+.my-contents table td a, .my-reply table td a,.my-bookmark table td a {
+    text-decoration: none;
+    color: black;
+}
+
 .board-table {
     margin-top: 100px;
     height: auto;
