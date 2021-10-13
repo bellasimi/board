@@ -118,10 +118,16 @@ public class MemberController {
         }
         else{
             model.addAttribute("id",id);
-
             HttpSession session = request.getSession();
             session.setAttribute("logId",id);
             return "member/loginsuccess";
         }
     }
+    //로그아웃
+    @RequestMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return "index";
+    }
+
 }

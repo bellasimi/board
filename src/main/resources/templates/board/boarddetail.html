@@ -266,7 +266,7 @@
             <li class="admin_menu"><a th:href="@{/memberList}">회원관리</a></li>
             <li><a th:href="@{/boardlist}">게시판</a></li>
             <li><a th:href="@{/mypage}">마이페이지</a></li>
-            <li><a th:href="@{/}">로그아웃</a></li>
+            <li><a th:href="@{/logout}">로그아웃</a></li>
             <li>
                 <a href="https://bellasimi.github.io/">
                     <i class="fas fa-blog fa-2x"></i>
@@ -392,5 +392,21 @@
             </div>
     </div>
 </div>
+<script  src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script th:inline="javascript">
+    $(document).ready(function(){
+       console.log([[${message}]]);
+            if([[${message}]] != null){
+                $('#messageBox').attr('style','visibility:visible');
+            }
+       const id = [[${id}]];
+       console.log("id는"+id+"입니다.");
+
+       if(id=="admin"){
+            $('.admin_menu').attr('style','visibility:visible');
+       }
+
+    });
+</script>
 </body>
 </html>

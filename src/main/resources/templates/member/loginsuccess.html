@@ -21,7 +21,7 @@
             <li class="admin_menu"><a th:href="@{/memberList}">회원관리</a></li>
             <li><a th:href="@{/boardlist}">게시판</a></li>
             <li><a th:href="@{/mypage}">마이페이지</a></li>
-            <li><a th:href="@{/}">로그아웃</a></li>
+            <li><a th:href="@{/logout}">로그아웃</a></li>
             <li>
                 <a href="https://bellasimi.github.io/">
                     <i class="fas fa-blog fa-2x"></i>
@@ -41,7 +41,7 @@
     </div>
     <div id="article">
 
-        <span th:text="${id}"></span>님 로그인 완료됐습니다!<p></p>
+        <span th:text="${id}"></span>님 반갑습니다!<p></p>
         <button type="button" onclick="location.href='/write'">글쓰러 가기</button>
 
     </div>

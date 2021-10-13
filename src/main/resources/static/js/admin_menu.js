@@ -1,4 +1,4 @@
-/*타임스크립트 값 가능? */
+/*타임리프 값 가능? */
 const id =[[${id}]];
 const admin_menu = document.querySelectorAll('.admin_menu');
 
