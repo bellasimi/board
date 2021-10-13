@@ -31,23 +31,32 @@ public class MypageController {
         String id = (String) session.getAttribute("logId");
         List<Board> myBoard = boardRepository.findById(id);
         List<Reply> myReply = replyRepository.findAllById(id);
+        List<Mypage> myBookmark = mypageRepository.findById(id);
         model.addAttribute("myBoardList",myBoard);
         model.addAttribute("myReplyList",myReply);
+        model.addAttribute("myBookmark",myBookmark);
         model.addAttribute("id",id);
 
         return "mypage/mypage";
     }
     /*북마크*/
-
     @RequestMapping("/bookmark")
-    @ResponseBody
-    public String bookmark(@RequestParam("seq") String seqBoard,HttpSession session, Mypage mypage){
+    public String bookmark(@RequestParam("seq") String seqBoard,@RequestParam("title") String title,HttpSession session, Mypage mypage){
         String id = (String) session.getAttribute("logId");
         mypage.setSeqBoard(seqBoard);
         mypage.setId(id);
+        mypage.setTitle(title);
         mypageRepository.save(mypage);
-        /*추후 중복확인*/
-        return "북마크로 저장됐습니다!";
+        /*추후 중복확인*//*
+        return "북마크로 저장됐습니다!";*/
+        return "redirect:mypage";
     }
 
+    /*북마크 취소*/
+    @RequestMapping("/delBookmark")
+    public String delBookmark(@RequestParam("seq")int seqMypage){
+        mypageRepository.deleteById(seqMypage);
+        return "redirect:mypage";
+
+    }
 }

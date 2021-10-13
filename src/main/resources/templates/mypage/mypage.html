@@ -2,11 +2,12 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>마이페이지</title>
-    <script src="/static/js/index.js" defer></script>
-    <script src="/static/js/boxClose.js" defer></script>
     <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
+    <script src="/js/index.js" defer></script>
+    <script src="/js/admin_menu.js" defer></script>
+    <script src="/js/boxClose.js" defer></script>
     <script  src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script th:inline="javascript">
         window.onload = function(){
@@ -26,6 +27,7 @@
             <li><a th:href="@{/mypage}">마이페이지</a></li>
             <li><a th:href="@{/adminboard}">게시판관리</a></li>
             <li><a th:href="@{/memberList}">회원관리</a></li>
+            <li><a th:href="@{/}">로그아웃</a></li>
             <li>
                 <a href="https://bellasimi.github.io/">
                     <i class="fas fa-blog fa-2x"></i>
@@ -102,6 +104,36 @@
                 </tr>
                 </tbody>
             </table>
+        </div>
+        <div class="my-bookmark">
+            <span class="my_id" th:text="${id}"></span>님의 북마크
+            <table>
+                <thead>
+                <tr>
+                    <th>목록</th>
+                    <th>제목</th>
+                    <th>변경</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${not #lists.isEmpty(myBookmark)}" th:each="row, i: ${myBookmark}">
+                    <td th:text="${i.index}"></td>
+                    <td>
+                        <a th:href="@{/boarddetail(seq=${row.seqBoard})}">
+                            <span th:text="${row.title}"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a th:href="@{/delBookmark(seq=${row.seqMypage})}">취소</a>
+                    </td>
+                </tr>
+                <tr th:unless="${not #lists.isEmpty(myReplyList)}">
+                    <td colspan="5">조회된 결과가 없습니다.</td>
+                </tr>
+                </tbody>
+            </table>
+
+
         </div>
     </div>
     <div id="messageBox" th:if="${not #strings.isEmpty(message)}" th:text="${message}" style="">
