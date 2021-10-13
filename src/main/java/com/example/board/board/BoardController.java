@@ -21,7 +21,6 @@ public class BoardController {
 
     @Autowired
     ReplyRepository replyRepository;
-
     //글작성폼
     @RequestMapping("/write")
     public String writeform(Model model, HttpSession session){
@@ -40,29 +39,35 @@ public class BoardController {
         boardRepository.save(board);
         List<Board> boardList = boardRepository.findAll();
         model.addAttribute("list2", boardList);
+        String id = (String) session.getAttribute("logId");
+        model.addAttribute("id",id);
         return "board/boardlist";
     }
     //게시판보기
     @RequestMapping("/boardlist")
-    public String boardlist(Board board,Model model){
+    public String boardlist(Board board,Model model,HttpSession session){
         List<Board> boardList = boardRepository.findAll();
         model.addAttribute("list2",boardList);
+        String id = (String) session.getAttribute("logId");
+        model.addAttribute("id",id);
         return "board/boardlist";
     }
     //정렬
 
     @RequestMapping("/sortBy")
-    public String sortBy(@RequestParam("order") String order, Model model){
+    public String sortBy(@RequestParam("order") String order, Model model,HttpSession session){
         List<Board> boardList = boardRepository.findAll();
 
         if(order == "creDate"){
-            boardList.stream().sorted(Comparator.comparing(Board::getCreDate)).collect(Collectors.toList());
+            boardList = boardList.stream().sorted(Comparator.comparing(Board::getCreDate).reversed()).collect(Collectors.toList());
         }
         else if(order == "views"){
-            boardList.stream().sorted(Comparator.comparing(Board::getViews)).collect(Collectors.toList());
+            boardList = boardList.stream().sorted(Comparator.comparing(Board::getViews).reversed()).collect(Collectors.toList());
         }
 
         model.addAttribute("list2",boardList);
+        String id = (String) session.getAttribute("logId");
+        model.addAttribute("id",id);
         return "board/boardlist";
     }
     //글읽기
@@ -89,6 +94,8 @@ public class BoardController {
             detail.setViews(addviews);
             boardRepository.save(detail);
             model.addAttribute("detail",detail);
+            String id = (String) session.getAttribute("logId");
+            model.addAttribute("id",id);
             List<Reply> replylist = replyRepository.findAllBySeqBoard(seq);
 
             /*대댓글 여부 확인 */
@@ -119,7 +126,7 @@ public class BoardController {
     }
     //게시글 수정
     @RequestMapping("/modify")
-    public String modify(Board board,Model model){
+    public String modify(Board board,Model model,HttpSession session){
         Date date = new Date();
         SimpleDateFormat date2 = new SimpleDateFormat("yyyy-MM-dd");
         String creDate = date2.format(date);
@@ -128,32 +135,38 @@ public class BoardController {
         model.addAttribute("message","수정완료!");
         List<Board> boardList = boardRepository.findAll();
         model.addAttribute("list2",boardList);
+        String id = (String) session.getAttribute("logId");
+        model.addAttribute("id",id);
 
         return "board/boardlist";
     }
     //게시글 삭제
     @RequestMapping("/delete")
-    public String delete(@RequestParam("seq")int seq,Model model){
+    public String delete(@RequestParam("seq")int seq,Model model,HttpSession session){
         boardRepository.deleteById(seq);
         model.addAttribute("message","삭제완료!");
         List<Board> boardList = boardRepository.findAll();
         model.addAttribute("list2",boardList);
+        String id = (String) session.getAttribute("logId");
+        model.addAttribute("id",id);
 
         return "board/boardlist";
     }
     //댓글 달기
     @RequestMapping("/reply")
-    public String reply(Reply reply, Model model){
+    public String reply(Reply reply, Model model,HttpSession session){
         reply.setRgroup(String.valueOf(reply.getSeqReply()));
         replyRepository.save(reply);
         Optional<Reply> reply2  =replyRepository.findById(reply.getSeqReply());
         reply.setRgroup(String.valueOf(reply2.get().getSeqReply()));
         replyRepository.save(reply);
+        String id = (String) session.getAttribute("logId");
+        model.addAttribute("id",id);
         return "redirect:boarddetail?seq="+reply.getSeqBoard();
     }
     //댓글 삭제
     @RequestMapping("/delreply")
-    public String delreply(@RequestParam("seq")int seqReply,@RequestParam("seqB")int seqBoard){
+    public String delreply(@RequestParam("seq")int seqReply,@RequestParam("seqB")int seqBoard,HttpSession session){
         System.out.println("seqr"+seqReply);
 
         System.out.println("seqb"+seqBoard);

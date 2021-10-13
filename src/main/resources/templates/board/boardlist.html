@@ -10,20 +10,20 @@
     <script src="/js/admin_menu.js" defer></script>
     <script src="/js/boxClose.js" defer></script>
 </head>
-<script  src="https://code.jquery.com/jquery-latest.min.js"></script>
+
 
 <body>
 
     <div id="container">
         <div id="navbar">
             <div id="nav_logo">
-                <i class="fas fa-desktop"></i><a href="/">개발자1</a>
+                <i class="fas fa-desktop"></i><a href="/main">개발자1</a>
             </div>
             <ul class="nav_menu">
-                <li><a th:href="@{/boardlist}">게시판</a></li>
-                <li><a th:href="@{/mypage}">마이페이지</a></li>
                 <li class="admin_menu"><a th:href="@{/adminboard}">게시판관리</a></li>
                 <li class="admin_menu"><a th:href="@{/memberList}">회원관리</a></li>
+                <li><a th:href="@{/boardlist}">게시판</a></li>
+                <li><a th:href="@{/mypage}">마이페이지</a></li>
                 <li><a th:href="@{/}">로그아웃</a></li>
                 <li>
                     <a href="https://bellasimi.github.io/">
@@ -86,5 +86,21 @@
             </div>
         </div>
     </div>
+    <script  src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script th:inline="javascript">
+    $(document).ready(function(){
+       console.log([[${message}]]);
+            if([[${message}]] != null){
+                $('#messageBox').attr('style','visibility:visible');
+            }
+       const id = [[${id}]];
+       console.log("id는"+id+"입니다.");
+
+       if(id=="admin"){
+            $('.admin_menu').attr('style','visibility:visible');
+       }
+
+    });
+</script>
 </body>
 </html>

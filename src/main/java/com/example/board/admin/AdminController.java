@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -25,30 +26,36 @@ public class AdminController {
 
     /*관리자 게시판*/
     @RequestMapping("/adminboard")
-    public  String adminboard(Model model){
+    public  String adminboard(Model model, HttpSession session){
         List<Board> boardList =boardRepository.findAll();
         model.addAttribute("list",boardList);
+        String id = (String) session.getAttribute("logId");
+        model.addAttribute("id",id);
         return "admin/adminboard";
     }
     /*관리자 게시판삭제 */
     @RequestMapping("/adminBDel")
-     public String adminBDel(@RequestParam("seq")int seqBoard){
+     public String adminBDel(@RequestParam("seq")int seqBoard, HttpSession session,Model model){
         boardRepository.deleteById(seqBoard);
-        return "admin/adminboard";
+        return "redirect:adminboard";
     }
 
     /*관리자 회원관리*/
     @RequestMapping("/memberList")
-    public String memberList(Model model){
+    public String memberList(Model model,HttpSession session){
         List<Member> memberlist = memberRepository.findAll();
         model.addAttribute("list",memberlist);
+        String id = (String) session.getAttribute("logId");
+        model.addAttribute("id",id);
         return "admin/memberList";
     }
 
     /*관리자 회원 강퇴*/
     @RequestMapping("delMember")
-    public String delMember(@RequestParam("seq")int seq){
+    public String delMember(@RequestParam("seq")int seq,HttpSession session,Model model){
         memberRepository.deleteById(seq);
+        String id = (String) session.getAttribute("logId");
+        model.addAttribute("id",id);
         return "redirect:memberList";
     }
 }
