@@ -19,10 +19,12 @@ public class Mypage {
 
     @Id
     @GeneratedValue
-    private int mypageSeq;
+    private Integer seqMypage;
     @Column(nullable = false)
     private String id;
     @Column(nullable = false)
     private String seqBoard;
+    @Column(nullable = false)
+    private String title;
 
 }
