@@ -3,12 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>게시글목록</title>
     <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
-    <script src="/static/js/index.js" defer></script>
-    <script src="/static/js/admin_menu.js" defer></script>
-    <script src="/static/js/boxClose.js" defer></script>
+    <script src="/js/index.js" defer></script>
+    <script src="/js/admin_menu.js" defer></script>
+    <script src="/js/boxClose.js" defer></script>
+    <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
+    <script src="/js/index.js" defer></script>
+    <script src="/js/admin_menu.js" defer></script>
+    <script src="/js/boxClose.js" defer></script>
 </head>
 
 <script  src="https://code.jquery.com/jquery-latest.min.js"></script>
@@ -261,6 +265,7 @@
             <li><a th:href="@{/mypage}">마이페이지</a></li>
             <li class="admin_menu"><a th:href="@{/adminboard}">게시판관리</a></li>
             <li class="admin_menu"><a th:href="@{/memberList}">회원관리</a></li>
+            <li><a th:href="@{/}">로그아웃</a></li>
             <li>
                 <a href="https://bellasimi.github.io/">
                     <i class="fas fa-blog fa-2x"></i>
@@ -280,13 +285,14 @@
 
                 <div class="board-table">
                     <h1>글내용 </h1>
+                    <a th:href="@{/bookmark(seq=${detail.seqBoard},title=${detail.title})}">
+                        <i class="far fa-bookmark fa-2x" id="bookmark" ></i>
+                    </a>
                     <table>
                         <thead>
                             <tr><th>제목</th>
                                 <td colspan="3" th:text="${detail.title}">
-                                    <a th:href="@{/bookmark(seq= ${detail.seqBoard)}">
-                                        <i class="far fa-bookmark fa-2x" id="bookmark" ></i>
-                                    </a>
+
                                     <!--<i class="fas fa-bookmark fa-2x" ></i>-->
                                 </td>
                             </tr>

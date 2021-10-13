@@ -2,12 +2,16 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>회원가입</title>
     <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
-    <script src="/static/js/requiredWarning.js" defer></script>
-    <script src="/static/js/signInCheck.js" defer></script>
-    <script src="/static/js/boxClose.js" defer></script>
+    <script src="/js/index.js" defer></script>
+    <script src="/js/admin_menu.js" defer></script>
+    <script src="/js/boxClose.js" defer></script>
+    <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
+    <script src="/js/requiredWarning.js" defer></script>
+    <script src="/js/signInCheck.js" defer></script>
+    <script src="/js/boxClose.js" defer></script>
 
 
     <script  src="https://code.jquery.com/jquery-latest.min.js"></script>
@@ -111,10 +115,10 @@
             </div>
 
             <div class="in-area">
-                <input type="text" name="tel" id="yourTel" autocomplete="off" required>
+                <input type="text" name="tel" id="yourTel" autocomplete="off" required placeholder="회원가입시 기입한 전화번를 - 없이 입력해주세요!">
                 <label for="yourTel">전화번호</label>
 
-                <h3>전화번호는 - 없이 연속으로 입력해주세요!</h3>
+               <!-- <h3>전화번호는 - 없이 연속으로 입력해주세요!</h3>-->
             </div>
             <div class="btn-area">
                 <button type="submit" class="btn-yes">회원가입</button>

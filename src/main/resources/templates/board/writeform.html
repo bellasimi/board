@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>게시글작성</title>
     <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
-    <script src="/static/js/index.js" defer></script>
-    <script src="/static/js/admin_menu.js" defer></script>
+    <script src="/js/index.js" defer></script>
+    <script src="/js/admin_menu.js" defer></script>
 </head>
 <body>
     <div id="container">
@@ -20,6 +20,7 @@
                 <li><a th:href="@{/mypage}">마이페이지</a></li>
                 <li class="admin_menu"><a th:href="@{/adminboard}">게시판관리</a></li>
                 <li class="admin_menu"><a th:href="@{/memberList}">회원관리</a></li>
+                <li><a th:href="@{/}">로그아웃</a></li>
                 <li>
                     <a href="https://bellasimi.github.io/">
                         <i class="fas fa-blog fa-2x"></i>
@@ -48,7 +49,7 @@
                     <label for="title">제목</label>
                 </div>
                 <div class="con-area">
-                    <textarea name="context" rows="20" cols="80" th:text="${detail.context}" id="context"> </textarea>
+                    <textarea name="context" rows="20" cols="80" id="context"> </textarea>
                 </div>
                 <div class="in-area">
                     <input type="text" name="pwBoard" id="pwBoard" autocomplete="off" required>

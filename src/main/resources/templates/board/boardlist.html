@@ -3,29 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
     <title>게시글목록</title>
     <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
-    <script src="/static/js/index.js" defer></script>
-    <script src="/static/js/admin_menu.js" defer></script>
-    <script src="/static/js/boxClose.js" defer></script>
+    <script src="/js/index.js" defer></script>
+    <script src="/js/admin_menu.js" defer></script>
+    <script src="/js/boxClose.js" defer></script>
 </head>
-
 <script  src="https://code.jquery.com/jquery-latest.min.js"></script>
-<script th:inline="javascript">
-    window.onload=function(){
-        let message = [[${message}]];
-    console.log(message);
-         if(message != null){
-             $("#messageBox").attr("style","visibility:visible;z-index: 2;position: absolute; top: 0px;left: 0px; width: 100%; font-size:12pt;");
-             //$("#messageBox").height($(document).height());
-         }
-
-    }
-
-
-
-</script>
 
 <body>
 
@@ -39,6 +24,7 @@
                 <li><a th:href="@{/mypage}">마이페이지</a></li>
                 <li class="admin_menu"><a th:href="@{/adminboard}">게시판관리</a></li>
                 <li class="admin_menu"><a th:href="@{/memberList}">회원관리</a></li>
+                <li><a th:href="@{/}">로그아웃</a></li>
                 <li>
                     <a href="https://bellasimi.github.io/">
                         <i class="fas fa-blog fa-2x"></i>
@@ -61,6 +47,7 @@
                 <ul class="order">
                     <li><a th:href="@{/sortBy(order='views')}">조회수 높은순</a></li>
                     <li><a th:href="@{/sortBy(order='creDate')}">최신순</a></li>
+                    <li><a th:href="@{/write}">글쓰기</a></li>
                 </ul>
                 <table>
                     <thead>
