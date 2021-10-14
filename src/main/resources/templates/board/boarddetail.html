@@ -9,10 +9,7 @@
     <script src="/js/index.js" defer></script>
     <script src="/js/admin_menu.js" defer></script>
     <script src="/js/boxClose.js" defer></script>
-    <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
-    <script src="/js/index.js" defer></script>
-    <script src="/js/admin_menu.js" defer></script>
-    <script src="/js/boxClose.js" defer></script>
+
 </head>
 
 <script  src="https://code.jquery.com/jquery-latest.min.js"></script>
@@ -75,7 +72,7 @@
                 location.href = "/delreply?seq=" +seqReply+ "&seqB=" +[[${detail.seqBoard}]];
             } else if (work == "수정") {
 
-                const table = document.getElementById('board_table2');
+                const table = document.getElementById('reply-table');
                 const reReplyRow = table.insertRow(index);
                 const reReplyBox1 = reReplyRow.insertCell(0);
                 const reReplyBox2 = reReplyRow.insertCell(1);
@@ -98,7 +95,7 @@
                     " <a href='javascript:closeReply(" + index + ")'>댓글수정취소</a></form>";
 
             }else if(work=="대댓"){
-                const table = document.getElementById('board_table2');
+                const table = document.getElementById('reply-table');
                 const reReplyRow =table.insertRow(index);
                 const reReplyBox1 = reReplyRow.insertCell(0);
                 const reReplyBox2 = reReplyRow.insertCell(1);
@@ -137,8 +134,10 @@
                     location.href = "/delreply?seq=" +seqReply+ "&seqB=" +[[${detail.seqBoard}]];
                 }
                 else if(work=="수정"){
+
                     //location.href="/modireply?seq="+seqReply; 이거 안하고 폼으로 전달
-                    const table = document.getElementById('board_table2');
+                    const table = document.getElementById('reply-table');
+                    console.log("테이블"+table+"존재");
                     const reReplyRow =table.insertRow(index);
                     const reReplyBox1 = reReplyRow.insertCell(0);
                     const reReplyBox2 = reReplyRow.insertCell(1);
@@ -211,7 +210,7 @@
                 }//수정
                 /*대댓*/
                 else if(work=="대댓"){
-                    const table = document.getElementById('board_table2');
+                    const table = document.getElementById('reply-table');
                     const reReplyRow =table.insertRow(index);
                     const reReplyBox1 = reReplyRow.insertCell(0);
                     const reReplyBox2 = reReplyRow.insertCell(1);
@@ -249,7 +248,7 @@
 
     }
     function closeReply(index){
-        const table = document.getElementById('board_table2');
+        const table = document.getElementById('reply-table');
         table.deleteRow(index);
     }
 </script>
@@ -284,112 +283,97 @@
     </div>
     <div class="section">
 
-                <div class="board-table">
-                    <h1>글내용 </h1>
-                    <a th:href="@{/bookmark(seq=${detail.seqBoard},title=${detail.title})}">
-                        <i class="far fa-bookmark fa-2x" id="bookmark" ></i>
-                    </a>
-                    <table>
-                        <thead>
-                            <tr><th>제목</th>
-                                <td colspan="3" th:text="${detail.title}">
+        <div class="board-table">
+            <h1>글내용 </h1>
+            <a id="bookmark" th:href="@{/bookmark(seq=${detail.seqBoard},title=${detail.title})}">
+                <i class="far fa-bookmark fa-2x" ></i>
+            </a>
+            <ul class="board-detail_menu">
+                <li>
+                    <a href="javascript:checkMPw()">수정</a>
+                </li>
+                <li>
+                    <a href="javascript:checkDPw()">삭제</a>
+                </li>
+            </ul>
+            <table>
+                <thead>
+                    <tr><th>제목</th>
+                        <td colspan="3" th:text="${detail.title}">
 
-                                    <!--<i class="fas fa-bookmark fa-2x" ></i>-->
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>작성자</th>
-                                <td th:text="${detail.id}"></td>
-                                <th>작성일자 </th>
-                                <td th:text="${detail.creDate}"></td>
-                            </tr>
-                        </thead>
-                        <tbody>
+                            <!--<i class="fas fa-bookmark fa-2x" ></i>-->
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>작성자</th>
+                        <td th:text="${detail.id}"></td>
+                        <th>작성일자 </th>
+                        <td th:text="${detail.creDate}"></td>
+                    </tr>
+                </thead>
+                <tbody>
 
-                        <tr>
-                            <td colspan="4" th:text="${detail.context}"></td>
-                        </tr>
-                        <tr th:if="${#strings.isEmpty(detail.id)}">
-                            <td colspan="5">삭제된 글입니다.</td>
-                        </tr>
-                        <tr>
-                            <th colspan="5">댓글달기</th>
-                        </tr>
-                        <tr th:if="${not #strings.isEmpty(detail.id)}">
-                            <td colspan="2"></td>
-                            <td colspan="3">
-                                <div class="reply-form" >
-                                    <form action="/reply" method="post">
-                                            <input type="hidden" name="seqBoard" th:value="${detail.seqBoard}">
-                                            <input type="hidden" name="Rindex" th:value="0">
+                <tr>
+                    <td class="context" colspan="4" th:text="${detail.context}"></td>
+                </tr>
+                <tr th:if="${#strings.isEmpty(detail.id)}">
+                    <td colspan="4">삭제된 글입니다.</td>
+                </tr>
+                <tr>
+                    <th colspan="4">댓글달기</th>
+                </tr>
+                <tr th:if="${not #strings.isEmpty(detail.id)}">
+                    <td></td>
+                    <td colspan="3">
+                        <div class="reply-form" >
+                            <form action="/reply" method="post">
+                                    <input type="hidden" name="seqBoard" th:value="${detail.seqBoard}">
+                                    <input type="hidden" name="Rindex" th:value="0">
 
-                                        <div class="in-area">
-                                            <input type="text" name="id" id="id" th:placeholder="${detail.id}" th:value="${detail.id}">
-                                            <label for="id">작성자</label>
-                                        </div>
-                                        <div class="con-area">
-                                            <textarea name="replytext" cols="auto" rows="7" class="replytext" ></textarea>
-                                        </div>
-                                        <div class="in-area">
-                                            <input type="text" name="pwReply" id="pwReply">
-                                            <label for="pwReply">비밀번호</label>
-                                        </div>
-                                        <div class="btn-area">
-                                            <button type="reset" class="btn-no">초기화</button>
-                                            <button type="submit" class="btn-yes">댓글달기</button>
-                                        </div>
-                                    </form>
+                                <div class="in-area">
+                                    <input type="text" name="id" id="id" th:placeholder="${detail.id}" th:value="${detail.id}" required>
+                                    <label for="id">작성자</label>
                                 </div>
-                            </td>
-                        </tr>
+                                <div class="con-area">
+                                    <textarea name="replytext" cols="auto" rows="7" class="replytext" ></textarea>
+                                </div>
+                                <div class="in-area">
+                                    <input type="text" name="pwReply" id="pwReply">
+                                    <label for="pwReply">비밀번호</label>
+                                </div>
+                                <div class="btn-area">
+                                    <button type="reset" class="btn-no">초기화</button>
+                                    <button type="submit" class="btn-yes">댓글달기</button>
+                                </div>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
 
-                        </tbody>
-                    </table>
-                    <table class="board_table">
-                        <tr th:if="${not #lists.isEmpty(replylist)}" th:each="row,i : ${replylist}" >
-                            <!--<th th:if="${row.rindex == '0'}"></th>&lt;!&ndash;목차 th:text="${i.index}"&ndash;&gt;-->
-                            <th th:unless="${row.rindex == '0'}"> &emsp;&emsp;  </th>
-                            <th th:unless="${row.rindex == '0'}" > →</th>
-                            <th th:if="${not #strings.isEmpty(row.id) and row.rindex == '0'}" th:text="${row.id}" colspan="3"></th>
-                            <th th:if="${not #strings.isEmpty(row.id) and row.rindex != '0'}" th:text="${row.id}"></th>
-                            <td th:text="${row.replytext}"></td>
-                            <td >
-                                <a th:href="|javascript:checkPw('수정',${i.index +1},${row.seqReply},${row.pwReply},${row.rgroup})|">댓글수정</a>
-                                <a th:href="|javascript:checkPw('삭제',${i.index +1},${row.seqReply},${row.pwReply},${row.rgroup})|">댓글삭제</a>
-                                <a th:href="|javascript:checkPw('대댓',${i.index +1},${row.seqReply},${row.pwReply},${row.rgroup})|">대댓글</a>
+                </tbody>
+            </table>
 
-                                <button type="button"
-                                        th:index="${i.index +1}"
-                                        th:seqReply="${row.seqReply}"
-                                        th:pwReply="${row.pwReply}"
-                                        th:rgouop="${row.rgroup}"
-                                        th:onclick="|checkPw('수정',this.getAttribute('index'),this.getAttribute('seqReply'),this.getAttribute('pwReply'),this.getAttribute('rgroup'))|">수정</button>
-                                <button type="button"
-                                        th:index="${i.index +1}"
-                                        th:seqReply="${row.seqReply}"
-                                        th:pwReply="${row.pwReply}"
-                                        th:rgroup="${row.rgroup}"
-                                        th:onclick="|checkPw('삭제',this.getAttribute('index'),this.getAttribute('seqReply'),this.getAttribute('pwReply'),this.getAttribute('rgroup'))|">삭제</button>
-                            </td>
-                        </tr>
+            <!--댓글-->
+            <table id="reply-table">
+                <tr th:if="${not #lists.isEmpty(replylist)}" th:each="row,i : ${replylist}" >
+                    <!--<th th:if="${row.rindex == '0'}"></th>&lt;!&ndash;목차 th:text="${i.index}"&ndash;&gt;-->
+                    <th th:unless="${row.rindex == '0'}"> &emsp;&emsp;  </th>
+                    <th th:unless="${row.rindex == '0'}" > →</th>
+                    <th th:if="${not #strings.isEmpty(row.id) and row.rindex == '0'}" th:text="${row.id}" colspan="3"></th>
+                    <th th:if="${not #strings.isEmpty(row.id) and row.rindex != '0'}" th:text="${row.id}"></th>
+                    <td th:text="${row.replytext}"></td>
+                    <td class="board-table_menu">
+                        <a th:href="|javascript:checkPw('수정',${i.index +1},${row.seqReply},${row.pwReply},${row.rgroup})|">댓글수정</a>
+                        <a th:href="|javascript:checkPw('삭제',${i.index +1},${row.seqReply},${row.pwReply},${row.rgroup})|">댓글삭제</a>
+                        <a th:href="|javascript:checkPw('대댓',${i.index +1},${row.seqReply},${row.pwReply},${row.rgroup})|">대댓글</a>
+                    </td>
+                </tr>
 
-
-                    </table>
-                <!-- 삭제는 되는데 수정은 왜 안될까?-->
-                <button type="button" th:onclock="|checkMPw()|">수정</button>
-
-                <button type="button" th:onclick="|checkDPw()|">삭제</button>
-
-                <a href="javascript:checkMPw()">수정</a> &emsp; &emsp;
-                <a href="javascript:checkDPw()">삭제</a>&emsp;
-
-                <!-- 자바 스크립트 처리 없이(비번 확인안하고) 컨트롤러에 보내는 경우
-                 <a th:href="@{/modiform(seq=${detail.seqBoard})}">수정</a> &emsp; &emsp;
-                           <a th:href="@{/delete(seq=${detail.seqBoard})}">삭제</a>&emsp; -->&emsp;
-                <a th:href="@{/write}">글쓰기</a>
+            </table>
 
 
-            </div>
+
+        </div>
     </div>
 </div>
 <script  src="https://code.jquery.com/jquery-latest.min.js"></script>
