@@ -542,7 +542,7 @@
 
 }
 
-board-table .order a:hover {
+.board-table .order a:hover {
     color: var(--dark-hover-color);
 }
 
@@ -580,7 +580,6 @@ board-table .order a:hover {
     list-style: none;
     display: flex;
     justify-content: right;
-    text-align: right;
     padding: 10px 10px;
 
 }
@@ -644,11 +643,15 @@ board-table .order a:hover {
 
 }
 
+.member-table h1 {
+    margin-bottom: 100px;
+}
+
 .member-table table {
     width: 100%;
     height: auto;
     border-collapse: collapse;
-    margin: 100px auto auto auto;
+    margin: 0 auto;
     text-align: center;
 }
 
@@ -662,6 +665,31 @@ board-table .order a:hover {
     background-color: var(--td-color);
     color: var(--td-text-color);
 
+}
+
+.member-table .order {
+    display: flex;
+    list-style:none;
+    float:right;
+    padding: 10px 10px;
+
+}
+
+.member-table .order li {
+    margin-left: 10px;
+
+}
+
+.member-table .order a {
+    text-decoration: none;
+    font-size: 10pt;
+    color: var(--explain-color);
+    cursor: pointer;
+
+}
+
+.member-table .order a:hover {
+    color: var(--dark-hover-color);
 }
 
 #messageBox {

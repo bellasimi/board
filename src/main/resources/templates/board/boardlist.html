@@ -78,7 +78,8 @@
                 </table>
 
 
-                <div id="messageBox" th:if="${not #strings.isEmpty(message)}" th:text="${message}" style="">
+                <div id="messageBox" th:if="${not #strings.isEmpty(message)}" style="">
+                    <span th:text="${message}"></span>
                     <button type="button" id="closeMsgBtn">
                         <i class="fas fa-times fa-2x"></i>
                     </button>

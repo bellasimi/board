@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/static/css/style.css">
     <title>회원관리</title>
     <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
     <script src="/js/index.js" defer></script>
@@ -45,6 +45,11 @@
         <div class="section">
             <div class="member-table">
                 <h1>회원 관리</h1>
+                <ul class="order">
+                    <li><a th:href="@{/sortBy(order='views')}">조회수 높은순</a></li>
+                    <li><a th:href="@{/sortBy(order='creDate')}">최신순</a></li>
+                    <li><a th:href="@{/write}">글쓰기</a></li>
+                </ul>
                 <table>
                     <thead>
                     <tr>
@@ -72,10 +77,6 @@
                     </tr>
                     </tbody>
                 </table>
-
-                <div class="btn_wrap text-right">
-                    <a th:href="@{/memberForm}" class="btn btn-primary waves-effect waves-light">Write</a>
-                </div>
 
             </div>
         </div>

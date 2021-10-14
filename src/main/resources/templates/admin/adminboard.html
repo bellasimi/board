@@ -44,6 +44,11 @@
     <div class="section">
         <div class="board-table">
             <h1>게시판 관리</h1>
+            <ul class="order">
+                <li><a th:href="@{/sortBy(order='views')}">조회수 높은순</a></li>
+                <li><a th:href="@{/sortBy(order='creDate')}">최신순</a></li>
+                <li><a th:href="@{/write}">글쓰기</a></li>
+            </ul>
             <table>
                 <thead>
                 <tr>
