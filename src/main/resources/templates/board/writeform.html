@@ -64,44 +64,48 @@
         </div>
     </div>
     <script  src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script th:inline="javascript">
-        <!--client현재시간 구하는 법(자동실행 제이쿼리)-->
+
         $(document).ready(function(){
-            let date1= new Date();
-            let Y = date1.getFullYear();
-            let m = date1.getMonth();
-            let d = date1.getDate();
 
-            if(m<10){ m="0"+m;}
-            if(d<10){ d="0"+d; }
-            let creDate =Y+"-"+m+"-"+d;
-
-            /*
-             어째서인지 jqeury attr가 먹히지 않는다 -> 이거 th:inline="javascript"하니까 해결
-                 $("input[id=creDate]").attr("value","STR_TO_DATE("+"'"+creDate+"'"+",'%Y-%m-%d')");*/
-            console.log(creDate);
-            console.log("STR_TO_DATE("+"'"+creDate+"'"+",'%Y-%m-%d')");
-
-            /*
-            그냥 자바스크립트 매소드로 넘김*/
-            document.getElementById("creDate").setAttribute("value",creDate);
-            let id = [[${id}]];
-            if(id==null ||id==''){
-                alert("로그인 후 이용할 수 있습니다!");
-                location.href="/loginform";
-            }
         });
 
-    </script>
     <script th:inline="javascript">
     $(document).ready(function(){
-       console.log([[${message}]]);
-            if([[${message}]] != null){
-                $('#messageBox').attr('style','visibility:visible');
-            }
+        <!--클라이언트 시간 넘겨주는 방법 현재사용 x
+        let date1= new Date();
+        let Y = date1.getFullYear();
+        let m = date1.getMonth()+1;
+        let d = date1.getDate();
+
+        if(m<10){ m="0"+m;}
+        if(d<10){ d="0"+d; }
+        let creDate =Y+"-"+m+"-"+d;
+
+        /*
+         어째서인지 jqeury attr가 먹히지 않는다 -> 이거 th:inline="javascript"하니까 해결
+             $("input[id=creDate]").attr("value","STR_TO_DATE("+"'"+creDate+"'"+",'%Y-%m-%d')");*/
+        console.log(creDate);
+        console.log("STR_TO_DATE("+"'"+creDate+"'"+",'%Y-%m-%d')");
+
+        /*
+        그냥 자바스크립트 매소드로 넘김*/
+        document.getElementById("creDate").setAttribute("value",creDate);-->
+
+
+        console.log([[${message}]]);
+
+        if([[${message}]] != null){
+            $('#messageBox').attr('style','visibility:visible');
+        }
+
        const id = [[${id}]];
+
        console.log("id는"+id+"입니다.");
 
+       if(id==null ||id==''){
+            alert("로그인 후 이용할 수 있습니다!");
+            location.href="/loginform";
+       }
        if(id=="admin"){
             $('.admin_menu').attr('style','visibility:visible');
        }

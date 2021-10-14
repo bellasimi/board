@@ -1,5 +1,6 @@
 package com.example.board.board;
 
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,10 +9,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Controller
@@ -35,7 +38,13 @@ public class BoardController {
     //글저장 후 게시판으로
     @RequestMapping("/writeSave")
     public String writesave(Board board,Model model,HttpSession session) {
+        /* 현재 날짜 구하기 */
+        LocalDate today =LocalDate.now();
+        String creDate = today.toString();
+
+        board.setCreDate(creDate);
         board.setViews(0);
+
         boardRepository.save(board);
         List<Board> boardList = boardRepository.findAll();
         model.addAttribute("list2", boardList);
@@ -57,14 +66,15 @@ public class BoardController {
     @RequestMapping("/sortBy")
     public String sortBy(@RequestParam("order") String order, Model model,HttpSession session){
         List<Board> boardList = boardRepository.findAll();
-
-        if(order == "creDate"){
+        System.out.println("순서"+order+"이다");
+        if(order=="creDate"){
             boardList = boardList.stream().sorted(Comparator.comparing(Board::getCreDate).reversed()).collect(Collectors.toList());
-        }
-        else if(order == "views"){
-            boardList = boardList.stream().sorted(Comparator.comparing(Board::getViews).reversed()).collect(Collectors.toList());
-        }
 
+        }
+        else if(order=="views") {
+            boardList = boardList.stream().sorted(Comparator.comparing(Board::getViews).reversed()).collect(Collectors.toList());
+
+        }
         model.addAttribute("list2",boardList);
         String id = (String) session.getAttribute("logId");
         model.addAttribute("id",id);
