@@ -66,14 +66,14 @@ public class BoardController {
     @RequestMapping("/sortBy")
     public String sortBy(@RequestParam("order") String order, Model model,HttpSession session){
         List<Board> boardList = boardRepository.findAll();
-        System.out.println("순서"+order+"이다");
-        if(order=="creDate"){
+
+        if(order.equals("creDate")){
             boardList = boardList.stream().sorted(Comparator.comparing(Board::getCreDate).reversed()).collect(Collectors.toList());
-
+            System.out.println("if");
         }
-        else if(order=="views") {
+        else if(order.equals("views")) {
             boardList = boardList.stream().sorted(Comparator.comparing(Board::getViews).reversed()).collect(Collectors.toList());
-
+            System.out.println("else if");
         }
         model.addAttribute("list2",boardList);
         String id = (String) session.getAttribute("logId");
