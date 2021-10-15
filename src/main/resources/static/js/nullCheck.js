@@ -10,29 +10,36 @@ const tel = document.getElementById('tel');
 
 yesBtn.addEventListener('click',()=>{
     if(id.value == ""){
-        id.nextElementSibling.classList.toggle('warning');
-        alert("id는 영문숫자혼합 4-12자로 입력해주세요!");
+        id.nextElementSibling.classList.add('warning');
         id.focus();
+        setTimeout(function() {
+            id.nextElementSibling.classList.remove('warning');
+        },1500);
         return false;
     }
-    if(pw.value == ""){
-        pw.nextElementSibling.classList.toggle('warning');
-        alert("비밀번호는 숫자 4-8자로 입력해주세요!");
+    else if(pw.value == ""){
+        pw.nextElementSibling.classList.add('warning');
         pw.focus();
+        setTimeout(function() {
+            pw.nextElementSibling.classList.remove('warning');
+        },1500);
         return false;
     }
-    if(name.value == ""){
-        name.nextElementSibling.classList.toggle('warning');
-        alert("이름을 입력해주세요!");
+    else if(name.value == ""){
+        name.nextElementSibling.classList.add('warning');
+        setTimeout(function() {
+            name.nextElementSibling.classList.remove('warning');
+        },1500);
         name.focus();
         return false;
     }
-    if(tel.value == ""){
-        tel.nextElementSibling.classList.toggle('warning');
-        alert("전화번호는 -를 빼고 입력해주세요!");
+    else if(tel.value == ""){
+        tel.nextElementSibling.classList.add('warning');
         tel.focus();
+        setTimeout(function() {
+            tel.nextElementSibling.classList.remove('warning');
+        },1500);
         return false;
     }
-    form.submit();
 
 });//yesBtn 클릭 함수
