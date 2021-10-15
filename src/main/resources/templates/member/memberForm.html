@@ -5,67 +5,45 @@
     <link rel="stylesheet" href="/css/style.css">
     <title>회원가입</title>
     <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
-    <script src="/js/index.js" defer></script>
+    <script src="/js/navBtn.js" defer></script>
     <script src="/js/admin_menu.js" defer></script>
     <script src="/js/boxClose.js" defer></script>
-    <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
-    <script src="/js/requiredWarning.js" defer></script>
+    <script src="/js/nullCheck.js" defer></script>
     <script src="/js/signInCheck.js" defer></script>
-    <script src="/js/boxClose.js" defer></script>
-
 
     <script  src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
+
         function checkId(){
-            const id = $('#yourId').val();
 
-            $.ajax({
-                type : "post",
-                async : "false",
-                url: "/checkId",
-                data: {
-                    id: id
+            const checkIdBtn = $('#checkIdBtn');
+            const id = $('#id').val();
 
-                },
-                success : function(data, textStatus) {
-                    console.log("ajax성공시: "+data.trim());
-                    alert(data.trim());
-                },
-                error : function(data, textStatus) {
-                    alert("에러가 발생했습니다!"+data);
-                }
+            checkIdBtn.addEventListener('click',()=> {
 
-            });//ajax*/
+                $.ajax({
+                    type : "post",
+                    async : "false",
+                    url: "/checkId",
+                    data: {
+                        id: id
+
+                    },
+                    success : function(data, textStatus) {
+                        console.log("ajax성공시: "+data.trim());
+                        alert(data.trim());
+                    },
+                    error : function(data, textStatus) {
+                        alert("에러가 발생했습니다!"+data);
+                    }
+
+                });//ajax*/
+
+            });//버튼 클릭시
         }
-    function checkAgain() {
-        const id = $('#yourId').val();
-        const pw = $('#yourPw').val();
-        const name = $('#yourName').val();
-        console.log("값이" + id + pw + name + "없나?");
-        const email = $('#yourEmail').val();
-        const tel = $('#yourTel').val();
 
-        $.ajax({
-            type: "post",
-            async: "false",
-            url: "/memberSave",
-            data: {
-                id: id,
-                pw: pw,
-                name: name,
-                email: email,
-                tel: tel
 
-            },
-            error: function (data, textStatus) {
-                alert("에러가 발생했습니다!" + data);
-            }
-
-        });//ajax*/
-
-    }//checkagain
     </script>
-
 </head>
 <body>
 <div id="container">
@@ -93,35 +71,35 @@
 
     <div class="signin-form">
         <h1>회원가입</h1>
-        <form action="/memberSave" method="post">
+        <form action="/memberSave" method="post" id="memberForm">
             <div class="in-area">
-                <input type="text" name="id" id="yourId" autocomplete="off" required>
-                <label for="yourId">ID</label>
+                <input type="text" name="id" id="id" autocomplete="off" required>
+                <label for="id">ID</label>
 
             </div>
-                <button type="button" onclick="checkId()">중복체크</button>
+                <button type="button" id="checkIdBtn">중복체크</button>
             <div class="in-area">
-                <input type="text" name="pw" id="yourPw" autocomplete="off" required>
-                <label for="yourPw">PASSWORD</label>
+                <input type="password" name="pw" id="pw" autocomplete="off" required>
+                <label for="pw">PASSWORD</label>
             </div>
             <div class="in-area">
-                <input type="text" name="name" id="yourName" autocomplete="off" required>
-                <label for="yourName">이름</label>
+                <input type="text" name="name" id="name" autocomplete="off" required>
+                <label for="name">이름</label>
             </div>
 
             <div class="in-area" >
-                <input type="text" name="email" id="yourEmail" autocomplete="off" required>
-                <label for="yourEmail">EMAIL</label>
+                <input type="text" name="email" id="email" autocomplete="off" required>
+                <label for="email">EMAIL</label>
             </div>
 
             <div class="in-area">
-                <input type="text" name="tel" id="yourTel" autocomplete="off" required placeholder="회원가입시 기입한 전화번를 - 없이 입력해주세요!">
-                <label for="yourTel">전화번호</label>
+                <input type="text" name="tel" id="tel" autocomplete="off" required placeholder="회원가입시 기입한 전화번를 - 없이 입력해주세요!">
+                <label for="tel">전화번호</label>
 
                <!-- <h3>전화번호는 - 없이 연속으로 입력해주세요!</h3>-->
             </div>
             <div class="btn-area">
-                <button type="submit" class="btn-yes">회원가입</button>
+                <button type="button" class="btn-yes">회원가입</button>
                 <button type="reset" class="btn-no">취소</button>
             </div>
 
@@ -135,17 +113,6 @@
     </div>
 </div>
 
-<!--    <script>
-        let yourId = $('#yourId');
-        const yesBtn = $('.btn-yes');
-        // document.querySelector('.btn-yes');
-
-        yesBtn.on('click', () => {
-            if(yourId.val() == ""){
-                yourId.next('label').addClass('warning');
-            }
-        });
-    </script>-->
 
 </body>
 

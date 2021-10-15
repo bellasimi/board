@@ -5,11 +5,10 @@
     <link rel="stylesheet" href="/css/style.css">
     <title>로그인 페이지</title>
     <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
-    <script src="/js/index.js" defer></script>
+    <script src="/js/navBtn.js" defer></script>
+    <script src="/js/loginNullCheck.js" defer></script>
     <script src="/js/admin_menu.js" defer></script>
     <script src="/js/boxClose.js" defer></script>
-
-
 
 </head>
 <body>
@@ -36,7 +35,7 @@
 &emsp;&emsp;
     <div class="login-form">
         <h1>로그인</h1>
-        <form action="/login" method="post">
+        <form action="/login" method="post" id="loginForm">
             <div class="in-area">
                 <input type="text" name="id" id="id" autocomplete="off" required>
                 <label for="id">ID</label>
