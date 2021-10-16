@@ -239,7 +239,6 @@ body {
 
 }
 
-
 .signin-form #checkIdBtn {
     background-color: transparent;
     position: relative;
@@ -250,17 +249,12 @@ body {
     cursor: pointer;
 }
 
-.signin-form .in-area label.warning {
-    color: red !important;
-    animation: warning .3s ease;
-    animation-iteration-count: 3;
-}
-
-@keyframes warning {
-    0% {transform: translateX(-8px);}
-    25% {transform: translateX(8px);}
-    50% {transform: translateX(-8px);}
-    75% {transform: translateX(8px);}
+.signin-form .in-area #showPwBtn {
+    color: var(--explain-color);
+    position: absolute;
+    top: 27px;
+    right: 10px;
+    cursor: pointer;
 }
 
 .search-form {
@@ -402,6 +396,19 @@ body {
     color: var(--text-color);
     transition: all .5s ease;
 
+}
+
+.in-area label.warning {
+    color: red !important;
+    animation: warning .3s ease;
+    animation-iteration-count: 3;
+}
+
+@keyframes warning {
+    0% {transform: translateX(-8px);}
+    25% {transform: translateX(8px);}
+    50% {transform: translateX(-8px);}
+    75% {transform: translateX(8px);}
 }
 
 .in-area input:focus +label,
