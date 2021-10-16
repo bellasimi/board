@@ -6,15 +6,20 @@ const pw = document.getElementById('pw');
 
 
 yesBtn.addEventListener('click',()=>{
+
     if(id.value == ""){
-        id.nextElementSibling.classList.toggle('warning');
-        alert("id는 영문숫자혼합 4-12자로 입력해주세요!");
+        id.nextElementSibling.classList.add('warning');
+        setTimeout(function(){
+            id.nextElementSibling.classList.remove('warning');
+        },1500);
         id.focus();
         return false;
     }
     if(pw.value == ""){
-        pw.nextElementSibling.classList.toggle('warning');
-        alert("비밀번호는 숫자 4-8자로 입력해주세요!");
+        pw.nextElementSibling.classList.add('warning');
+        setTimeout(function(){
+            pw.nextElementSibling.classList.remove('warning');
+        },1500);
         pw.focus();
         return false;
     }
