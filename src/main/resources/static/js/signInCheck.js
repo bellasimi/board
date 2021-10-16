@@ -1,8 +1,10 @@
 
+const form = document.getElementById('signinForm');
+
 const idReg = /^[a-zA-Z0-9]{4,12}$/;
 const pwReg = /\d{4,8}/;
 const emailReg = /^[a-zA-Z0-9]([-_\.]?[a-zA-Z0-9])*@[a-zA-Z0-9]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-const telReg =/^d{9,11}/;
+const telReg =/\d{9,11}/;
 
 yesBtn.addEventListener('click',()=>{
     if(!idReg.test(id.value)){

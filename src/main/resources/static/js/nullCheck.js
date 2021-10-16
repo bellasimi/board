@@ -1,12 +1,10 @@
 const yesBtn = document.querySelector('.btn-yes');
-const form = document.getElementById('memberForm');
 
 const id = document.getElementById('id');
 const pw = document.getElementById('pw');
 const name = document.getElementById('name');
-const yourEmail = document.getElementById('email');
+const email = document.getElementById('email');
 const tel = document.getElementById('tel');
-
 
 yesBtn.addEventListener('click',()=>{
     if(id.value == ""){
@@ -17,7 +15,7 @@ yesBtn.addEventListener('click',()=>{
         },1500);
         return false;
     }
-    else if(pw.value == ""){
+    if(pw.value == ""){
         pw.nextElementSibling.classList.add('warning');
         pw.focus();
         setTimeout(function() {
@@ -25,7 +23,7 @@ yesBtn.addEventListener('click',()=>{
         },1500);
         return false;
     }
-    else if(name.value == ""){
+    if(name.value == ""){
         name.nextElementSibling.classList.add('warning');
         setTimeout(function() {
             name.nextElementSibling.classList.remove('warning');
@@ -33,7 +31,15 @@ yesBtn.addEventListener('click',()=>{
         name.focus();
         return false;
     }
-    else if(tel.value == ""){
+    if(email.value == ""){
+        email.nextElementSibling.classList.add('warning');
+        setTimeout(function() {
+            email.nextElementSibling.classList.remove('warning');
+        },1500);
+        email.focus();
+        return false;
+    }
+    if(tel.value == ""){
         tel.nextElementSibling.classList.add('warning');
         tel.focus();
         setTimeout(function() {
