@@ -5,45 +5,15 @@
     <link rel="stylesheet" href="/css/style.css">
     <title>회원가입</title>
     <script src="https://kit.fontawesome.com/d1b79b9b3f.js" crossorigin="anonymous"></script>
+
     <script src="/js/navBtn.js" defer></script>
     <script src="/js/admin_menu.js" defer></script>
+    <script src="/js/showPw.js"defer ></script>
     <script src="/js/boxClose.js" defer></script>
     <script src="/js/nullCheck.js" defer></script>
     <script src="/js/signInCheck.js" defer></script>
 
-    <script  src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script>
 
-        function checkId(){
-
-            const checkIdBtn = $('#checkIdBtn');
-            const id = $('#id').val();
-
-            checkIdBtn.addEventListener('click',()=> {
-
-                $.ajax({
-                    type : "post",
-                    async : "false",
-                    url: "/checkId",
-                    data: {
-                        id: id
-
-                    },
-                    success : function(data, textStatus) {
-                        console.log("ajax성공시: "+data.trim());
-                        alert(data.trim());
-                    },
-                    error : function(data, textStatus) {
-                        alert("에러가 발생했습니다!"+data);
-                    }
-
-                });//ajax*/
-
-            });//버튼 클릭시
-        }
-
-
-    </script>
 </head>
 <body>
 <div id="container">
@@ -71,16 +41,17 @@
 
     <div class="signin-form">
         <h1>회원가입</h1>
-        <form action="/memberSave" method="post" id="memberForm">
+        <form action="/memberSave" method="post" id="signinForm">
             <div class="in-area">
                 <input type="text" name="id" id="id" autocomplete="off" required>
                 <label for="id">ID</label>
 
             </div>
-                <button type="button" id="checkIdBtn">중복체크</button>
+                <button type="button" id="checkIdBtn" >중복체크</button>
             <div class="in-area">
                 <input type="password" name="pw" id="pw" autocomplete="off" required>
                 <label for="pw">PASSWORD</label>
+                <i class="fas fa-eye" id="showPwBtn"></i>
             </div>
             <div class="in-area">
                 <input type="text" name="name" id="name" autocomplete="off" required>
@@ -93,10 +64,10 @@
             </div>
 
             <div class="in-area">
-                <input type="text" name="tel" id="tel" autocomplete="off" required placeholder="회원가입시 기입한 전화번를 - 없이 입력해주세요!">
-                <label for="tel">전화번호</label>
+                <input type="text" name="tel" id="tel" autocomplete="off" required >
+                <label for="tel" class="telLabel">전화번호</label>
 
-               <!-- <h3>전화번호는 - 없이 연속으로 입력해주세요!</h3>-->
+                <h3>전화번호는 - 없이 연속으로 입력해주세요!</h3>
             </div>
             <div class="btn-area">
                 <button type="button" class="btn-yes">회원가입</button>
@@ -112,8 +83,42 @@
         </button>
     </div>
 </div>
+<script  src="https://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+    $(document).ready(function(){
+
+        checkIdBtn.addEventListener('click',()=>{
+          if(id.value==""){
+                alert("id는 영문숫자혼합 4-12자로 입력해주세요!");
+            }
+            else{
+                $.ajax({
+                    type : "post",
+                    async : "false",
+                    url: "/checkId",
+                    data: {
+                        id: id.value
+
+                    },
+                    success : function(data, textStatus) {
+                        console.log("ajax성공시: "+data.trim());
+                        alert(data.trim());
+                    },
+                    error : function(data, textStatus) {
+                        alert("에러가 발생했습니다!"+data);
+                    }
+
+                });//ajax*/
+
+            }//조건문 끝
 
 
+
+        });//클릭이벤트
+
+    });//ready
+
+</script>
 </body>
 
 </html>
