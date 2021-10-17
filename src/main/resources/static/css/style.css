@@ -399,7 +399,7 @@ body {
 }
 
 .in-area label.warning {
-    color: red !important;
+    color: red;
     animation: warning .3s ease;
     animation-iteration-count: 3;
 }
